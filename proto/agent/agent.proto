@@ -1,342 +1,273 @@
 syntax = "proto3";
 
 package service_agent;
-
-import "annotations.proto";
-
 option go_package = "service.agent";
 
-// import "protobuf/common/messageData.proto";
+import "google/api/annotations.proto";
 
-/**
- * Статусы заявок.
- */
-enum SubmissionsStatus {
-    SUBM_CREATED = 0;      // Создано
-    SUBM_IN_PROGRESS = 1;  // В процессе
-    SUBM_ON_INTERVIEW = 2; // На собеседовании
-    SUBM_DECLINED = 3;     // Отклонено
-    SUBM_SUSPENDED = 4; // Приостановлено (как будто удалено)
-    SUBM_ACCEPTED = 5; // Принято
+service Agent {
+  // <-------------- VACANCY -------------->
+  /// Получить список вакансий. Получает GetVacancyListRequest, возвращает
+  /// GetVacancyListResponse
+  rpc GetVacancyList(GetVacancyListRequest) returns (GetVacancyListResponse) {
+    option (google.api.http) = {
+      get : "/v1/agents/{agent_id}/vacancies"
+    };
+  }
+
+  // <-------------- SUBMISSION -------------->
+  /// Получить список заявок. Получает GetSubmissionListRequest, возвращает
+  /// GetSubmissionListResponse
+  rpc GetSubmissionList(GetSubmissionListRequest) returns (GetSubmissionListResponse) {
+    option (google.api.http) = {
+      get : "/v1/agents/{agent_id}/submissions"
+    };
+  }
+
+  /// Метод для удаления заявки. Получает DeleteSubmissionRequest, возвращает
+  /// DeleteSubmissionResponse
+  rpc DeleteSubmission(DeleteSubmissionRequest) returns (DeleteSubmissionResponse) {
+    option (google.api.http) = {
+      delete : "/v1/agents/{agent_id}/submissions/{submission_id}"
+    };
+  }
+
+  // <-------------- PROFILE -------------->
+  /// Получить данные агента. Получает GetProfileRequest, возвращает
+  /// GetProfileResponse
+  rpc GetProfileData(GetProfileRequest) returns (GetProfileResponse) {
+    option (google.api.http) = {
+      get : "/v1/agents/{agent_id}/profile"
+    };
+  }
+
+  /// Метод для изменения данных агента. Получает SetProfileRequest, возвращает
+  /// SetProfileResponse
+  rpc SetProfileData(SetProfileRequest) returns (SetProfileResponse) {
+    option (google.api.http) = {
+      post : "/v1/agents/{agent_id}/profile"
+      body : "*"
+    };
+  }
+
+  // <-------------- COMPANY -------------->
+  /// Получить данные компании. Получает GetCompanyDataRequest, возвращает
+  /// GetCompanyDataResponse
+  rpc GetCompanyData(GetCompanyDataRequest) returns (GetCompanyDataResponse) {
+    option (google.api.http) = {
+      get : "/v1/agents/{agent_id}/company" 
+    };
+  }
+
+  /// Метод для изменения данных компании. Получает SetCompanyDataRequest, возвращает
+  /// SetCompanyDataResponse
+  rpc SetCompanyData(SetCompanyDataRequest) returns (SetCompanyDataResponse) {
+    option (google.api.http) = {
+      post : "/v1/agents/{agent_id}/company"
+      body : "*"
+    };
+  }
 }
 
-/**
- * Статусы ответа.
- */
-enum ResponseStatus {
-    OK = 0;                    // Успешно
-    BAD_REQUEST = 1;           // Неверный запрос
-    UNAUTHORIZED = 2;          // Неавторизован
-    FORBIDDEN = 3;             // Запрещено
-    NOT_FOUND = 4;             // Не найдено
-    INTERNAL_SERVER_ERROR = 5; // Внутренняя ошибка сервера
-    REQUEST_TIMEOUT = 6;       // Таймаут запроса
-    NOT_IMPLEMENTED = 7;       // Не реализовано
-    BAD_GATEWAY = 8;           // Плохой шлюз
-    SERVICE_UNAVAILABLE = 9;   // Сервис недоступен
-}
-
-/**
- * Сообщение для изображения.
- */
-message Image {
-    string storage_link = 1; // Ссылка на хранилище
-}
-
-enum ModerationStatus {
-    VAC_CREATED = 0;
-    VAC_IN_MODERATION = 1;
-    VAC_ACCEPTED = 2;
-    VAC_DECLINED = 3;
-}
-
-message Moderation {
-    ModerationStatus status = 1;
-    string description = 2;
-}
-
-/**
- * Сообщение для описания вакансии.
- */
-message Vacancy {
-    string id = 1;                // Идентификатор вакансии
-    string company_id = 2;        // Идентификатор компании
-    string name = 3;             // Название вакансии
-    string address = 4;          // Адрес
-    string work_format = 5;      // Формат работы
-    int32 agent_reward = 6;      // Вознаграждение агента
-    int32 salary = 7;            // Зарплата
-    string requirements = 8;     // Требования к работе
-    string responsibilities = 9; // Обязанности
-    string additional_info = 10; // так называемые "плюшки" в мирошке Никиты Садовникова
-    string region = 11; // Местоположение вакансии (регион)
-    bool is_archived = 12; // Архивирована ли вакансия (приостановлена / удалена)
-    Moderation moderated = 14; // Статус модерирования
-}
-
-message VacancyFilters {
-    optional string uid = 1;
-    optional string id = 2;
-    optional string company_id = 3;
-    optional string region = 4;
-    optional int32 salary_bottom = 5;
-    optional int32 salary_top = 6;
-    optional string mark = 7;
-    optional bool is_archived = 8;
-    optional int32 amount = 10;
-    optional int32 offset = 11;
-}
+// <-------------- REQUESTS -------------->
+// <=============== VACANCY ===============>
 
 message GetVacancyListRequest {
-    string agent_id = 1; // Идентификатор агента
-    optional VacancyFilters filters = 2; // Фильтры:
-    // uid, region, salaryBottom, salaryTop, mark, isArchived, isDraft, amount, offset
+  string agent_id = 1;
+  VacancyFilters filters = 2;
 }
 
-
-message GetCompanyDataRequest {
-    string distributor_id = 1; // Идентификатор дистрибьютора
-}
-
-message SubmissionFilters {
-    optional string vacancy_id = 1;
-    optional SubmissionsStatus status = 2;
-}
+// <=============== SUBMISSION ===============>
 
 message GetSubmissionListRequest {
-    string agent_id = 1; // Идентификатор агента
-    SubmissionFilters filters = 2; // Фильтры
+  string agent_id = 1;
+  SubmissionFilters filters = 2;
 }
 
-/**
- * Персональные данные.
- */
-message PersonalData {
-    string uuid = 1; // Уникальный идентификатор
-    string name = 2; // ФИО или название компании
-    optional string description = 3; // Описание (опционально)
-    optional Image user_image = 4; // Изображение пользователя (опционально)
-    repeated string experience = 5; // Опыт работы
-    repeated string education = 6;  // Образование
-    optional float raiting = 7;     // Рейтинг (опционально)
-    optional string region = 8; // Местоположение пользователя
-}
-
-/**
- * Полные персональные данные.
- */
-message FullPersonalData {
-    string uuid = 1; // Уникальный идентификатор
-    optional string name = 2; // ФИО или название компании
-    optional string description = 3; // Описание (опционально)
-    optional Image user_image = 4; // Изображение пользователя (опционально)
-    optional string phone_number = 5; // Номер телефона (опционально)
-    optional string email = 6; // Электронная почта (опционально)
-    repeated string experience = 7; // Опыт работы
-    repeated string education = 8;  // Образование
-    optional float rating = 9;      // Рейтинг (опционально)
-    optional string app_theme = 10;           // Тема приложения
-    optional string region = 11; // Местоположение пользователя
-}
-
-/**
- * Сообщение для данных клиента.
- */
-message ClientData {
-    string uuid = 1;    // Уникальный идентификатор
-    string name = 2;    // Имя
-    string surname = 3; // Фамилия
-    optional string patronymic = 4; // Отчество (опционально)
-    string phone_number = 5;        // Номер телефона
-    string email = 6;               // Электронная почта
-    optional string resume = 7;     // Резюме (опционально)
-}
-
-/**
- * Сообщение для данных компании.
- */
-message CompanyData {
-    string uuid = 1; // Уникальный идентификатор
-    string name = 2; // Название компании
-    Image logo = 3;  // Логотип компании
-    optional string description = 4; // Описание (опционально)
-    repeated string feedbacks = 5;   // Отзывы
-    optional string website = 6;     // Вебсайт (опционально)
-}
-
-/**
- * Сообщение для заявки.
- */
-message Submission {
-    string agent_id = 1;          // Идентификатор агента
-    string id = 2;                // Идентификатор заявки
-    SubmissionsStatus status = 3; // Статус заявки
-    ClientData client_data = 4;   // Данные клиента
-    Vacancy vacancy_data = 5;     // Данные о вакансии
-}
-
-/**
- * Сообщение для ответа с вакансиями.
- */
-message GetVacancyResponse {
-    string agent_id = 1;            // Идентификатор агента
-    repeated Vacancy vacancies = 2; // Список вакансий
-}
-
-/**
- * Сообщение для запроса по идентификатору агента.
- */
-message GetByAgentIdRequest {
-    string agent_id = 1;         // Идентификатор агента
-    optional string options = 2; // Опции
-}
-
-/**
- * Сообщение для ответа со списком заявок.
- */
-message GetSubmissionListResponse {
-    string agent_id = 1; // Идентификатор агента
-    repeated Submission submissions = 2; // Список заявок
-}
-
-/**
- * Уведомление о заявке.
- */
-message SubmissionNotification {
-    string agent_id = 1;              // Идентификатор агента
-    string submission_id = 2;         // Идентификатор заявки
-    SubmissionsStatus new_status = 3; // Новый статус заявки
-    optional string output = 4; // Дополнительная информация (опционально)
-}
-
-/**
- * Уведомление о платеже.(не реализовано)
- */
-message PaymentNotification {
-    string agent_id = 1;   // Идентификатор агента
-    float new_balance = 2; // Новый баланс
-}
-
-/**
- * Уведомление о модерации.(не реализовано)
- */
-message ModerationNotification {
-    // TODO: Надо дописать и понять, кто будет это отсылать и вообще разгребать
-}
-
-/**
- * Сообщение для ответа с обновлениями уведомлений.(не реализовано)
- */
-message GetNotificationUpdatesResponse {
-    optional SubmissionNotification submission_notify = 1; // Уведомление о заявке (опционально)
-    optional PaymentNotification payment_notify = 2; // Уведомление о платеже (опционально)
-    optional ModerationNotification moderation_notify = 3; // Уведомление о модерации (опционально)
-}
-
-/**
- * Сообщение для установки ответа.
- */
-message SetResponse {
-    ResponseStatus status = 1; // Статус ответа
-}
-/**
-    * Сообщение для удаления заявки.
- */
 message DeleteSubmissionRequest {
-    string agent_id = 1; // Идентификатор агента
-    string submission_id = 2; // Идентификатор заявки
+  string agent_id = 1;
+  string submission_id = 2;
 }
 
-/**
- * Сервис для взаимодействий Агента.
- */
-service Agent {
-    /// Получить список вакансий. Получает GetByAgentIdRequest, возвращает
-    /// GetVacancyResponse
-    rpc GetVacancyList(GetVacancyListRequest) returns (GetVacancyResponse) {
-        option (google.api.http) = {
-            get : "/v1/agents/{agent_id}/vacancies"
-        };
-    }
+// <=============== PROFILE ===============>
 
-    /// Получить данные агента. Получает GetByAgentIdRequest, возвращает
-    /// PersonalData
-    rpc GetProfileData(GetByAgentIdRequest) returns (PersonalData) {
-        option (google.api.http) = {
-            get : "/v1/agents/{agent_id}/profile"
-        };
-    }
-
-    /// Получить список заявок. Получает GetByAgentIdRequest, возвращает
-    /// GetSubmissonListResponse
-    rpc GetSubmissionList(GetSubmissionListRequest) returns (GetSubmissionListResponse) {
-        option (google.api.http) = {
-            get : "/v1/agents/{agent_id}/submissions"
-        };
-    }
-
-    /// Получить уведомления. Получает GetByAgentIdRequest, возвращает
-    /// GetNotificationUpdatesResponse
-    rpc GetNotifications(GetByAgentIdRequest)
-        returns (GetNotificationUpdatesResponse) {
-        option (google.api.http) = {
-            get : "/v1/agents/{agent_id}/notifications"
-        };
-    }
-
-    /// Получить данные компании. Получает GetByAgentIdRequest, возвращает
-    /// CompanyData
-    rpc GetCompanyData(GetCompanyDataRequest) returns (CompanyData) {
-        option (google.api.http) = {
-            get : "/v1/agents/{distributor_id}/company"
-        };
-    }
-
-    /// Метод для изменения данных агента. Получает FullPersonalData, возвращает
-    /// SetResponse
-    rpc SetProfileData(FullPersonalData) returns (SetResponse) {
-        option (google.api.http) = {
-            post : "/v1/agents/{agent_id}/profile"
-            body : "*"
-        };
-    }
-
-    /// Метод для удаления заявки. Получает GetByAgentIdRequest, возвращает
-    /// SetResponse
-    rpc DeleteSubmission(DeleteSubmissionRequest) returns (SetResponse) {
-        option (google.api.http) = {
-            delete : "/v1/agents/{agent_id}/submissions/{submission_id}"
-        };
-    }
+message GetProfileRequest {
+  string agent_id = 1;
 }
 
-/* Для Агента
-Получение:
---- 1. Получать лист вакансий
---- 2. Получить личные данные
---- 3. Получить информацию по заявкам
-!!! 4. Получить информацию о сотрудниках (если это юр. лицо) // TODO: Пока
-скипнули. Не для MVP
---- 5. Получать уведомления о:
-    --- 5.1 Статусах заявок (о появлении новых заявок, о изменении статуса
-старых заявок)
-    --- 5.1 Состоянии счёта
-    --- 5.3 Состояние на этапе модерации
-!!! 6. Получить персональную ссылку для отправки клиенту // ! Решили что
-генерится на фронте
---- 7. Получить данные о компании (при переходе на страницу компании)
+message SetProfileRequest {
+  string agent_id = 1;
+  FullPersonalData profile = 2;
+}
 
-Отправление:
---- 1. Заполнение личных данных (ФИО, Почта, телефон, информация о себе,
-какие-то банковские данные)
---- 2. Изменение данных из п.1
-!!! 3. Отправлять заполненую клиентом анкету (после собеседования) // Пока
-делается вне приложения
---- 4. Удалить заявку клиента ("посоветовались и решили, что в не хотим там
-работать")
-!!! 5. (Не MVP, но сразу после надо сделать) Удалить свой профиль
-!!! 6. (Не MVP, но сразу после надо сделать) Выдача и изменение ролей для
-сотрудников (если юр. лицо)
-!!! 7. (Не MVP, но сразу после надо сделать) Манипуляции с сотрудниками (если
-юр. лицо. То есть добавление, удаление, и прочее)
-*/
+// <=============== COMPANY ===============>
+
+message GetCompanyDataRequest {
+  string agent_id = 1;
+  string company_id = 2;
+}
+
+message SetCompanyDataRequest {
+  string agent_id = 1;
+  Company company = 2;
+}
+
+// <-------------- RESPONSES -------------->
+// <=============== VACANCY ===============>
+
+message GetVacancyListResponse {
+  repeated Vacancy vacancies = 1;
+}
+
+// <=============== SUBMISSION ===============>
+
+message GetSubmissionListResponse {
+  repeated Submission submissions = 1;
+}
+
+message DeleteSubmissionResponse {
+
+}
+
+// <=============== PROFILE ===============>
+
+message GetProfileResponse {
+  FullPersonalData profile = 1;
+}
+
+message SetProfileResponse {
+  FullPersonalData profile = 1;
+}
+
+// <=============== COMPANY ===============>
+
+message GetCompanyDataResponse {
+  Company company = 1;
+}
+
+message SetCompanyDataResponse {
+  Company company = 1;
+}
+
+// <-------------- SOURCES -------------->
+// <=============== ENUMS ===============>
+
+enum SubmissionsStatus {
+  SUBM_CREATED = 0;      // Создано
+  SUBM_IN_PROGRESS = 1;  // В процессе
+  SUBM_ON_INTERVIEW = 2; // На собеседовании
+  SUBM_DECLINED = 3;     // Отклонено
+  SUBM_SUSPENDED = 4;    // Приостановлено (как будто удалено)
+  SUBM_ACCEPTED = 5;     // Принято
+}
+
+enum VacancyStatus {
+  VAC_UNSPECIFIED = 0;    // Не указано
+  VAC_CREATED = 1;        // Создано
+  VAC_IN_MODERATION = 2;  // В модерации
+  VAC_ACCEPTED = 3;       // Принято
+  VAC_DECLINED = 4;       // Отклонено
+}
+
+// <=============== UTILS ===============>
+
+message VacancyModeration {
+  VacancyStatus status = 1;
+  string description = 2;
+}
+
+message Image {
+  string storage_link = 1;
+}
+
+// <=============== VACANCY ===============>
+
+message VacancyFilters {
+  optional string distributor_id = 1;
+  optional string vacancy_id = 2;
+  optional string company_id = 3;
+  optional string region = 4;
+  optional int32 salary_bottom = 5;
+  optional int32 salary_top = 6;
+  optional string mark = 7;
+  optional bool is_archived = 8;
+  optional VacancyStatus status = 9;
+  optional int32 amount = 10;
+  optional int32 offset = 11;
+}
+
+message Vacancy {
+  string vacancy_id = 1;
+  string company_id = 2;
+  string name = 3;
+  string address = 4;
+  string work_format = 5;
+  int32 agent_reward = 6;
+  int32 salary_bottom = 7;
+  int32 salary_top = 8;
+  string requirements = 9;
+  string responsibilities = 10;
+  string additional_info = 11;
+  string region = 12;
+  string mark = 13;
+  bool is_archived = 14;
+  VacancyModeration moderation = 15;
+  string target_action = 16;
+  int32 target_action_duration = 17;
+}
+
+// <=============== SUBMISSION ===============>
+
+message SubmissionFilters {
+  optional string vacancy_id = 1;
+  optional SubmissionsStatus status = 2;
+  optional int32 amount = 3;
+  optional int32 offset = 4;
+}
+
+message Submission {
+  string agent_id = 1;
+  string submission_id = 2;
+  string vacancy_id = 3;
+  SubmissionsStatus status = 4;
+  ClientData client_data = 5;
+}
+
+// <=============== PERSONAL DATA ===============>
+
+message FullPersonalData {
+  string uuid = 1;
+  optional string name = 2;
+  optional string description = 3;
+  optional Image user_image = 4;
+  optional string phone_number = 5;
+  optional string email = 6;
+  repeated string experience = 7;
+  repeated string education = 8;
+  optional string app_theme = 9;
+  optional string region = 10;
+}
+
+message ClientData {
+  string uuid = 1;
+  string name = 2;
+  string surname = 3;
+  optional string patronymic = 4;
+  string phone_number = 5;
+  string email = 6;
+  optional string resume = 7;
+}
+
+// <=============== COMPANY ===============>
+
+message Company {
+   string company_id = 1;
+   string creator_id = 2;
+   string name = 3;
+   string legal_person = 4;
+   string inn = 5;
+   string description = 6;
+   string website = 7;
+   string physical_address = 8;
+   string legal_address = 9;
+}

@@ -20,42 +20,43 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	Agent_GetVacancyList_FullMethodName    = "/service_agent.Agent/GetVacancyList"
-	Agent_GetProfileData_FullMethodName    = "/service_agent.Agent/GetProfileData"
 	Agent_GetSubmissionList_FullMethodName = "/service_agent.Agent/GetSubmissionList"
-	Agent_GetNotifications_FullMethodName  = "/service_agent.Agent/GetNotifications"
-	Agent_GetCompanyData_FullMethodName    = "/service_agent.Agent/GetCompanyData"
-	Agent_SetProfileData_FullMethodName    = "/service_agent.Agent/SetProfileData"
 	Agent_DeleteSubmission_FullMethodName  = "/service_agent.Agent/DeleteSubmission"
+	Agent_GetProfileData_FullMethodName    = "/service_agent.Agent/GetProfileData"
+	Agent_SetProfileData_FullMethodName    = "/service_agent.Agent/SetProfileData"
+	Agent_GetCompanyData_FullMethodName    = "/service_agent.Agent/GetCompanyData"
+	Agent_SetCompanyData_FullMethodName    = "/service_agent.Agent/SetCompanyData"
 )
 
 // AgentClient is the client API for Agent service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-//
-// *
-// Сервис для взаимодействий Агента.
 type AgentClient interface {
-	// / Получить список вакансий. Получает GetByAgentIdRequest, возвращает
-	// / GetVacancyResponse
-	GetVacancyList(ctx context.Context, in *GetVacancyListRequest, opts ...grpc.CallOption) (*GetVacancyResponse, error)
-	// / Получить данные агента. Получает GetByAgentIdRequest, возвращает
-	// / PersonalData
-	GetProfileData(ctx context.Context, in *GetByAgentIdRequest, opts ...grpc.CallOption) (*PersonalData, error)
-	// / Получить список заявок. Получает GetByAgentIdRequest, возвращает
-	// / GetSubmissonListResponse
+	// <-------------- VACANCY -------------->
+	// / Получить список вакансий. Получает GetVacancyListRequest, возвращает
+	// / GetVacancyListResponse
+	GetVacancyList(ctx context.Context, in *GetVacancyListRequest, opts ...grpc.CallOption) (*GetVacancyListResponse, error)
+	// <-------------- SUBMISSION -------------->
+	// / Получить список заявок. Получает GetSubmissionListRequest, возвращает
+	// / GetSubmissionListResponse
 	GetSubmissionList(ctx context.Context, in *GetSubmissionListRequest, opts ...grpc.CallOption) (*GetSubmissionListResponse, error)
-	// / Получить уведомления. Получает GetByAgentIdRequest, возвращает
-	// / GetNotificationUpdatesResponse
-	GetNotifications(ctx context.Context, in *GetByAgentIdRequest, opts ...grpc.CallOption) (*GetNotificationUpdatesResponse, error)
-	// / Получить данные компании. Получает GetByAgentIdRequest, возвращает
-	// / CompanyData
-	GetCompanyData(ctx context.Context, in *GetCompanyDataRequest, opts ...grpc.CallOption) (*CompanyData, error)
-	// / Метод для изменения данных агента. Получает FullPersonalData, возвращает
-	// / SetResponse
-	SetProfileData(ctx context.Context, in *FullPersonalData, opts ...grpc.CallOption) (*SetResponse, error)
-	// / Метод для удаления заявки. Получает GetByAgentIdRequest, возвращает
-	// / SetResponse
-	DeleteSubmission(ctx context.Context, in *DeleteSubmissionRequest, opts ...grpc.CallOption) (*SetResponse, error)
+	// / Метод для удаления заявки. Получает DeleteSubmissionRequest, возвращает
+	// / DeleteSubmissionResponse
+	DeleteSubmission(ctx context.Context, in *DeleteSubmissionRequest, opts ...grpc.CallOption) (*DeleteSubmissionResponse, error)
+	// <-------------- PROFILE -------------->
+	// / Получить данные агента. Получает GetProfileRequest, возвращает
+	// / GetProfileResponse
+	GetProfileData(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
+	// / Метод для изменения данных агента. Получает SetProfileRequest, возвращает
+	// / SetProfileResponse
+	SetProfileData(ctx context.Context, in *SetProfileRequest, opts ...grpc.CallOption) (*SetProfileResponse, error)
+	// <-------------- COMPANY -------------->
+	// / Получить данные компании. Получает GetCompanyDataRequest, возвращает
+	// / GetCompanyDataResponse
+	GetCompanyData(ctx context.Context, in *GetCompanyDataRequest, opts ...grpc.CallOption) (*GetCompanyDataResponse, error)
+	// / Метод для изменения данных компании. Получает SetCompanyDataRequest, возвращает
+	// / SetCompanyDataResponse
+	SetCompanyData(ctx context.Context, in *SetCompanyDataRequest, opts ...grpc.CallOption) (*SetCompanyDataResponse, error)
 }
 
 type agentClient struct {
@@ -66,20 +67,10 @@ func NewAgentClient(cc grpc.ClientConnInterface) AgentClient {
 	return &agentClient{cc}
 }
 
-func (c *agentClient) GetVacancyList(ctx context.Context, in *GetVacancyListRequest, opts ...grpc.CallOption) (*GetVacancyResponse, error) {
+func (c *agentClient) GetVacancyList(ctx context.Context, in *GetVacancyListRequest, opts ...grpc.CallOption) (*GetVacancyListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetVacancyResponse)
+	out := new(GetVacancyListResponse)
 	err := c.cc.Invoke(ctx, Agent_GetVacancyList_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *agentClient) GetProfileData(ctx context.Context, in *GetByAgentIdRequest, opts ...grpc.CallOption) (*PersonalData, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PersonalData)
-	err := c.cc.Invoke(ctx, Agent_GetProfileData_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -96,29 +87,29 @@ func (c *agentClient) GetSubmissionList(ctx context.Context, in *GetSubmissionLi
 	return out, nil
 }
 
-func (c *agentClient) GetNotifications(ctx context.Context, in *GetByAgentIdRequest, opts ...grpc.CallOption) (*GetNotificationUpdatesResponse, error) {
+func (c *agentClient) DeleteSubmission(ctx context.Context, in *DeleteSubmissionRequest, opts ...grpc.CallOption) (*DeleteSubmissionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetNotificationUpdatesResponse)
-	err := c.cc.Invoke(ctx, Agent_GetNotifications_FullMethodName, in, out, cOpts...)
+	out := new(DeleteSubmissionResponse)
+	err := c.cc.Invoke(ctx, Agent_DeleteSubmission_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *agentClient) GetCompanyData(ctx context.Context, in *GetCompanyDataRequest, opts ...grpc.CallOption) (*CompanyData, error) {
+func (c *agentClient) GetProfileData(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CompanyData)
-	err := c.cc.Invoke(ctx, Agent_GetCompanyData_FullMethodName, in, out, cOpts...)
+	out := new(GetProfileResponse)
+	err := c.cc.Invoke(ctx, Agent_GetProfileData_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *agentClient) SetProfileData(ctx context.Context, in *FullPersonalData, opts ...grpc.CallOption) (*SetResponse, error) {
+func (c *agentClient) SetProfileData(ctx context.Context, in *SetProfileRequest, opts ...grpc.CallOption) (*SetProfileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SetResponse)
+	out := new(SetProfileResponse)
 	err := c.cc.Invoke(ctx, Agent_SetProfileData_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -126,10 +117,20 @@ func (c *agentClient) SetProfileData(ctx context.Context, in *FullPersonalData, 
 	return out, nil
 }
 
-func (c *agentClient) DeleteSubmission(ctx context.Context, in *DeleteSubmissionRequest, opts ...grpc.CallOption) (*SetResponse, error) {
+func (c *agentClient) GetCompanyData(ctx context.Context, in *GetCompanyDataRequest, opts ...grpc.CallOption) (*GetCompanyDataResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SetResponse)
-	err := c.cc.Invoke(ctx, Agent_DeleteSubmission_FullMethodName, in, out, cOpts...)
+	out := new(GetCompanyDataResponse)
+	err := c.cc.Invoke(ctx, Agent_GetCompanyData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentClient) SetCompanyData(ctx context.Context, in *SetCompanyDataRequest, opts ...grpc.CallOption) (*SetCompanyDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetCompanyDataResponse)
+	err := c.cc.Invoke(ctx, Agent_SetCompanyData_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -139,31 +140,32 @@ func (c *agentClient) DeleteSubmission(ctx context.Context, in *DeleteSubmission
 // AgentServer is the server API for Agent service.
 // All implementations must embed UnimplementedAgentServer
 // for forward compatibility.
-//
-// *
-// Сервис для взаимодействий Агента.
 type AgentServer interface {
-	// / Получить список вакансий. Получает GetByAgentIdRequest, возвращает
-	// / GetVacancyResponse
-	GetVacancyList(context.Context, *GetVacancyListRequest) (*GetVacancyResponse, error)
-	// / Получить данные агента. Получает GetByAgentIdRequest, возвращает
-	// / PersonalData
-	GetProfileData(context.Context, *GetByAgentIdRequest) (*PersonalData, error)
-	// / Получить список заявок. Получает GetByAgentIdRequest, возвращает
-	// / GetSubmissonListResponse
+	// <-------------- VACANCY -------------->
+	// / Получить список вакансий. Получает GetVacancyListRequest, возвращает
+	// / GetVacancyListResponse
+	GetVacancyList(context.Context, *GetVacancyListRequest) (*GetVacancyListResponse, error)
+	// <-------------- SUBMISSION -------------->
+	// / Получить список заявок. Получает GetSubmissionListRequest, возвращает
+	// / GetSubmissionListResponse
 	GetSubmissionList(context.Context, *GetSubmissionListRequest) (*GetSubmissionListResponse, error)
-	// / Получить уведомления. Получает GetByAgentIdRequest, возвращает
-	// / GetNotificationUpdatesResponse
-	GetNotifications(context.Context, *GetByAgentIdRequest) (*GetNotificationUpdatesResponse, error)
-	// / Получить данные компании. Получает GetByAgentIdRequest, возвращает
-	// / CompanyData
-	GetCompanyData(context.Context, *GetCompanyDataRequest) (*CompanyData, error)
-	// / Метод для изменения данных агента. Получает FullPersonalData, возвращает
-	// / SetResponse
-	SetProfileData(context.Context, *FullPersonalData) (*SetResponse, error)
-	// / Метод для удаления заявки. Получает GetByAgentIdRequest, возвращает
-	// / SetResponse
-	DeleteSubmission(context.Context, *DeleteSubmissionRequest) (*SetResponse, error)
+	// / Метод для удаления заявки. Получает DeleteSubmissionRequest, возвращает
+	// / DeleteSubmissionResponse
+	DeleteSubmission(context.Context, *DeleteSubmissionRequest) (*DeleteSubmissionResponse, error)
+	// <-------------- PROFILE -------------->
+	// / Получить данные агента. Получает GetProfileRequest, возвращает
+	// / GetProfileResponse
+	GetProfileData(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
+	// / Метод для изменения данных агента. Получает SetProfileRequest, возвращает
+	// / SetProfileResponse
+	SetProfileData(context.Context, *SetProfileRequest) (*SetProfileResponse, error)
+	// <-------------- COMPANY -------------->
+	// / Получить данные компании. Получает GetCompanyDataRequest, возвращает
+	// / GetCompanyDataResponse
+	GetCompanyData(context.Context, *GetCompanyDataRequest) (*GetCompanyDataResponse, error)
+	// / Метод для изменения данных компании. Получает SetCompanyDataRequest, возвращает
+	// / SetCompanyDataResponse
+	SetCompanyData(context.Context, *SetCompanyDataRequest) (*SetCompanyDataResponse, error)
 	mustEmbedUnimplementedAgentServer()
 }
 
@@ -174,26 +176,26 @@ type AgentServer interface {
 // pointer dereference when methods are called.
 type UnimplementedAgentServer struct{}
 
-func (UnimplementedAgentServer) GetVacancyList(context.Context, *GetVacancyListRequest) (*GetVacancyResponse, error) {
+func (UnimplementedAgentServer) GetVacancyList(context.Context, *GetVacancyListRequest) (*GetVacancyListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetVacancyList not implemented")
-}
-func (UnimplementedAgentServer) GetProfileData(context.Context, *GetByAgentIdRequest) (*PersonalData, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetProfileData not implemented")
 }
 func (UnimplementedAgentServer) GetSubmissionList(context.Context, *GetSubmissionListRequest) (*GetSubmissionListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSubmissionList not implemented")
 }
-func (UnimplementedAgentServer) GetNotifications(context.Context, *GetByAgentIdRequest) (*GetNotificationUpdatesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNotifications not implemented")
+func (UnimplementedAgentServer) DeleteSubmission(context.Context, *DeleteSubmissionRequest) (*DeleteSubmissionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSubmission not implemented")
 }
-func (UnimplementedAgentServer) GetCompanyData(context.Context, *GetCompanyDataRequest) (*CompanyData, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCompanyData not implemented")
+func (UnimplementedAgentServer) GetProfileData(context.Context, *GetProfileRequest) (*GetProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProfileData not implemented")
 }
-func (UnimplementedAgentServer) SetProfileData(context.Context, *FullPersonalData) (*SetResponse, error) {
+func (UnimplementedAgentServer) SetProfileData(context.Context, *SetProfileRequest) (*SetProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetProfileData not implemented")
 }
-func (UnimplementedAgentServer) DeleteSubmission(context.Context, *DeleteSubmissionRequest) (*SetResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteSubmission not implemented")
+func (UnimplementedAgentServer) GetCompanyData(context.Context, *GetCompanyDataRequest) (*GetCompanyDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCompanyData not implemented")
+}
+func (UnimplementedAgentServer) SetCompanyData(context.Context, *SetCompanyDataRequest) (*SetCompanyDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetCompanyData not implemented")
 }
 func (UnimplementedAgentServer) mustEmbedUnimplementedAgentServer() {}
 func (UnimplementedAgentServer) testEmbeddedByValue()               {}
@@ -234,24 +236,6 @@ func _Agent_GetVacancyList_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Agent_GetProfileData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetByAgentIdRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AgentServer).GetProfileData(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Agent_GetProfileData_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AgentServer).GetProfileData(ctx, req.(*GetByAgentIdRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Agent_GetSubmissionList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetSubmissionListRequest)
 	if err := dec(in); err != nil {
@@ -266,60 +250,6 @@ func _Agent_GetSubmissionList_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AgentServer).GetSubmissionList(ctx, req.(*GetSubmissionListRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Agent_GetNotifications_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetByAgentIdRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AgentServer).GetNotifications(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Agent_GetNotifications_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AgentServer).GetNotifications(ctx, req.(*GetByAgentIdRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Agent_GetCompanyData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCompanyDataRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AgentServer).GetCompanyData(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Agent_GetCompanyData_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AgentServer).GetCompanyData(ctx, req.(*GetCompanyDataRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Agent_SetProfileData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FullPersonalData)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AgentServer).SetProfileData(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Agent_SetProfileData_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AgentServer).SetProfileData(ctx, req.(*FullPersonalData))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -342,6 +272,78 @@ func _Agent_DeleteSubmission_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Agent_GetProfileData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentServer).GetProfileData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Agent_GetProfileData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentServer).GetProfileData(ctx, req.(*GetProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Agent_SetProfileData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentServer).SetProfileData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Agent_SetProfileData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentServer).SetProfileData(ctx, req.(*SetProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Agent_GetCompanyData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCompanyDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentServer).GetCompanyData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Agent_GetCompanyData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentServer).GetCompanyData(ctx, req.(*GetCompanyDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Agent_SetCompanyData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetCompanyDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentServer).SetCompanyData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Agent_SetCompanyData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentServer).SetCompanyData(ctx, req.(*SetCompanyDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Agent_ServiceDesc is the grpc.ServiceDesc for Agent service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -354,28 +356,28 @@ var Agent_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Agent_GetVacancyList_Handler,
 		},
 		{
-			MethodName: "GetProfileData",
-			Handler:    _Agent_GetProfileData_Handler,
-		},
-		{
 			MethodName: "GetSubmissionList",
 			Handler:    _Agent_GetSubmissionList_Handler,
 		},
 		{
-			MethodName: "GetNotifications",
-			Handler:    _Agent_GetNotifications_Handler,
+			MethodName: "DeleteSubmission",
+			Handler:    _Agent_DeleteSubmission_Handler,
 		},
 		{
-			MethodName: "GetCompanyData",
-			Handler:    _Agent_GetCompanyData_Handler,
+			MethodName: "GetProfileData",
+			Handler:    _Agent_GetProfileData_Handler,
 		},
 		{
 			MethodName: "SetProfileData",
 			Handler:    _Agent_SetProfileData_Handler,
 		},
 		{
-			MethodName: "DeleteSubmission",
-			Handler:    _Agent_DeleteSubmission_Handler,
+			MethodName: "GetCompanyData",
+			Handler:    _Agent_GetCompanyData_Handler,
+		},
+		{
+			MethodName: "SetCompanyData",
+			Handler:    _Agent_SetCompanyData_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -5,37 +5,37 @@ package handlers.api;
 option go_package = "service.crm";
 
 service Crm {
-	rpc SayHello(HelloRequest) returns(HelloResponse) {}
-	rpc SayHello2(HelloRequest) returns(HelloResponse) {}
+    rpc SayHello(HelloRequest) returns(HelloResponse) {}
+    rpc SayHello2(HelloRequest) returns(HelloResponse) {}
 	// регистрация  
-	rpc SaveNewUser(SaveNewUserRequest) returns(SaveNewUserResponse) {};
+    rpc SaveNewUser(SaveNewUserRequest) returns(SaveNewUserResponse) {};
 
 	// авторизация
-	rpc CheckUserEmail(CheckUserEmailRequest) returns(CheckUserEmailResponse) {}; // check if there is user with such email, and if true return password
+    rpc CheckUserEmail(CheckUserEmailRequest) returns(CheckUserEmailResponse) {}; // check if there is user with such email, and if true return password
 
 	// обновить пользовательскую информацию
-	rpc ChangeUserPassword(ChangeUserPasswordRequest) returns(ChangeUserPasswordResponse) {};
-	rpc ChangeUserEmail(ChangeUserEmailRequest) returns(ChangeUserEmailResponse) {};
-	rpc ChangeUserPhone(ChangeUserPhoneRequest) returns(ChangeUserPhoneResponse) {};
-	rpc ChangeUserProfile(ChangeUserProfileRequest) returns(ChangeUserProfileResponse) {};
+    rpc ChangeUserPassword(ChangeUserPasswordRequest) returns(ChangeUserPasswordResponse) {};
+    rpc ChangeUserEmail(ChangeUserEmailRequest) returns(ChangeUserEmailResponse) {};
+    rpc ChangeUserPhone(ChangeUserPhoneRequest) returns(ChangeUserPhoneResponse) {};
+    rpc ChangeUserProfile(ChangeUserProfileRequest) returns(ChangeUserProfileResponse) {};
 
 	// добавить отзыв
-	rpc AddReview(AddReviewRequest) returns(AddReviewResponse) {};
+    rpc AddReview(AddReviewRequest) returns(AddReviewResponse) {};
     rpc DeleteReview(DeleteReviewRequest) returns(DeleteReviewResponse) {};
 
 	//получить список отзывов
-	rpc GetReviewList(GetReviewListRequest) returns(GetReviewListResponse) {};
+    rpc GetReviewList(GetReviewListRequest) returns(GetReviewListResponse) {};
 
 	
 	// получить информацию о пользователе
-	rpc GetUserInfo(GetUserInfoRequest) returns(GetUserInfoResponse) {}; //by UID
+    rpc GetUserInfo(GetUserInfoRequest) returns(GetUserInfoResponse) {}; //by UID
 
 	// получить вакансии/приглашения
-	rpc GetVacancyList(GetVacancyListRequest) returns(GetVacancyListResponse);
-	rpc GetSubmissionList(GetSubmissionListRequest) returns(GetSubmissionListResponse) {};
+    rpc GetVacancyList(GetVacancyListRequest) returns(GetVacancyListResponse);
+    rpc GetSubmissionList(GetSubmissionListRequest) returns(GetSubmissionListResponse) {};
 
 	// сохранить приглашение
-	rpc SetSubmission(SetSubmissionRequest) returns(SetSubmissionResponse) {};
+    rpc SetSubmission(SetSubmissionRequest) returns(SetSubmissionResponse) {};
 
     //-------------------------------------------//
     rpc SetVacancy(SetVacancyRequest) returns(SetVacancyResponse) {};
@@ -50,7 +50,6 @@ service Crm {
     rpc GetBallance(GetBallanceRequest) returns(GetBallanceResponse) {};
     rpc SetBallance(SetBallanceRequest) returns(SetBallanceResponse) {};
     rpc SaveTransaction(SaveTransactionRequest) returns(SaveTransactionResponse) {};
- 
 }
 
 enum UserType {
