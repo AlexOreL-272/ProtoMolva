@@ -1,0 +1,275 @@
+syntax = "proto3";
+
+package service_distributor;
+option go_package = "service.distributor";
+
+import "google/api/annotations.proto";
+
+service Distributor {
+  // <-------------- VACANCY -------------->
+  rpc GetVacancyList(GetVacancyListRequest) returns (GetVacancyListResponse) {
+    option (google.api.http) = {
+      get : "/v1/distributor/{distributor_id}/vacancies"
+    };
+  }
+
+  rpc CreateVacancy(CreateVacancyRequest) returns (CreateVacancyResponse) {
+    option (google.api.http) = {
+      post : "/v1/distributor/{distributor_id}/vacancies"
+      body : "*"
+    };
+  }
+
+  rpc EditVacancy(EditVacancyRequest) returns (EditVacancyResponse) {
+    option (google.api.http) = {
+      put : "/v1/distributor/{distributor_id}/vacancies/{vacancy_id}"
+      body : "*"
+    };
+  }
+
+  rpc DeleteVacancy(DeleteVacancyRequest) returns (DeleteVacancyResponse) {
+    option (google.api.http) = {
+      delete : "/v1/distributor/{distributor_id}/vacancies/{vacancy_id}"
+    };
+  }
+
+  rpc SendVacancyToModeration(SendVacancyToModerationRequest) returns (SendVacancyToModerationResponse) {
+    option (google.api.http) = {
+      post : "/v1/distributor/{distributor_id}/vacancies/{vacancy_id}/visibility"
+      body : "*"
+    };
+  }
+
+  // <-------------- SUBMISSION -------------->
+  rpc GetSubmissionsForVacancy(GetSubmissionsForVacancyRequest) returns (GetSubmissionsForVacancyResponse) {
+    option (google.api.http) = {
+      get : "/v1/distributor/{distributor_id}/vacancy/{vacancy_id}/submissions"
+    };
+  }
+
+  rpc SetSubmissionStatus(SetSubmissionStatusRequest) returns (SetSubmissionStatusResponse) {
+    option (google.api.http) = {
+      post : "/v1/distributor/{distributor_id}/vacancies/{vacancy_id}/submissions/{submission_id}/status"
+      body : "*"
+    };
+  }
+
+  // <-------------- PROFILE -------------->
+  rpc GetProfileData(GetProfileRequest) returns (GetProfileResponse) {
+    option (google.api.http) = {
+      get : "/v1/distributor/{distributor_id}/profile"
+    };
+  }
+
+  rpc SetProfileData(SetProfileRequest) returns (SetProfileResponse) {
+    option (google.api.http) = {
+      post : "/v1/distributor/{distributor_id}/profile"
+      body : "*"
+    };
+  }
+}
+
+// <-------------- REQUESTS -------------->
+// <=============== VACANCY ===============>
+
+message GetVacancyListRequest {
+  string distributor_id = 1;
+  VacancyFilters filters = 2;
+}
+
+message CreateVacancyRequest {
+  string distributor_id = 1;
+  Vacancy vacancy = 2;
+}
+
+message EditVacancyRequest {
+  string distributor_id = 1;
+  Vacancy vacancy = 2;
+}
+
+message DeleteVacancyRequest {
+  string distributor_id = 1;
+  string vacancy_id = 2;
+}
+
+message SendVacancyToModerationRequest {
+  string distributor_id = 1;
+  string vacancy_id = 2;
+}
+
+// <=============== SUBMISSION ===============>
+
+message GetSubmissionsForVacancyRequest {
+  string distributor_id = 1;
+  string vacancy_id = 2;
+  SubmissionFilters filters = 3;
+}
+
+message SetSubmissionStatusRequest {
+  string distributor_id = 1;
+  string submission_id = 2;
+  SubmissionsStatus status = 3;
+}
+
+// <=============== PROFILE ===============>
+
+message GetProfileRequest {
+  string distributor_id = 1;
+}
+
+message SetProfileRequest {
+  string distributor_id = 1;
+  FullPersonalData profile = 2;
+}
+
+// <-------------- RESPONSES -------------->
+// <=============== VACANCY ===============>
+
+message GetVacancyListResponse {
+  repeated Vacancy vacancies = 1;
+}
+
+message CreateVacancyResponse {
+  Vacancy vacancy = 1;
+}
+
+message EditVacancyResponse {
+  Vacancy vacancy = 1;
+}
+
+message DeleteVacancyResponse {
+
+}
+
+message SendVacancyToModerationResponse {
+
+}
+
+// <=============== SUBMISSION ===============>
+
+message GetSubmissionsForVacancyResponse {
+  repeated Submission submissions = 1;
+}
+
+message SetSubmissionStatusResponse {
+  Submission submission = 1;
+}
+
+// <=============== PROFILE ===============>
+
+message GetProfileResponse {
+  FullPersonalData profile = 1;
+}
+
+message SetProfileResponse {
+  FullPersonalData profile = 1;
+}
+
+// <-------------- SOURCES -------------->
+// <=============== ENUMS ===============>
+
+enum SubmissionsStatus {
+  SUBM_CREATED = 0;      // Создано
+  SUBM_IN_PROGRESS = 1;  // В процессе
+  SUBM_ON_INTERVIEW = 2; // На собеседовании
+  SUBM_DECLINED = 3;     // Отклонено
+  SUBM_SUSPENDED = 4;    // Приостановлено (как будто удалено)
+  SUBM_ACCEPTED = 5;     // Принято
+}
+
+enum VacancyStatus {
+  VAC_UNSPECIFIED = 0;    // Не указано
+  VAC_CREATED = 1;        // Создано
+  VAC_IN_MODERATION = 2;  // В модерации
+  VAC_ACCEPTED = 3;       // Принято
+  VAC_DECLINED = 4;       // Отклонено
+}
+
+// <=============== UTILS ===============>
+
+message VacancyModeration {
+  VacancyStatus status = 1;
+  string description = 2;
+}
+
+message Image {
+  string storage_link = 1;
+}
+
+// <=============== VACANCY ===============>
+
+message VacancyFilters {
+  optional string distributor_id = 1;
+  optional string vacancy_id = 2;
+  optional string company_id = 3;
+  optional string region = 4;
+  optional int32 salary_bottom = 5;
+  optional int32 salary_top = 6;
+  optional string mark = 7;
+  optional bool is_archived = 8;
+  optional VacancyStatus status = 9;
+  optional int32 amount = 10;
+  optional int32 offset = 11;
+}
+
+message Vacancy {
+  optional string vacancy_id = 1;
+  optional string company_id = 2;
+  optional string name = 3;
+  optional string address = 4;
+  optional string work_format = 5;
+  optional int32 agent_reward = 6;
+  optional int32 salary_bottom = 7;
+  optional int32 salary_top = 8;
+  optional string requirements = 9;
+  optional string responsibilities = 10;
+  optional string additional_info = 11;
+  optional string region = 12;
+  optional string mark = 13;
+  optional bool is_archived = 14;
+  optional VacancyModeration moderation = 15;
+  optional string target_action = 16;
+  optional int32 target_action_duration = 17;
+}
+
+// <=============== SUBMISSION ===============>
+
+message SubmissionFilters {
+  optional string vacancy_id = 1;
+  optional SubmissionsStatus status = 2;
+  optional int32 amount = 3;
+  optional int32 offset = 4;
+}
+
+message Submission {
+  string agent_id = 1;
+  string submission_id = 2;
+  string vacancy_id = 3;
+  SubmissionsStatus status = 4;
+  ClientData client_data = 5;
+}
+
+// <=============== PERSONAL DATA ===============>
+
+message FullPersonalData {
+  string uuid = 1;
+  optional string name = 2;
+  optional string description = 3;
+  optional Image user_image = 4;
+  optional string phone_number = 5;
+  optional string email = 6;
+  repeated string experience = 7;
+  repeated string education = 8;
+  optional string app_theme = 9;
+  optional string region = 10;
+}
+
+message ClientData {
+  string uuid = 1;
+  string name = 2;
+  string surname = 3;
+  optional string patronymic = 4;
+  string phone_number = 5;
+  string email = 6;
+  optional string resume = 7;
+}

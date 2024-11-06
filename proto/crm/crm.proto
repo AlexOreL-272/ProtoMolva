@@ -1,0 +1,450 @@
+syntax = "proto3";
+
+package handlers.api;
+
+option go_package = "service.crm";
+
+service Crm {
+	rpc SayHello(HelloRequest) returns(HelloResponse) {}
+	rpc SayHello2(HelloRequest) returns(HelloResponse) {}
+	// регистрация  
+	rpc SaveNewUser(SaveNewUserRequest) returns(SaveNewUserResponse) {};
+
+	// авторизация
+	rpc CheckUserEmail(CheckUserEmailRequest) returns(CheckUserEmailResponse) {}; // check if there is user with such email, and if true return password
+
+
+	// обновить пользовательскую информацию
+	rpc ChangeUserPassword(ChangeUserPasswordRequest) returns(ChangeUserPasswordResponse) {};
+	rpc ChangeUserEmail(ChangeUserEmailRequest) returns(ChangeUserEmailResponse) {};
+	rpc ChangeUserPhone(ChangeUserPhoneRequest) returns(ChangeUserPhoneResponse) {};
+	rpc ChangeUserProfile(ChangeUserProfileRequest) returns(ChangeUserProfileResponse) {};
+
+	// добавить отзыв
+	rpc AddReview(AddReviewRequest) returns(AddReviewResponse) {};
+    rpc DeleteReview(DeleteReviewRequest) returns(DeleteReviewResponse) {};
+
+	//получить список отзывов
+	rpc GetReviewList(GetReviewListRequest) returns(GetReviewListResponse) {};
+
+	
+	// получить информацию о пользователе
+	rpc GetUserInfo(GetUserInfoRequest) returns(GetUserInfoResponse) {}; //by UID
+
+	// получить вакансии/приглашения
+	rpc GetVacancyList(GetVacancyListRequest) returns(GetVacancyListResponse);
+	rpc GetSubmissionList(GetSubmissionListRequest) returns(GetSubmissionListResponse) {};
+
+	// сохранить приглашение
+	rpc SetSubmission(SetSubmissionRequest) returns(SetSubmissionResponse) {};
+
+    //-------------------------------------------//
+    rpc SetVacancy(SetVacancyRequest) returns(SetVacancyResponse) {};
+    rpc DeleteVacancy(DeleteVacancyRequest) returns(DeleteVacancyResponse) {};
+
+
+    // создать и редактировать компанию
+    rpc SetCompanyInfo(SetCompanyInfoRequest) returns(SetCompanyInfoResponse) {};
+    rpc GetCompanyList(GetCompanyListRequest) returns(GetCompanyListResponse) {};
+
+    // финансы
+    rpc GetBallance(GetBallanceRequest) returns(GetBallanceResponse) {};
+    rpc SetBallance(SetBallanceRequest) returns(SetBallanceResponse) {};
+    rpc SaveTransaction(SaveTransactionRequest) returns(SaveTransactionResponse) {};
+ 
+}
+
+enum UserType {
+    AGENT = 0;
+    DISTRIBUTOR = 1;
+    EMPLOYEE = 2;
+}
+
+enum ResponseStatus {
+    OK = 0;                         // Успешно
+    BAD_REQUEST = 1;                // Неверный запрос
+    UNAUTHORIZED = 2;               // Неавторизован
+    FORBIDDEN = 3;                  // Запрещено
+    NOT_FOUND = 4;                  // Не найдено
+    INTERNAL_SERVER_ERROR = 5;      // Внутренняя ошибка сервера
+    REQUEST_TIMEOUT = 6;            // Таймаут запроса
+    NOT_IMPLEMENTED = 7;            // Не реализовано
+    BAD_GATEWAY = 8;                // Плохой шлюз
+    SERVICE_UNAVAILABLE = 9;        // Сервис недоступен
+}
+
+
+// регистрация
+// только реквайрд поля.
+// Если есть необходимость дополнить текст
+// "о себе", или добавить аватарку (даже при регистрации), то пользуйтесь ручкой ChangeUserProfile
+message SaveNewUserRequest {
+    string uid = 1;
+    string name = 2; // F + I + O or just F + I;
+    string phone = 3;
+    string email = 4;
+    string password_hash = 5;
+    UserType user_type = 6;
+}
+
+message SaveNewUserResponse {
+    ResponseStatus status = 1;
+    string response = 2; // описание результата
+}
+
+
+//авторизация
+message CheckUserEmailRequest {
+    string email = 1;
+}
+
+
+message CheckUserEmailResponse {
+    bool exists = 1;
+    string password = 2;
+}
+
+
+// обновить пароль
+message ChangeUserPasswordRequest {
+    string uid = 1;
+    string password = 2;
+}
+
+message ChangeUserPasswordResponse {
+    ResponseStatus status  = 1;
+    string response = 2; // описание результата
+}
+
+// обновить почту
+message ChangeUserEmailRequest {
+    string uid = 1;
+    string email = 2;
+}
+
+message ChangeUserEmailResponse {
+    ResponseStatus status = 1;
+    string response = 2; // описание результата
+}
+
+
+// обновить телефон
+message ChangeUserPhoneRequest {
+    string uid = 1;
+    string phone = 2;
+}
+
+message ChangeUserPhoneResponse {
+    ResponseStatus status  = 1;
+    string response = 2; // описание результата
+}
+
+
+// обновить профиль
+message ChangeUserProfileRequest {
+    string uid = 1;
+    string about = 2;
+    float raiting = 3;
+    string region = 4;
+    string app_theme = 5;
+    string profile_picture = 6;
+    repeated string education = 7;
+    repeated string experience = 8;
+    string name = 9; // F + I + O or just F + I;
+}
+
+
+message ChangeUserProfileResponse {
+    ResponseStatus status = 1;
+    string response = 2; // описание результата
+}
+
+
+// добавить отзыв (на агента или дистрибьютора)
+message AddReviewRequest {
+    string uid = 1;
+    string review_text = 2;
+    float raiting = 3;
+}
+
+
+message AddReviewResponse {
+    ResponseStatus status  = 1;
+    string response = 2; // описание результата
+}
+
+
+// удалить отзыв (доступно только для администрации)
+message DeleteReviewRequest {
+    int32 id = 1;
+}
+
+
+message DeleteReviewResponse {
+    ResponseStatus status  = 1;
+    string response = 2; // описание результата
+}
+
+// получить список отзывов
+
+message Review {
+    string id = 1;
+    string text = 2;
+    float raiting = 3;
+}
+
+message GetReviewListRequest {
+    string uid = 1;
+}
+
+message GetReviewListResponse {
+    repeated Review review_list = 1;
+    ResponseStatus status = 2;
+    string response = 3; // описание результата
+}
+
+
+ // получить информацию о пользователе
+message GetUserInfoRequest {
+    string uid_or_email = 1;
+    bool is_uid = 2; // true if uid, false if email
+}
+
+message GetUserInfoResponse {
+    string uid = 1;
+    string email = 2;
+    string phone = 3;
+    string about = 4;
+    float raiting = 5;
+    string region = 6;
+    string app_theme = 7;
+    string profile_picture = 8;
+    repeated string education = 9;
+    repeated string experience = 10;
+    string name = 11; // F + I + O or just F + I;
+    UserType user_type = 12;
+
+    ResponseStatus status = 13;
+    string response = 14; // описание результата
+ }
+
+// получить список вакансий
+message GetVacancyListRequest {
+    string uid = 1;
+    string id = 2;
+    string region = 3;
+    int32 salary_bottom = 4;
+    int32 salary_top = 5;
+    string mark = 6;
+    bool is_archived = 7;
+    VacancyStatus vacancy_moderation_status = 8;
+    int32 offset = 9;
+    int32 amount = 10;
+}
+
+
+
+enum VacancyStatus {
+    VAC_UNSPECIFIED = 0;
+    VAC_CREATED = 1;
+    VAC_IN_MODERATION = 2;
+    VAC_ACCEPTED = 3;
+    VAC_DECLINED = 4;
+}
+
+message Moderation {
+    VacancyStatus status = 1;
+    string description = 2;
+}
+
+
+message Vacancy {
+    string id = 1;
+    string company_id = 2;
+    string name = 3;
+    string address = 4;
+    string work_format = 5;
+    int32 agent_reward = 6;
+    int32 salary = 7;   
+    string requirements = 8;
+    string responsibilities = 9;
+    string additional_info = 10; // так называемые "плюшки" в мирошке Садовникова
+    string region = 11; // мне кажется это поле логично иметь, чтобы фильтровать по местопололжению (городу), но в бизнес флоу его нет
+    string mark = 12; // тег вакансии (психология, it, клининг и т.д.)
+    bool is_archived = 13;
+    Moderation moderated = 14;
+}
+
+message GetVacancyListResponse {
+    repeated Vacancy vacancy_list = 1;
+}
+
+
+
+// получить список приглашений
+message SubmissionGet {
+    string uid = 1;
+    string vacancy_id = 2;
+    string id = 3;
+    SubmissionStatus status = 4;
+    string cv = 5;
+    string name = 6;
+    string phone = 7;
+    string email = 8;
+    string birthday = 9;
+    string info = 10;
+}
+
+message GetSubmissionListRequest {
+    string uid = 1;
+    string vacancy_id = 2;
+    SubmissionStatus status = 3;
+ }
+
+ message GetSubmissionListResponse {
+    repeated SubmissionGet submission_list = 1;
+ }
+
+
+// сохранить приглашение
+
+enum SubmissionStatus {
+    UNSPECIFIED = 0;
+    CREATED = 1;            // Создано
+    IN_PROGRESS = 2;        // В процессе
+    ON_INTERVIEW = 3;       // На собеседовании
+    DECLINED = 4;           // Отклонено
+    SUSPENDED = 5;          // Приостановлено (как будто удалено)
+    ACCEPTED = 6;           // Принято
+}
+  
+message SetSubmissionRequest {
+    string uid = 1;
+    string vacancy_id = 2;
+    string id = 3;
+    SubmissionStatus status = 4;
+    string cv = 5;
+    string name = 6;
+    string phone = 7;
+    string email = 8;
+    string birthday = 9;
+    string info = 10;
+ }
+
+ message SetSubmissionResponse {
+    ResponseStatus status = 1;
+    string response = 2; // описание результата
+    string id = 3;
+ }
+
+
+//-------------------------------------------//
+
+// if id equals to zero - create vacancy
+// if id not empty (not zero) - update vacancy info
+message SetVacancyRequest {
+    Vacancy vacancy = 1;
+}
+
+message SetVacancyResponse {
+    ResponseStatus status = 1;
+    string response = 2; // описание результата
+    string id = 3;
+}
+
+message DeleteVacancyRequest {
+    string id = 1;
+}
+
+message DeleteVacancyResponse {
+    ResponseStatus status = 1;
+    string response = 2; // описание результата
+}
+
+
+message Company {
+    string id = 1;
+    string uid = 2;
+    string name = 3;
+    string legal_person = 4;
+    string inn = 5;
+    string description = 6;
+    string website = 7;
+    string physical_address = 8;
+    string legal_address = 9;
+}
+
+message GetCompanyListRequest {
+    string uid = 1;
+    string id = 2;
+}
+
+message GetCompanyListResponse {
+    repeated Company company = 1;
+    string response = 2;
+}
+
+
+// создать и редактировать компанию
+// id был передан - редактирует
+// id не был, создаёт НОВУЮ 
+message SetCompanyInfoRequest {
+    Company company = 1;
+}
+
+message SetCompanyInfoResponse {
+    ResponseStatus status = 1;
+    string response = 2;
+    string id = 3;
+}
+
+
+// в копейках
+message GetBallanceRequest {
+    string uid = 1;
+}
+
+message GetBallanceResponse {
+    int32 balance = 1;
+    string response = 2;
+}
+
+message SetBallanceRequest {
+    string uid = 1;
+    int32 balance = 2; // в копейках
+}
+
+message SetBallanceResponse {
+    ResponseStatus status = 1;
+    string response = 2;
+}
+
+message Transaction {
+    string id = 1;
+    string uid = 2;
+    int32 amount = 3;
+    string transaction_status = 4;
+    string created_at = 5;
+    string updated_at = 6;
+}
+
+message SaveTransactionRequest {
+    Transaction transaction = 1;
+}
+
+message SaveTransactionResponse {
+    ResponseStatus status = 1;
+    string response = 2;
+}
+
+
+
+
+message HelloRequest {
+	string name = 1;
+}
+
+message HelloResponse {
+	string text = 1;
+}
+
