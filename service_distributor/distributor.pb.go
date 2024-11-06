@@ -4,7 +4,7 @@
 // 	protoc        v3.12.4
 // source: distributor.proto
 
-package service_distributor
+package github.com/AlexOreL-272/ProtoMolva/service_distributor
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
