@@ -261,13 +261,13 @@ message ClientData {
 // <=============== COMPANY ===============>
 
 message Company {
-   string company_id = 1;
-   string creator_id = 2;
-   string name = 3;
-   string legal_person = 4;
-   string inn = 5;
-   string description = 6;
-   string website = 7;
-   string physical_address = 8;
-   string legal_address = 9;
+  optional string company_id = 1;
+  optional string creator_id = 2;
+  optional string name = 3;
+  optional string legal_person = 4;
+  optional string inn = 5;
+  optional string description = 6;
+  optional string website = 7;
+  optional string physical_address = 8;
+  optional string legal_address = 9;
 }
