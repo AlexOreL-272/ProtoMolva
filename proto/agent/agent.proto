@@ -4,6 +4,7 @@ package service_agent;
 option go_package = "service.agent";
 
 import "google/api/annotations.proto";
+import "src/google/protobuf/timestamp.proto";
 
 service Agent {
   // <-------------- VACANCY -------------->
@@ -214,6 +215,7 @@ message Vacancy {
   VacancyModeration moderation = 15;
   string target_action = 16;
   int32 target_action_duration = 17;
+  google.protobuf.Timestamp create_date = 18;
 }
 
 // <=============== SUBMISSION ===============>

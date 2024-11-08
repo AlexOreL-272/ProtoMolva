@@ -1,3 +1,6 @@
 [submodule "contrib/googleapis"]
 	path = contrib/googleapis
 	url = https://github.com/googleapis/googleapis
+[submodule "contrib/protobuf"]
+	path = contrib/protobuf
+	url = https://github.com/protocolbuffers/protobuf.git

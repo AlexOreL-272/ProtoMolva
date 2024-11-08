@@ -1,4 +1,5 @@
 GOOGLEAPIS_PROTO_PATH = ./contrib/googleapis/
+TIMESTAMP_PROTO_PATH = ./contrib/protobuf/
 PROTO_PATH_AGENT = ./proto/agent/
 PROTO_PATH_DISTR = ./proto/distributor/
 PROTO_PATH_CRM = ./proto/crm/
@@ -12,6 +13,7 @@ gen_agent:
 	protoc \
 	$(GO_FLAGS) \
 	--proto_path=$(GOOGLEAPIS_PROTO_PATH) \
+	--proto_path=$(TIMESTAMP_PROTO_PATH) \
 	--proto_path=$(PROTO_PATH_AGENT) \
 	--go_out=$(GEN_DIR_AGENT) \
 	--go-grpc_out=$(GEN_DIR_AGENT) \
