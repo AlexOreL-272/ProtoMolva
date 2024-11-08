@@ -265,9 +265,13 @@ message Company {
   optional string creator_id = 2;
   optional string name = 3;
   optional string legal_person = 4;
-  optional string inn = 5;
-  optional string description = 6;
-  optional string website = 7;
-  optional string physical_address = 8;
-  optional string legal_address = 9;
+  optional string inn = 5;                   // ИНН
+  optional string giro_account = 6;          // Расчетный счет
+  optional string correspondent_account = 7; // Счет сотрудника
+  optional string bik = 8;                   // БИК
+  optional string kpp = 9;                   // КПП
+  optional string description = 10;
+  optional string website = 11;
+  optional string physical_address = 12;
+  optional string legal_address = 13;
 }
