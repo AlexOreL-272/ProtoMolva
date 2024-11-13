@@ -4,6 +4,7 @@ package service_distributor;
 option go_package = "service.distributor";
 
 import "google/api/annotations.proto";
+import "src/google/protobuf/timestamp.proto";
 
 service Distributor {
   // <-------------- VACANCY -------------->
@@ -67,6 +68,20 @@ service Distributor {
       body : "*"
     };
   }
+
+  // <-------------- COMPANY -------------->
+  rpc GetCompanyData(GetCompanyDataRequest) returns (GetCompanyDataResponse) {
+    option (google.api.http) = {
+      get : "/v1/distributor/{distributor_id}/company" 
+    };
+  }
+
+  rpc SetCompanyData(SetCompanyDataRequest) returns (SetCompanyDataResponse) {
+    option (google.api.http) = {
+      post : "/v1/distributor/{distributor_id}/company"
+      body : "*"
+    };
+  }
 }
 
 // <-------------- REQUESTS -------------->
@@ -122,6 +137,18 @@ message SetProfileRequest {
   FullPersonalData profile = 2;
 }
 
+// <=============== COMPANY ===============>
+
+message GetCompanyDataRequest {
+  string distributor_id = 1;
+  string company_id = 2;
+}
+
+message SetCompanyDataRequest {
+  string distributor_id = 1;
+  Company company = 2;
+}
+
 // <-------------- RESPONSES -------------->
 // <=============== VACANCY ===============>
 
@@ -163,6 +190,16 @@ message GetProfileResponse {
 
 message SetProfileResponse {
   FullPersonalData profile = 1;
+}
+
+// <=============== COMPANY ===============>
+
+message GetCompanyDataResponse {
+  Company company = 1;
+}
+
+message SetCompanyDataResponse {
+  Company company = 1;
 }
 
 // <-------------- SOURCES -------------->
@@ -230,6 +267,7 @@ message Vacancy {
   optional VacancyModeration moderation = 15;
   optional string target_action = 16;
   optional int32 target_action_duration = 17;
+  google.protobuf.Timestamp create_date = 18;
 }
 
 // <=============== SUBMISSION ===============>
@@ -272,4 +310,22 @@ message ClientData {
   string phone_number = 5;
   string email = 6;
   optional string resume = 7;
+}
+
+// <=============== COMPANY ===============>
+
+message Company {
+  optional string company_id = 1;
+  optional string creator_id = 2;
+  optional string name = 3;
+  optional string legal_person = 4;
+  optional string inn = 5;                   // ИНН
+  optional string giro_account = 6;          // Расчетный счет
+  optional string correspondent_account = 7; // Счет сотрудника
+  optional string bik = 8;                   // БИК
+  optional string kpp = 9;                   // КПП
+  optional string description = 10;
+  optional string website = 11;
+  optional string physical_address = 12;
+  optional string legal_address = 13;
 }

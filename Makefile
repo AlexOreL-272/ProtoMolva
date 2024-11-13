@@ -24,6 +24,7 @@ gen_distributor:
 	protoc \
 	$(GO_FLAGS) \
 	--proto_path=$(GOOGLEAPIS_PROTO_PATH) \
+	--proto_path=$(TIMESTAMP_PROTO_PATH) \
 	--proto_path=$(PROTO_PATH_DISTR) \
 	--go_out=$(GEN_DIR_DISTR) \
 	--go-grpc_out=$(GEN_DIR_DISTR) \

@@ -28,6 +28,8 @@ const (
 	Distributor_SetSubmissionStatus_FullMethodName      = "/service_distributor.Distributor/SetSubmissionStatus"
 	Distributor_GetProfileData_FullMethodName           = "/service_distributor.Distributor/GetProfileData"
 	Distributor_SetProfileData_FullMethodName           = "/service_distributor.Distributor/SetProfileData"
+	Distributor_GetCompanyData_FullMethodName           = "/service_distributor.Distributor/GetCompanyData"
+	Distributor_SetCompanyData_FullMethodName           = "/service_distributor.Distributor/SetCompanyData"
 )
 
 // DistributorClient is the client API for Distributor service.
@@ -46,6 +48,9 @@ type DistributorClient interface {
 	// <-------------- PROFILE -------------->
 	GetProfileData(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
 	SetProfileData(ctx context.Context, in *SetProfileRequest, opts ...grpc.CallOption) (*SetProfileResponse, error)
+	// <-------------- COMPANY -------------->
+	GetCompanyData(ctx context.Context, in *GetCompanyDataRequest, opts ...grpc.CallOption) (*GetCompanyDataResponse, error)
+	SetCompanyData(ctx context.Context, in *SetCompanyDataRequest, opts ...grpc.CallOption) (*SetCompanyDataResponse, error)
 }
 
 type distributorClient struct {
@@ -146,6 +151,26 @@ func (c *distributorClient) SetProfileData(ctx context.Context, in *SetProfileRe
 	return out, nil
 }
 
+func (c *distributorClient) GetCompanyData(ctx context.Context, in *GetCompanyDataRequest, opts ...grpc.CallOption) (*GetCompanyDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCompanyDataResponse)
+	err := c.cc.Invoke(ctx, Distributor_GetCompanyData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *distributorClient) SetCompanyData(ctx context.Context, in *SetCompanyDataRequest, opts ...grpc.CallOption) (*SetCompanyDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetCompanyDataResponse)
+	err := c.cc.Invoke(ctx, Distributor_SetCompanyData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DistributorServer is the server API for Distributor service.
 // All implementations must embed UnimplementedDistributorServer
 // for forward compatibility.
@@ -162,6 +187,9 @@ type DistributorServer interface {
 	// <-------------- PROFILE -------------->
 	GetProfileData(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
 	SetProfileData(context.Context, *SetProfileRequest) (*SetProfileResponse, error)
+	// <-------------- COMPANY -------------->
+	GetCompanyData(context.Context, *GetCompanyDataRequest) (*GetCompanyDataResponse, error)
+	SetCompanyData(context.Context, *SetCompanyDataRequest) (*SetCompanyDataResponse, error)
 	mustEmbedUnimplementedDistributorServer()
 }
 
@@ -198,6 +226,12 @@ func (UnimplementedDistributorServer) GetProfileData(context.Context, *GetProfil
 }
 func (UnimplementedDistributorServer) SetProfileData(context.Context, *SetProfileRequest) (*SetProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetProfileData not implemented")
+}
+func (UnimplementedDistributorServer) GetCompanyData(context.Context, *GetCompanyDataRequest) (*GetCompanyDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCompanyData not implemented")
+}
+func (UnimplementedDistributorServer) SetCompanyData(context.Context, *SetCompanyDataRequest) (*SetCompanyDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetCompanyData not implemented")
 }
 func (UnimplementedDistributorServer) mustEmbedUnimplementedDistributorServer() {}
 func (UnimplementedDistributorServer) testEmbeddedByValue()                     {}
@@ -382,6 +416,42 @@ func _Distributor_SetProfileData_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Distributor_GetCompanyData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCompanyDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DistributorServer).GetCompanyData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Distributor_GetCompanyData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DistributorServer).GetCompanyData(ctx, req.(*GetCompanyDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Distributor_SetCompanyData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetCompanyDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DistributorServer).SetCompanyData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Distributor_SetCompanyData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DistributorServer).SetCompanyData(ctx, req.(*SetCompanyDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Distributor_ServiceDesc is the grpc.ServiceDesc for Distributor service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -424,6 +494,14 @@ var Distributor_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetProfileData",
 			Handler:    _Distributor_SetProfileData_Handler,
+		},
+		{
+			MethodName: "GetCompanyData",
+			Handler:    _Distributor_GetCompanyData_Handler,
+		},
+		{
+			MethodName: "SetCompanyData",
+			Handler:    _Distributor_SetCompanyData_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
