@@ -19,28 +19,30 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Crm_SayHello_FullMethodName           = "/handlers.api.Crm/SayHello"
-	Crm_SayHello2_FullMethodName          = "/handlers.api.Crm/SayHello2"
-	Crm_SaveNewUser_FullMethodName        = "/handlers.api.Crm/SaveNewUser"
-	Crm_CheckUserEmail_FullMethodName     = "/handlers.api.Crm/CheckUserEmail"
-	Crm_ChangeUserPassword_FullMethodName = "/handlers.api.Crm/ChangeUserPassword"
-	Crm_ChangeUserEmail_FullMethodName    = "/handlers.api.Crm/ChangeUserEmail"
-	Crm_ChangeUserPhone_FullMethodName    = "/handlers.api.Crm/ChangeUserPhone"
-	Crm_ChangeUserProfile_FullMethodName  = "/handlers.api.Crm/ChangeUserProfile"
-	Crm_AddReview_FullMethodName          = "/handlers.api.Crm/AddReview"
-	Crm_DeleteReview_FullMethodName       = "/handlers.api.Crm/DeleteReview"
-	Crm_GetReviewList_FullMethodName      = "/handlers.api.Crm/GetReviewList"
-	Crm_GetUserInfo_FullMethodName        = "/handlers.api.Crm/GetUserInfo"
-	Crm_GetVacancyList_FullMethodName     = "/handlers.api.Crm/GetVacancyList"
-	Crm_GetSubmissionList_FullMethodName  = "/handlers.api.Crm/GetSubmissionList"
-	Crm_SetSubmission_FullMethodName      = "/handlers.api.Crm/SetSubmission"
-	Crm_SetVacancy_FullMethodName         = "/handlers.api.Crm/SetVacancy"
-	Crm_DeleteVacancy_FullMethodName      = "/handlers.api.Crm/DeleteVacancy"
-	Crm_SetCompanyInfo_FullMethodName     = "/handlers.api.Crm/SetCompanyInfo"
-	Crm_GetCompanyList_FullMethodName     = "/handlers.api.Crm/GetCompanyList"
-	Crm_GetBallance_FullMethodName        = "/handlers.api.Crm/GetBallance"
-	Crm_SetBallance_FullMethodName        = "/handlers.api.Crm/SetBallance"
-	Crm_SaveTransaction_FullMethodName    = "/handlers.api.Crm/SaveTransaction"
+	Crm_SayHello_FullMethodName            = "/handlers.api.Crm/SayHello"
+	Crm_SayHello2_FullMethodName           = "/handlers.api.Crm/SayHello2"
+	Crm_SaveNewUser_FullMethodName         = "/handlers.api.Crm/SaveNewUser"
+	Crm_CheckUserEmail_FullMethodName      = "/handlers.api.Crm/CheckUserEmail"
+	Crm_ChangeUserPassword_FullMethodName  = "/handlers.api.Crm/ChangeUserPassword"
+	Crm_ChangeUserEmail_FullMethodName     = "/handlers.api.Crm/ChangeUserEmail"
+	Crm_ChangeUserPhone_FullMethodName     = "/handlers.api.Crm/ChangeUserPhone"
+	Crm_ChangeUserProfile_FullMethodName   = "/handlers.api.Crm/ChangeUserProfile"
+	Crm_AddReview_FullMethodName           = "/handlers.api.Crm/AddReview"
+	Crm_DeleteReview_FullMethodName        = "/handlers.api.Crm/DeleteReview"
+	Crm_GetReviewList_FullMethodName       = "/handlers.api.Crm/GetReviewList"
+	Crm_GetUserInfo_FullMethodName         = "/handlers.api.Crm/GetUserInfo"
+	Crm_GetVacancyList_FullMethodName      = "/handlers.api.Crm/GetVacancyList"
+	Crm_GetSubmissionList_FullMethodName   = "/handlers.api.Crm/GetSubmissionList"
+	Crm_SetSubmission_FullMethodName       = "/handlers.api.Crm/SetSubmission"
+	Crm_SetVacancy_FullMethodName          = "/handlers.api.Crm/SetVacancy"
+	Crm_DeleteVacancy_FullMethodName       = "/handlers.api.Crm/DeleteVacancy"
+	Crm_SetCompanyInfo_FullMethodName      = "/handlers.api.Crm/SetCompanyInfo"
+	Crm_GetCompanyList_FullMethodName      = "/handlers.api.Crm/GetCompanyList"
+	Crm_SetClientValidation_FullMethodName = "/handlers.api.Crm/SetClientValidation"
+	Crm_GetClientValidation_FullMethodName = "/handlers.api.Crm/GetClientValidation"
+	Crm_GetBallance_FullMethodName         = "/handlers.api.Crm/GetBallance"
+	Crm_SetBallance_FullMethodName         = "/handlers.api.Crm/SetBallance"
+	Crm_SaveTransaction_FullMethodName     = "/handlers.api.Crm/SaveTransaction"
 )
 
 // CrmClient is the client API for Crm service.
@@ -76,6 +78,8 @@ type CrmClient interface {
 	// создать и редактировать компанию
 	SetCompanyInfo(ctx context.Context, in *SetCompanyInfoRequest, opts ...grpc.CallOption) (*SetCompanyInfoResponse, error)
 	GetCompanyList(ctx context.Context, in *GetCompanyListRequest, opts ...grpc.CallOption) (*GetCompanyListResponse, error)
+	SetClientValidation(ctx context.Context, in *SetClientValidationRequest, opts ...grpc.CallOption) (*SetClientValidationResponse, error)
+	GetClientValidation(ctx context.Context, in *GetClientValidationRequest, opts ...grpc.CallOption) (*GetClientValidationResponse, error)
 	// финансы
 	GetBallance(ctx context.Context, in *GetBallanceRequest, opts ...grpc.CallOption) (*GetBallanceResponse, error)
 	SetBallance(ctx context.Context, in *SetBallanceRequest, opts ...grpc.CallOption) (*SetBallanceResponse, error)
@@ -280,6 +284,26 @@ func (c *crmClient) GetCompanyList(ctx context.Context, in *GetCompanyListReques
 	return out, nil
 }
 
+func (c *crmClient) SetClientValidation(ctx context.Context, in *SetClientValidationRequest, opts ...grpc.CallOption) (*SetClientValidationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetClientValidationResponse)
+	err := c.cc.Invoke(ctx, Crm_SetClientValidation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *crmClient) GetClientValidation(ctx context.Context, in *GetClientValidationRequest, opts ...grpc.CallOption) (*GetClientValidationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetClientValidationResponse)
+	err := c.cc.Invoke(ctx, Crm_GetClientValidation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *crmClient) GetBallance(ctx context.Context, in *GetBallanceRequest, opts ...grpc.CallOption) (*GetBallanceResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetBallanceResponse)
@@ -343,6 +367,8 @@ type CrmServer interface {
 	// создать и редактировать компанию
 	SetCompanyInfo(context.Context, *SetCompanyInfoRequest) (*SetCompanyInfoResponse, error)
 	GetCompanyList(context.Context, *GetCompanyListRequest) (*GetCompanyListResponse, error)
+	SetClientValidation(context.Context, *SetClientValidationRequest) (*SetClientValidationResponse, error)
+	GetClientValidation(context.Context, *GetClientValidationRequest) (*GetClientValidationResponse, error)
 	// финансы
 	GetBallance(context.Context, *GetBallanceRequest) (*GetBallanceResponse, error)
 	SetBallance(context.Context, *SetBallanceRequest) (*SetBallanceResponse, error)
@@ -413,6 +439,12 @@ func (UnimplementedCrmServer) SetCompanyInfo(context.Context, *SetCompanyInfoReq
 }
 func (UnimplementedCrmServer) GetCompanyList(context.Context, *GetCompanyListRequest) (*GetCompanyListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCompanyList not implemented")
+}
+func (UnimplementedCrmServer) SetClientValidation(context.Context, *SetClientValidationRequest) (*SetClientValidationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetClientValidation not implemented")
+}
+func (UnimplementedCrmServer) GetClientValidation(context.Context, *GetClientValidationRequest) (*GetClientValidationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetClientValidation not implemented")
 }
 func (UnimplementedCrmServer) GetBallance(context.Context, *GetBallanceRequest) (*GetBallanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBallance not implemented")
@@ -786,6 +818,42 @@ func _Crm_GetCompanyList_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Crm_SetClientValidation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetClientValidationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CrmServer).SetClientValidation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Crm_SetClientValidation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CrmServer).SetClientValidation(ctx, req.(*SetClientValidationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Crm_GetClientValidation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetClientValidationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CrmServer).GetClientValidation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Crm_GetClientValidation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CrmServer).GetClientValidation(ctx, req.(*GetClientValidationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Crm_GetBallance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetBallanceRequest)
 	if err := dec(in); err != nil {
@@ -922,6 +990,14 @@ var Crm_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCompanyList",
 			Handler:    _Crm_GetCompanyList_Handler,
+		},
+		{
+			MethodName: "SetClientValidation",
+			Handler:    _Crm_SetClientValidation_Handler,
+		},
+		{
+			MethodName: "GetClientValidation",
+			Handler:    _Crm_GetClientValidation_Handler,
 		},
 		{
 			MethodName: "GetBallance",

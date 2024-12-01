@@ -7,34 +7,34 @@ option go_package = "service.crm";
 service Crm {
     rpc SayHello(HelloRequest) returns(HelloResponse) {}
     rpc SayHello2(HelloRequest) returns(HelloResponse) {}
-	// регистрация  
+    // регистрация
     rpc SaveNewUser(SaveNewUserRequest) returns(SaveNewUserResponse) {};
 
-	// авторизация
+    // авторизация
     rpc CheckUserEmail(CheckUserEmailRequest) returns(CheckUserEmailResponse) {}; // check if there is user with such email, and if true return password
 
-	// обновить пользовательскую информацию
+    // обновить пользовательскую информацию
     rpc ChangeUserPassword(ChangeUserPasswordRequest) returns(ChangeUserPasswordResponse) {};
     rpc ChangeUserEmail(ChangeUserEmailRequest) returns(ChangeUserEmailResponse) {};
     rpc ChangeUserPhone(ChangeUserPhoneRequest) returns(ChangeUserPhoneResponse) {};
     rpc ChangeUserProfile(ChangeUserProfileRequest) returns(ChangeUserProfileResponse) {};
 
-	// добавить отзыв
+    // добавить отзыв
     rpc AddReview(AddReviewRequest) returns(AddReviewResponse) {};
     rpc DeleteReview(DeleteReviewRequest) returns(DeleteReviewResponse) {};
 
-	//получить список отзывов
+    //получить список отзывов
     rpc GetReviewList(GetReviewListRequest) returns(GetReviewListResponse) {};
 
-	
-	// получить информацию о пользователе
+
+    // получить информацию о пользователе
     rpc GetUserInfo(GetUserInfoRequest) returns(GetUserInfoResponse) {}; //by UID
 
-	// получить вакансии/приглашения
+    // получить вакансии/приглашения
     rpc GetVacancyList(GetVacancyListRequest) returns(GetVacancyListResponse);
     rpc GetSubmissionList(GetSubmissionListRequest) returns(GetSubmissionListResponse) {};
 
-	// сохранить приглашение
+    // сохранить приглашение
     rpc SetSubmission(SetSubmissionRequest) returns(SetSubmissionResponse) {};
 
     //-------------------------------------------//
@@ -46,10 +46,14 @@ service Crm {
     rpc SetCompanyInfo(SetCompanyInfoRequest) returns(SetCompanyInfoResponse) {};
     rpc GetCompanyList(GetCompanyListRequest) returns(GetCompanyListResponse) {};
 
+    rpc SetClientValidation(SetClientValidationRequest) returns(SetClientValidationResponse) {};
+    rpc GetClientValidation(GetClientValidationRequest) returns(GetClientValidationResponse) {};
+
     // финансы
     rpc GetBallance(GetBallanceRequest) returns(GetBallanceResponse) {};
     rpc SetBallance(SetBallanceRequest) returns(SetBallanceResponse) {};
     rpc SaveTransaction(SaveTransactionRequest) returns(SaveTransactionResponse) {};
+
 }
 
 enum UserType {
@@ -202,7 +206,7 @@ message GetReviewListResponse {
 }
 
 
- // получить информацию о пользователе
+// получить информацию о пользователе
 message GetUserInfoRequest {
     string uid_or_email = 1;
     bool is_uid = 2; // true if uid, false if email
@@ -224,13 +228,13 @@ message GetUserInfoResponse {
 
     ResponseStatus status = 13;
     string response = 14; // описание результата
- }
+}
 
- enum SortingSwitch {
+enum SortingSwitch {
     DISABLED = 0;
     ASCENDING = 1;
     DESCENDING = 2;
- }
+}
 
 // получить список вакансий
 message GetVacancyListRequest {
@@ -273,13 +277,13 @@ message Vacancy {
     string address = 4;
     string work_format = 5;
     int32 agent_reward = 6;
-    int32 salary_bottom = 7;  
-    int32 salary_top = 8;  
+    int32 salary_bottom = 7;
+    int32 salary_top = 8;
     string requirements = 9;
     string responsibilities = 10;
     string additional_info = 11; // так называемые "плюшки" в мирошке Садовникова
     string region = 12; // мне кажется это поле логично иметь, чтобы фильтровать по местопололжению (городу), но в бизнес флоу его нет
-    string publish_date = 13; 
+    string publish_date = 13;
     bool is_archived = 14;
     Moderation moderated = 15;
     string target_action = 16;
@@ -310,11 +314,11 @@ message GetSubmissionListRequest {
     string uid = 1;
     string vacancy_id = 2;
     SubmissionStatus status = 3;
- }
+}
 
- message GetSubmissionListResponse {
+message GetSubmissionListResponse {
     repeated SubmissionGet submission_list = 1;
- }
+}
 
 
 // сохранить приглашение
@@ -328,7 +332,7 @@ enum SubmissionStatus {
     SUSPENDED = 5;          // Приостановлено (как будто удалено)
     ACCEPTED = 6;           // Принято
 }
-  
+
 message SetSubmissionRequest {
     string uid = 1;
     string vacancy_id = 2;
@@ -340,13 +344,13 @@ message SetSubmissionRequest {
     string email = 8;
     string birthday = 9;
     string info = 10;
- }
+}
 
- message SetSubmissionResponse {
+message SetSubmissionResponse {
     ResponseStatus status = 1;
     string response = 2; // описание результата
     string id = 3;
- }
+}
 
 
 //-------------------------------------------//
@@ -383,6 +387,12 @@ message Company {
     string website = 7;
     string physical_address = 8;
     string legal_address = 9;
+    string giro_account = 10;
+    string correspondent_account = 11;
+    string bik = 12;
+    string kpp = 13;
+    string new_staff_member = 14; // when updating
+    repeated string staff = 15; // when receiving
 }
 
 message GetCompanyListRequest {
@@ -398,7 +408,7 @@ message GetCompanyListResponse {
 
 // создать и редактировать компанию
 // id был передан - редактирует
-// id не был, создаёт НОВУЮ 
+// id не был, создаёт НОВУЮ
 message SetCompanyInfoRequest {
     Company company = 1;
 }
@@ -407,6 +417,36 @@ message SetCompanyInfoResponse {
     ResponseStatus status = 1;
     string response = 2;
     string id = 3;
+}
+
+message ClientValidation {
+    string id = 1;
+    string uid = 2;
+    string status = 3;
+    string last_update = 4;
+    string description = 5;
+}
+
+message SetClientValidationRequest {
+    ClientValidation client_validation = 1;
+}
+
+message SetClientValidationResponse {
+    ResponseStatus status = 1;
+    string response = 2;
+    string id = 3;
+}
+
+
+message GetClientValidationRequest {
+    string uid = 1;
+    string id = 2;
+}
+
+message GetClientValidationResponse {
+    ClientValidation client_validation = 1;
+    string response = 2;
+    ResponseStatus status = 3;
 }
 
 
@@ -452,11 +492,11 @@ message SaveTransactionResponse {
 
 
 message HelloRequest {
-	string name = 1;
+    string name = 1;
 }
 
 message HelloResponse {
-	string text = 1;
+    string text = 1;
 }
 
 
