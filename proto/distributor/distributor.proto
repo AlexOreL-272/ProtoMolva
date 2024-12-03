@@ -147,7 +147,7 @@ message GetCompanyDataRequest {
 message SetCompanyDataRequest {
   string distributor_id = 1;
   Company company = 2;
-  optional string new_staff_member = 3;
+  string new_staff_member = 3;
 }
 
 // <-------------- RESPONSES -------------->
