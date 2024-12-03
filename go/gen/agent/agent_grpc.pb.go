@@ -33,29 +33,29 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AgentClient interface {
 	// <-------------- VACANCY -------------->
-	// / Получить список вакансий. Получает GetVacancyListRequest, возвращает
-	// / GetVacancyListResponse
+	/// Получить список вакансий. Получает GetVacancyListRequest, возвращает
+	/// GetVacancyListResponse
 	GetVacancyList(ctx context.Context, in *GetVacancyListRequest, opts ...grpc.CallOption) (*GetVacancyListResponse, error)
 	// <-------------- SUBMISSION -------------->
-	// / Получить список заявок. Получает GetSubmissionListRequest, возвращает
-	// / GetSubmissionListResponse
+	/// Получить список заявок. Получает GetSubmissionListRequest, возвращает
+	/// GetSubmissionListResponse
 	GetSubmissionList(ctx context.Context, in *GetSubmissionListRequest, opts ...grpc.CallOption) (*GetSubmissionListResponse, error)
-	// / Метод для удаления заявки. Получает DeleteSubmissionRequest, возвращает
-	// / DeleteSubmissionResponse
+	/// Метод для удаления заявки. Получает DeleteSubmissionRequest, возвращает
+	/// DeleteSubmissionResponse
 	DeleteSubmission(ctx context.Context, in *DeleteSubmissionRequest, opts ...grpc.CallOption) (*DeleteSubmissionResponse, error)
 	// <-------------- PROFILE -------------->
-	// / Получить данные агента. Получает GetProfileRequest, возвращает
-	// / GetProfileResponse
+	/// Получить данные агента. Получает GetProfileRequest, возвращает
+	/// GetProfileResponse
 	GetProfileData(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
-	// / Метод для изменения данных агента. Получает SetProfileRequest, возвращает
-	// / SetProfileResponse
+	/// Метод для изменения данных агента. Получает SetProfileRequest, возвращает
+	/// SetProfileResponse
 	SetProfileData(ctx context.Context, in *SetProfileRequest, opts ...grpc.CallOption) (*SetProfileResponse, error)
 	// <-------------- COMPANY -------------->
-	// / Получить данные компании. Получает GetCompanyDataRequest, возвращает
-	// / GetCompanyDataResponse
+	/// Получить данные компании. Получает GetCompanyDataRequest, возвращает
+	/// GetCompanyDataResponse
 	GetCompanyData(ctx context.Context, in *GetCompanyDataRequest, opts ...grpc.CallOption) (*GetCompanyDataResponse, error)
-	// / Метод для изменения данных компании. Получает SetCompanyDataRequest, возвращает
-	// / SetCompanyDataResponse
+	/// Метод для изменения данных компании. Получает SetCompanyDataRequest, возвращает
+	/// SetCompanyDataResponse
 	SetCompanyData(ctx context.Context, in *SetCompanyDataRequest, opts ...grpc.CallOption) (*SetCompanyDataResponse, error)
 }
 
@@ -142,29 +142,29 @@ func (c *agentClient) SetCompanyData(ctx context.Context, in *SetCompanyDataRequ
 // for forward compatibility.
 type AgentServer interface {
 	// <-------------- VACANCY -------------->
-	// / Получить список вакансий. Получает GetVacancyListRequest, возвращает
-	// / GetVacancyListResponse
+	/// Получить список вакансий. Получает GetVacancyListRequest, возвращает
+	/// GetVacancyListResponse
 	GetVacancyList(context.Context, *GetVacancyListRequest) (*GetVacancyListResponse, error)
 	// <-------------- SUBMISSION -------------->
-	// / Получить список заявок. Получает GetSubmissionListRequest, возвращает
-	// / GetSubmissionListResponse
+	/// Получить список заявок. Получает GetSubmissionListRequest, возвращает
+	/// GetSubmissionListResponse
 	GetSubmissionList(context.Context, *GetSubmissionListRequest) (*GetSubmissionListResponse, error)
-	// / Метод для удаления заявки. Получает DeleteSubmissionRequest, возвращает
-	// / DeleteSubmissionResponse
+	/// Метод для удаления заявки. Получает DeleteSubmissionRequest, возвращает
+	/// DeleteSubmissionResponse
 	DeleteSubmission(context.Context, *DeleteSubmissionRequest) (*DeleteSubmissionResponse, error)
 	// <-------------- PROFILE -------------->
-	// / Получить данные агента. Получает GetProfileRequest, возвращает
-	// / GetProfileResponse
+	/// Получить данные агента. Получает GetProfileRequest, возвращает
+	/// GetProfileResponse
 	GetProfileData(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
-	// / Метод для изменения данных агента. Получает SetProfileRequest, возвращает
-	// / SetProfileResponse
+	/// Метод для изменения данных агента. Получает SetProfileRequest, возвращает
+	/// SetProfileResponse
 	SetProfileData(context.Context, *SetProfileRequest) (*SetProfileResponse, error)
 	// <-------------- COMPANY -------------->
-	// / Получить данные компании. Получает GetCompanyDataRequest, возвращает
-	// / GetCompanyDataResponse
+	/// Получить данные компании. Получает GetCompanyDataRequest, возвращает
+	/// GetCompanyDataResponse
 	GetCompanyData(context.Context, *GetCompanyDataRequest) (*GetCompanyDataResponse, error)
-	// / Метод для изменения данных компании. Получает SetCompanyDataRequest, возвращает
-	// / SetCompanyDataResponse
+	/// Метод для изменения данных компании. Получает SetCompanyDataRequest, возвращает
+	/// SetCompanyDataResponse
 	SetCompanyData(context.Context, *SetCompanyDataRequest) (*SetCompanyDataResponse, error)
 	mustEmbedUnimplementedAgentServer()
 }
