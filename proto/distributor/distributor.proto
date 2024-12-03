@@ -330,3 +330,4 @@ message Company {
   optional string physical_address = 12;
   optional string legal_address = 13;
 }
+
