@@ -9,6 +9,7 @@ option go_package = "service.crm";
 service Crm {
     rpc SayHello(HelloRequest) returns(HelloResponse) {}
     rpc SayHello2(HelloRequest) returns(HelloResponse) {}
+
     // регистрация
     rpc SaveNewUser(SaveNewUserRequest) returns(SaveNewUserResponse) {};
 
