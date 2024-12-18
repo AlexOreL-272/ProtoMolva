@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
 package handlers.api;
 
 option go_package = "service.crm";
@@ -423,7 +425,7 @@ message ClientValidation {
     string id = 1;
     string uid = 2;
     string status = 3;
-    string last_update = 4;
+    google.protobuf.Timestamp last_update = 4;
     string description = 5;
 }
 
@@ -498,5 +500,3 @@ message HelloRequest {
 message HelloResponse {
     string text = 1;
 }
-
-
