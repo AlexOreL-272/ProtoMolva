@@ -25,6 +25,7 @@ const (
 	Agent_GetProfileData_FullMethodName    = "/service_agent.Agent/GetProfileData"
 	Agent_SetProfileData_FullMethodName    = "/service_agent.Agent/SetProfileData"
 	Agent_GetCompanyData_FullMethodName    = "/service_agent.Agent/GetCompanyData"
+	Agent_GetCompaniesUid_FullMethodName   = "/service_agent.Agent/GetCompaniesUid"
 	Agent_SetCompanyData_FullMethodName    = "/service_agent.Agent/SetCompanyData"
 )
 
@@ -54,6 +55,9 @@ type AgentClient interface {
 	/// Получить данные компании. Получает GetCompanyDataRequest, возвращает
 	/// GetCompanyDataResponse
 	GetCompanyData(ctx context.Context, in *GetCompanyDataRequest, opts ...grpc.CallOption) (*GetCompanyDataResponse, error)
+	// Получить список компаний по Uid. Получает GetCompanyDataRequest возвращает
+	// GetCompaniesUidResponse
+	GetCompaniesUid(ctx context.Context, in *GetCompanyDataRequest, opts ...grpc.CallOption) (*GetCompaniesUidResponse, error)
 	/// Метод для изменения данных компании. Получает SetCompanyDataRequest, возвращает
 	/// SetCompanyDataResponse
 	SetCompanyData(ctx context.Context, in *SetCompanyDataRequest, opts ...grpc.CallOption) (*SetCompanyDataResponse, error)
@@ -127,6 +131,16 @@ func (c *agentClient) GetCompanyData(ctx context.Context, in *GetCompanyDataRequ
 	return out, nil
 }
 
+func (c *agentClient) GetCompaniesUid(ctx context.Context, in *GetCompanyDataRequest, opts ...grpc.CallOption) (*GetCompaniesUidResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCompaniesUidResponse)
+	err := c.cc.Invoke(ctx, Agent_GetCompaniesUid_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *agentClient) SetCompanyData(ctx context.Context, in *SetCompanyDataRequest, opts ...grpc.CallOption) (*SetCompanyDataResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SetCompanyDataResponse)
@@ -163,6 +177,9 @@ type AgentServer interface {
 	/// Получить данные компании. Получает GetCompanyDataRequest, возвращает
 	/// GetCompanyDataResponse
 	GetCompanyData(context.Context, *GetCompanyDataRequest) (*GetCompanyDataResponse, error)
+	// Получить список компаний по Uid. Получает GetCompanyDataRequest возвращает
+	// GetCompaniesUidResponse
+	GetCompaniesUid(context.Context, *GetCompanyDataRequest) (*GetCompaniesUidResponse, error)
 	/// Метод для изменения данных компании. Получает SetCompanyDataRequest, возвращает
 	/// SetCompanyDataResponse
 	SetCompanyData(context.Context, *SetCompanyDataRequest) (*SetCompanyDataResponse, error)
@@ -193,6 +210,9 @@ func (UnimplementedAgentServer) SetProfileData(context.Context, *SetProfileReque
 }
 func (UnimplementedAgentServer) GetCompanyData(context.Context, *GetCompanyDataRequest) (*GetCompanyDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCompanyData not implemented")
+}
+func (UnimplementedAgentServer) GetCompaniesUid(context.Context, *GetCompanyDataRequest) (*GetCompaniesUidResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCompaniesUid not implemented")
 }
 func (UnimplementedAgentServer) SetCompanyData(context.Context, *SetCompanyDataRequest) (*SetCompanyDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetCompanyData not implemented")
@@ -326,6 +346,24 @@ func _Agent_GetCompanyData_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Agent_GetCompaniesUid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCompanyDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentServer).GetCompaniesUid(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Agent_GetCompaniesUid_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentServer).GetCompaniesUid(ctx, req.(*GetCompanyDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Agent_SetCompanyData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SetCompanyDataRequest)
 	if err := dec(in); err != nil {
@@ -374,6 +412,10 @@ var Agent_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCompanyData",
 			Handler:    _Agent_GetCompanyData_Handler,
+		},
+		{
+			MethodName: "GetCompaniesUid",
+			Handler:    _Agent_GetCompaniesUid_Handler,
 		},
 		{
 			MethodName: "SetCompanyData",

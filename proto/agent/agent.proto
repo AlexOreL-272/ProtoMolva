@@ -56,7 +56,15 @@ service Agent {
   /// GetCompanyDataResponse
   rpc GetCompanyData(GetCompanyDataRequest) returns (GetCompanyDataResponse) {
     option (google.api.http) = {
-      get : "/v1/agents/{agent_id}/company" 
+      get : "/v1/agents/{agent_id}/company/{company_id}"
+    };
+  }
+
+  // Получить список компаний по Uid. Получает GetCompanyDataRequest возвращает
+  // GetCompaniesUidResponse
+  rpc GetCompaniesUid(GetCompanyDataRequest) returns (GetCompaniesUidResponse) {
+    option (google.api.http) = {
+      get : "/v1/agents/{agent_id}/company"
     };
   }
 
@@ -145,6 +153,10 @@ message SetProfileResponse {
 
 message GetCompanyDataResponse {
   Company company = 1;
+}
+
+message GetCompaniesUidResponse {
+  repeated CompanyBrief companies = 1;
 }
 
 message SetCompanyDataResponse {
@@ -277,4 +289,9 @@ message Company {
   optional string website = 11;
   optional string physical_address = 12;
   optional string legal_address = 13;
+}
+
+message CompanyBrief {
+  string uid = 1;
+  string name = 2;
 }
