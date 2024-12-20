@@ -80,7 +80,7 @@ service Distributor {
   // GetCompaniesUidResponse
   rpc GetCompaniesUid(GetCompanyDataRequest) returns (GetCompaniesUidResponse) {
     option (google.api.http) = {
-      get : "/v1/agents/{agent_id}/company"
+      get : "/v1/agents/{agent_id}/companies"
     };
   }
 
@@ -344,6 +344,6 @@ message Company {
 }
 
 message CompanyBrief {
-  string uid = 1;
+  string company_id = 1;
   string name = 2;
 }
