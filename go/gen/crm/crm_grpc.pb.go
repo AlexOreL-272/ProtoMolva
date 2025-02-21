@@ -19,30 +19,32 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Crm_SayHello_FullMethodName            = "/handlers.api.Crm/SayHello"
-	Crm_SayHello2_FullMethodName           = "/handlers.api.Crm/SayHello2"
-	Crm_SaveNewUser_FullMethodName         = "/handlers.api.Crm/SaveNewUser"
-	Crm_CheckUserEmail_FullMethodName      = "/handlers.api.Crm/CheckUserEmail"
-	Crm_ChangeUserPassword_FullMethodName  = "/handlers.api.Crm/ChangeUserPassword"
-	Crm_ChangeUserEmail_FullMethodName     = "/handlers.api.Crm/ChangeUserEmail"
-	Crm_ChangeUserPhone_FullMethodName     = "/handlers.api.Crm/ChangeUserPhone"
-	Crm_ChangeUserProfile_FullMethodName   = "/handlers.api.Crm/ChangeUserProfile"
-	Crm_AddReview_FullMethodName           = "/handlers.api.Crm/AddReview"
-	Crm_DeleteReview_FullMethodName        = "/handlers.api.Crm/DeleteReview"
-	Crm_GetReviewList_FullMethodName       = "/handlers.api.Crm/GetReviewList"
-	Crm_GetUserInfo_FullMethodName         = "/handlers.api.Crm/GetUserInfo"
-	Crm_GetVacancyList_FullMethodName      = "/handlers.api.Crm/GetVacancyList"
-	Crm_GetSubmissionList_FullMethodName   = "/handlers.api.Crm/GetSubmissionList"
-	Crm_SetSubmission_FullMethodName       = "/handlers.api.Crm/SetSubmission"
-	Crm_SetVacancy_FullMethodName          = "/handlers.api.Crm/SetVacancy"
-	Crm_DeleteVacancy_FullMethodName       = "/handlers.api.Crm/DeleteVacancy"
-	Crm_SetCompanyInfo_FullMethodName      = "/handlers.api.Crm/SetCompanyInfo"
-	Crm_GetCompanyList_FullMethodName      = "/handlers.api.Crm/GetCompanyList"
-	Crm_SetClientValidation_FullMethodName = "/handlers.api.Crm/SetClientValidation"
-	Crm_GetClientValidation_FullMethodName = "/handlers.api.Crm/GetClientValidation"
-	Crm_GetBallance_FullMethodName         = "/handlers.api.Crm/GetBallance"
-	Crm_SetBallance_FullMethodName         = "/handlers.api.Crm/SetBallance"
-	Crm_SaveTransaction_FullMethodName     = "/handlers.api.Crm/SaveTransaction"
+	Crm_SayHello_FullMethodName                  = "/handlers.api.Crm/SayHello"
+	Crm_SayHello2_FullMethodName                 = "/handlers.api.Crm/SayHello2"
+	Crm_SaveNewUser_FullMethodName               = "/handlers.api.Crm/SaveNewUser"
+	Crm_CheckUserEmail_FullMethodName            = "/handlers.api.Crm/CheckUserEmail"
+	Crm_ChangeUserPassword_FullMethodName        = "/handlers.api.Crm/ChangeUserPassword"
+	Crm_ChangeUserEmail_FullMethodName           = "/handlers.api.Crm/ChangeUserEmail"
+	Crm_ChangeUserPhone_FullMethodName           = "/handlers.api.Crm/ChangeUserPhone"
+	Crm_ChangeUserProfile_FullMethodName         = "/handlers.api.Crm/ChangeUserProfile"
+	Crm_AddReview_FullMethodName                 = "/handlers.api.Crm/AddReview"
+	Crm_DeleteReview_FullMethodName              = "/handlers.api.Crm/DeleteReview"
+	Crm_GetReviewList_FullMethodName             = "/handlers.api.Crm/GetReviewList"
+	Crm_GetUserInfo_FullMethodName               = "/handlers.api.Crm/GetUserInfo"
+	Crm_GetVacancyList_FullMethodName            = "/handlers.api.Crm/GetVacancyList"
+	Crm_GetSubmissionList_FullMethodName         = "/handlers.api.Crm/GetSubmissionList"
+	Crm_SetSubmission_FullMethodName             = "/handlers.api.Crm/SetSubmission"
+	Crm_SetVacancy_FullMethodName                = "/handlers.api.Crm/SetVacancy"
+	Crm_DeleteVacancy_FullMethodName             = "/handlers.api.Crm/DeleteVacancy"
+	Crm_CreateCompanyTicket_FullMethodName       = "/handlers.api.Crm/CreateCompanyTicket"
+	Crm_GetCompanyList_FullMethodName            = "/handlers.api.Crm/GetCompanyList"
+	Crm_UpdateCompanyTicketStatus_FullMethodName = "/handlers.api.Crm/UpdateCompanyTicketStatus"
+	Crm_GetCompanyTickets_FullMethodName         = "/handlers.api.Crm/GetCompanyTickets"
+	Crm_SetClientValidation_FullMethodName       = "/handlers.api.Crm/SetClientValidation"
+	Crm_GetClientValidation_FullMethodName       = "/handlers.api.Crm/GetClientValidation"
+	Crm_GetBallance_FullMethodName               = "/handlers.api.Crm/GetBallance"
+	Crm_SetBallance_FullMethodName               = "/handlers.api.Crm/SetBallance"
+	Crm_SaveTransaction_FullMethodName           = "/handlers.api.Crm/SaveTransaction"
 )
 
 // CrmClient is the client API for Crm service.
@@ -76,8 +78,10 @@ type CrmClient interface {
 	SetVacancy(ctx context.Context, in *SetVacancyRequest, opts ...grpc.CallOption) (*SetVacancyResponse, error)
 	DeleteVacancy(ctx context.Context, in *DeleteVacancyRequest, opts ...grpc.CallOption) (*DeleteVacancyResponse, error)
 	// создать и редактировать компанию
-	SetCompanyInfo(ctx context.Context, in *SetCompanyInfoRequest, opts ...grpc.CallOption) (*SetCompanyInfoResponse, error)
+	CreateCompanyTicket(ctx context.Context, in *CreateCompanyTicketRequest, opts ...grpc.CallOption) (*CreateCompanyTicketResponse, error)
 	GetCompanyList(ctx context.Context, in *GetCompanyListRequest, opts ...grpc.CallOption) (*GetCompanyListResponse, error)
+	UpdateCompanyTicketStatus(ctx context.Context, in *UpdateCompanyTicketStatusRequest, opts ...grpc.CallOption) (*UpdateCompanyTicketStatusResponse, error)
+	GetCompanyTickets(ctx context.Context, in *GetCompanyTicketsRequest, opts ...grpc.CallOption) (*GetCompanyTicketsResponse, error)
 	SetClientValidation(ctx context.Context, in *SetClientValidationRequest, opts ...grpc.CallOption) (*SetClientValidationResponse, error)
 	GetClientValidation(ctx context.Context, in *GetClientValidationRequest, opts ...grpc.CallOption) (*GetClientValidationResponse, error)
 	// финансы
@@ -264,10 +268,10 @@ func (c *crmClient) DeleteVacancy(ctx context.Context, in *DeleteVacancyRequest,
 	return out, nil
 }
 
-func (c *crmClient) SetCompanyInfo(ctx context.Context, in *SetCompanyInfoRequest, opts ...grpc.CallOption) (*SetCompanyInfoResponse, error) {
+func (c *crmClient) CreateCompanyTicket(ctx context.Context, in *CreateCompanyTicketRequest, opts ...grpc.CallOption) (*CreateCompanyTicketResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SetCompanyInfoResponse)
-	err := c.cc.Invoke(ctx, Crm_SetCompanyInfo_FullMethodName, in, out, cOpts...)
+	out := new(CreateCompanyTicketResponse)
+	err := c.cc.Invoke(ctx, Crm_CreateCompanyTicket_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -278,6 +282,26 @@ func (c *crmClient) GetCompanyList(ctx context.Context, in *GetCompanyListReques
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetCompanyListResponse)
 	err := c.cc.Invoke(ctx, Crm_GetCompanyList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *crmClient) UpdateCompanyTicketStatus(ctx context.Context, in *UpdateCompanyTicketStatusRequest, opts ...grpc.CallOption) (*UpdateCompanyTicketStatusResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateCompanyTicketStatusResponse)
+	err := c.cc.Invoke(ctx, Crm_UpdateCompanyTicketStatus_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *crmClient) GetCompanyTickets(ctx context.Context, in *GetCompanyTicketsRequest, opts ...grpc.CallOption) (*GetCompanyTicketsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCompanyTicketsResponse)
+	err := c.cc.Invoke(ctx, Crm_GetCompanyTickets_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -365,8 +389,10 @@ type CrmServer interface {
 	SetVacancy(context.Context, *SetVacancyRequest) (*SetVacancyResponse, error)
 	DeleteVacancy(context.Context, *DeleteVacancyRequest) (*DeleteVacancyResponse, error)
 	// создать и редактировать компанию
-	SetCompanyInfo(context.Context, *SetCompanyInfoRequest) (*SetCompanyInfoResponse, error)
+	CreateCompanyTicket(context.Context, *CreateCompanyTicketRequest) (*CreateCompanyTicketResponse, error)
 	GetCompanyList(context.Context, *GetCompanyListRequest) (*GetCompanyListResponse, error)
+	UpdateCompanyTicketStatus(context.Context, *UpdateCompanyTicketStatusRequest) (*UpdateCompanyTicketStatusResponse, error)
+	GetCompanyTickets(context.Context, *GetCompanyTicketsRequest) (*GetCompanyTicketsResponse, error)
 	SetClientValidation(context.Context, *SetClientValidationRequest) (*SetClientValidationResponse, error)
 	GetClientValidation(context.Context, *GetClientValidationRequest) (*GetClientValidationResponse, error)
 	// финансы
@@ -434,11 +460,17 @@ func (UnimplementedCrmServer) SetVacancy(context.Context, *SetVacancyRequest) (*
 func (UnimplementedCrmServer) DeleteVacancy(context.Context, *DeleteVacancyRequest) (*DeleteVacancyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteVacancy not implemented")
 }
-func (UnimplementedCrmServer) SetCompanyInfo(context.Context, *SetCompanyInfoRequest) (*SetCompanyInfoResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetCompanyInfo not implemented")
+func (UnimplementedCrmServer) CreateCompanyTicket(context.Context, *CreateCompanyTicketRequest) (*CreateCompanyTicketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCompanyTicket not implemented")
 }
 func (UnimplementedCrmServer) GetCompanyList(context.Context, *GetCompanyListRequest) (*GetCompanyListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCompanyList not implemented")
+}
+func (UnimplementedCrmServer) UpdateCompanyTicketStatus(context.Context, *UpdateCompanyTicketStatusRequest) (*UpdateCompanyTicketStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCompanyTicketStatus not implemented")
+}
+func (UnimplementedCrmServer) GetCompanyTickets(context.Context, *GetCompanyTicketsRequest) (*GetCompanyTicketsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCompanyTickets not implemented")
 }
 func (UnimplementedCrmServer) SetClientValidation(context.Context, *SetClientValidationRequest) (*SetClientValidationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetClientValidation not implemented")
@@ -782,20 +814,20 @@ func _Crm_DeleteVacancy_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Crm_SetCompanyInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetCompanyInfoRequest)
+func _Crm_CreateCompanyTicket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateCompanyTicketRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CrmServer).SetCompanyInfo(ctx, in)
+		return srv.(CrmServer).CreateCompanyTicket(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Crm_SetCompanyInfo_FullMethodName,
+		FullMethod: Crm_CreateCompanyTicket_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CrmServer).SetCompanyInfo(ctx, req.(*SetCompanyInfoRequest))
+		return srv.(CrmServer).CreateCompanyTicket(ctx, req.(*CreateCompanyTicketRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -814,6 +846,42 @@ func _Crm_GetCompanyList_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CrmServer).GetCompanyList(ctx, req.(*GetCompanyListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Crm_UpdateCompanyTicketStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateCompanyTicketStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CrmServer).UpdateCompanyTicketStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Crm_UpdateCompanyTicketStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CrmServer).UpdateCompanyTicketStatus(ctx, req.(*UpdateCompanyTicketStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Crm_GetCompanyTickets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCompanyTicketsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CrmServer).GetCompanyTickets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Crm_GetCompanyTickets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CrmServer).GetCompanyTickets(ctx, req.(*GetCompanyTicketsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -984,12 +1052,20 @@ var Crm_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Crm_DeleteVacancy_Handler,
 		},
 		{
-			MethodName: "SetCompanyInfo",
-			Handler:    _Crm_SetCompanyInfo_Handler,
+			MethodName: "CreateCompanyTicket",
+			Handler:    _Crm_CreateCompanyTicket_Handler,
 		},
 		{
 			MethodName: "GetCompanyList",
 			Handler:    _Crm_GetCompanyList_Handler,
+		},
+		{
+			MethodName: "UpdateCompanyTicketStatus",
+			Handler:    _Crm_UpdateCompanyTicketStatus_Handler,
+		},
+		{
+			MethodName: "GetCompanyTickets",
+			Handler:    _Crm_GetCompanyTickets_Handler,
 		},
 		{
 			MethodName: "SetClientValidation",

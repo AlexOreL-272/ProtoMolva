@@ -9,7 +9,6 @@ option go_package = "service.crm";
 service Crm {
     rpc SayHello(HelloRequest) returns(HelloResponse) {}
     rpc SayHello2(HelloRequest) returns(HelloResponse) {}
-
     // регистрация
     rpc SaveNewUser(SaveNewUserRequest) returns(SaveNewUserResponse) {};
 
@@ -46,8 +45,10 @@ service Crm {
 
 
     // создать и редактировать компанию
-    rpc SetCompanyInfo(SetCompanyInfoRequest) returns(SetCompanyInfoResponse) {};
+    rpc CreateCompanyTicket(CreateCompanyTicketRequest) returns(CreateCompanyTicketResponse) {};
     rpc GetCompanyList(GetCompanyListRequest) returns(GetCompanyListResponse) {};
+    rpc UpdateCompanyTicketStatus(UpdateCompanyTicketStatusRequest) returns (UpdateCompanyTicketStatusResponse) {};
+    rpc GetCompanyTickets(GetCompanyTicketsRequest) returns (GetCompanyTicketsResponse) {};
 
     rpc SetClientValidation(SetClientValidationRequest) returns(SetClientValidationResponse) {};
     rpc GetClientValidation(GetClientValidationRequest) returns(GetClientValidationResponse) {};
@@ -95,6 +96,8 @@ message SaveNewUserRequest {
 message SaveNewUserResponse {
     ResponseStatus status = 1;
     string response = 2; // описание результата
+    string uuid = 3;
+    string company_id = 4;
 }
 
 
@@ -256,6 +259,7 @@ message GetVacancyListRequest {
     SortingSwitch ta_amount_sorting = 13; // target action amount
     int32 reward_bottom = 14;
 
+
 }
 
 
@@ -396,6 +400,8 @@ message Company {
     string kpp = 13;
     string new_staff_member = 14; // when updating
     repeated string staff = 15; // when receiving
+    bool is_active = 16;
+    bool has_moderation_ticket = 17;
 }
 
 message GetCompanyListRequest {
@@ -412,14 +418,15 @@ message GetCompanyListResponse {
 // создать и редактировать компанию
 // id был передан - редактирует
 // id не был, создаёт НОВУЮ
-message SetCompanyInfoRequest {
+message CreateCompanyTicketRequest {
     Company company = 1;
 }
 
-message SetCompanyInfoResponse {
+message CreateCompanyTicketResponse {
     ResponseStatus status = 1;
     string response = 2;
-    string id = 3;
+    string ticket_id = 3;
+    string company_id = 4;
 }
 
 message ClientValidation {
@@ -500,4 +507,41 @@ message HelloRequest {
 
 message HelloResponse {
     string text = 1;
+}
+
+enum TicketStatus {
+    PENDING = 0;
+    APPROVED = 1;
+    REJECTED = 2;
+}
+
+message UpdateCompanyTicketStatusRequest {
+    string ticket_id = 1;
+    TicketStatus status = 2;
+}
+
+message UpdateCompanyTicketStatusResponse {
+    ResponseStatus status = 1;
+    string response = 2;
+}
+
+
+message GetCompanyTicketsRequest {
+    string company_id = 1;
+}
+
+message GetCompanyTicketsResponse {
+    repeated CompanyTicket tickets = 1;
+    ResponseStatus status = 2;
+    string response = 3;
+}
+
+message CompanyTicket {
+    string id = 1;
+    string company_id = 2;
+    string uid = 3;
+    Company company_data = 4;
+    TicketStatus status = 5;
+    google.protobuf.Timestamp created_at = 6;
+    google.protobuf.Timestamp updated_at = 7;
 }
