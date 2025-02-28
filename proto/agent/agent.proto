@@ -76,6 +76,67 @@ service Agent {
       body : "*"
     };
   }
+
+  // <-------------- BALANCE -------------->
+  /// Получить баланс агента. Получает GetBalanceRequest, возвращает GetBalanceResponse
+  rpc GetBalance(GetBalanceRequest) returns (GetBalanceResponse) {
+    option (google.api.http) = {
+      get : "/v1/agents/{agent_id}/balance"
+    };
+  }
+
+  // <-------------- TRANSACTIONS -------------->
+  /// Получить список транзакций агента. Получает GetTransactionsRequest, возвращает
+  /// GetTransactionsResponse
+  rpc GetTransactions(GetTransactionsRequest) returns (GetTransactionsResponse) {
+    option (google.api.http) = {
+      get : "/v1/agents/{agent_id}/transactions"
+    };
+  }
+
+  /// Создать транзакцию. Получает CreateTransactionRequest, возвращает
+  /// CreateTransactionResponse
+  rpc CreateTransaction(CreateTransactionRequest) returns (CreateTransactionResponse) {
+    option (google.api.http) = {
+      post : "/v1/agents/{agent_id}/transactions"
+      body : "*"
+    };
+  }
+
+  // <-------------- CURRENCY ACCOUNT -------------->
+  /// Получить список расчетных счетов агента. Получает GetCurrencyAccountsRequest, возвращает
+  /// GetCurrencyAccountsResponse
+  rpc GetCurrencyAccounts(GetCurrencyAccountsRequest) returns (GetCurrencyAccountsResponse) {
+    option (google.api.http) = {
+      get : "/v1/agents/{agent_id}/currency_accounts"
+    };
+  }
+
+  /// Создать расчетный счет. Получает CreateCurrencyAccountRequest, возвращает
+  /// CreateCurrencyAccountResponse
+  rpc CreateCurrencyAccount(CreateCurrencyAccountRequest) returns (CreateCurrencyAccountResponse) {
+    option (google.api.http) = {
+      post : "/v1/agents/{agent_id}/currency_accounts"
+      body : "*"
+    };
+  }
+
+  /// Редактировать расчетный счет. Получает EditCurrencyAccountRequest, возвращает
+  /// EditCurrencyAccountResponse
+  rpc EditCurrencyAccount(EditCurrencyAccountRequest) returns (EditCurrencyAccountResponse) {
+    option (google.api.http) = {
+      put : "/v1/agents/{agent_id}/currency_accounts/{currency_account_id}"
+      body : "*"
+    };
+  }
+
+  /// Удалить расчетный счет. Получает DeleteCurrencyAccountRequest, возвращает
+  /// DeleteCurrencyAccountResponse
+  rpc DeleteCurrencyAccount(DeleteCurrencyAccountRequest) returns (DeleteCurrencyAccountResponse) {
+    option (google.api.http) = {
+      delete : "/v1/agents/{agent_id}/currency_accounts/{currency_account_id}"
+    };
+  }
 }
 
 // <-------------- REQUESTS -------------->
@@ -122,6 +183,49 @@ message SetCompanyDataRequest {
   optional string new_staff_member = 3;
 }
 
+// <=============== BALANCE ===============>
+
+message GetBalanceRequest {
+  string agent_id = 1;
+}
+
+// <=============== TRANSACTIONS ===============>
+
+message GetTransactionsRequest {
+  string agent_id = 1;
+  TransactionFilters filters = 2;
+}
+
+message CreateTransactionRequest {
+  string agent_id = 1;
+  int32 amount = 2;
+  string currency = 3;
+  string currency_account_id = 4;
+  string request_id = 5;
+}
+
+// <=============== CURRENCY ACCOUNT ===============>
+
+message GetCurrencyAccountsRequest {
+  string agent_id = 1;
+}
+
+message CreateCurrencyAccountRequest {
+  string agent_id = 1;
+  CurrencyAccountEditables currency_account = 2;
+}
+
+message EditCurrencyAccountRequest {
+  string agent_id = 1;
+  string currency_account_id = 2;
+  CurrencyAccountEditables currency_account = 3;
+}
+
+message DeleteCurrencyAccountRequest {
+  string agent_id = 1;
+  string currency_account_id = 2;
+}
+
 // <-------------- RESPONSES -------------->
 // <=============== VACANCY ===============>
 
@@ -163,6 +267,37 @@ message SetCompanyDataResponse {
   Company company = 1;
 }
 
+// <=============== BALANCE ===============>
+
+message GetBalanceResponse {
+  int32 raw_balance = 1;
+  int32 clean_balance = 2;
+}
+
+// <=============== TRANSACTIONS ===============>
+
+message GetTransactionsResponse {
+  repeated Transaction transactions = 1;
+}
+
+message CreateTransactionResponse {
+}
+
+// <=============== CURRENCY ACCOUNT ===============>
+
+message GetCurrencyAccountsResponse {
+  repeated CurrencyAccount currency_accounts = 1;
+}
+
+message CreateCurrencyAccountResponse {
+}
+
+message EditCurrencyAccountResponse {
+}
+
+message DeleteCurrencyAccountResponse {
+}
+
 // <-------------- SOURCES -------------->
 // <=============== ENUMS ===============>
 
@@ -181,6 +316,20 @@ enum VacancyStatus {
   VAC_IN_MODERATION = 2;  // В модерации
   VAC_ACCEPTED = 3;       // Принято
   VAC_DECLINED = 4;       // Отклонено
+}
+
+enum TransactionStatus {
+  TRANS_UNSPECIFIED = 0;  // Не указано
+  TRANS_NEW = 1;          // Новая
+  TRANS_ACCEPTED = 2;     // Принятая
+  TRANS_DECLINED = 3;     // Отклонена
+  TRANS_ON_REVIEW = 4;    // На проверке
+}
+
+enum TransactionType {
+  TRANS_TYPE_UNSPECIFIED = 0;    // Не указано
+  TRANS_TYPE_REPLENISHMENT = 1;  // Пополнение
+  TRANS_TYPE_WITHDRAWAL = 2;     // Вывод
 }
 
 // <=============== UTILS ===============>
@@ -273,6 +422,12 @@ message ClientData {
   optional string resume = 7;
 }
 
+message DistributorInfo {
+  string id = 1;
+  string name = 2;
+  string legal_name = 3;
+}
+
 // <=============== COMPANY ===============>
 
 message Company {
@@ -294,4 +449,48 @@ message Company {
 message CompanyBrief {
   string company_id = 1;
   string name = 2;
+}
+
+// <=============== TRANSACTION ===============>
+
+message TransactionFilters {
+  optional string type = 1;     // Тип транзакции (replenishment / withdrawal)
+  optional int32 page_id = 2;   // Alias на offset
+  optional int32 page_size = 3; // Alias на limit
+}
+
+message Transaction {
+  string id = 1;
+  TransactionType type = 2;
+  TransactionStatus status = 3;
+  int32 amount = 4;
+  string currency = 5;
+  DistributorInfo distributor = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+}
+
+// <=============== CURRENCY ACCOUNT ===============>
+
+message CurrencyAccount {
+  string id = 1;
+  string account_number = 2;
+  string bank_name = 3;
+  string bik = 4;
+  string correspondent_account = 5;
+  string inn = 6;
+  string kpp = 7;
+  string ogrn = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+}
+
+message CurrencyAccountEditables {
+  string account_number = 1;
+  string bank_name = 2;
+  string bik = 3;
+  string correspondent_account = 4;
+  string inn = 5;
+  string kpp = 6;
+  string ogrn = 7;
 }

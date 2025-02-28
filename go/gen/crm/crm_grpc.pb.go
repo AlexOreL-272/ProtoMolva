@@ -65,7 +65,7 @@ type CrmClient interface {
 	// добавить отзыв
 	AddReview(ctx context.Context, in *AddReviewRequest, opts ...grpc.CallOption) (*AddReviewResponse, error)
 	DeleteReview(ctx context.Context, in *DeleteReviewRequest, opts ...grpc.CallOption) (*DeleteReviewResponse, error)
-	//получить список отзывов
+	// получить список отзывов
 	GetReviewList(ctx context.Context, in *GetReviewListRequest, opts ...grpc.CallOption) (*GetReviewListResponse, error)
 	// получить информацию о пользователе
 	GetUserInfo(ctx context.Context, in *GetUserInfoRequest, opts ...grpc.CallOption) (*GetUserInfoResponse, error)
@@ -74,7 +74,7 @@ type CrmClient interface {
 	GetSubmissionList(ctx context.Context, in *GetSubmissionListRequest, opts ...grpc.CallOption) (*GetSubmissionListResponse, error)
 	// сохранить приглашение
 	SetSubmission(ctx context.Context, in *SetSubmissionRequest, opts ...grpc.CallOption) (*SetSubmissionResponse, error)
-	//-------------------------------------------//
+	// -------------------------------------------//
 	SetVacancy(ctx context.Context, in *SetVacancyRequest, opts ...grpc.CallOption) (*SetVacancyResponse, error)
 	DeleteVacancy(ctx context.Context, in *DeleteVacancyRequest, opts ...grpc.CallOption) (*DeleteVacancyResponse, error)
 	// создать и редактировать компанию
@@ -376,7 +376,7 @@ type CrmServer interface {
 	// добавить отзыв
 	AddReview(context.Context, *AddReviewRequest) (*AddReviewResponse, error)
 	DeleteReview(context.Context, *DeleteReviewRequest) (*DeleteReviewResponse, error)
-	//получить список отзывов
+	// получить список отзывов
 	GetReviewList(context.Context, *GetReviewListRequest) (*GetReviewListResponse, error)
 	// получить информацию о пользователе
 	GetUserInfo(context.Context, *GetUserInfoRequest) (*GetUserInfoResponse, error)
@@ -385,7 +385,7 @@ type CrmServer interface {
 	GetSubmissionList(context.Context, *GetSubmissionListRequest) (*GetSubmissionListResponse, error)
 	// сохранить приглашение
 	SetSubmission(context.Context, *SetSubmissionRequest) (*SetSubmissionResponse, error)
-	//-------------------------------------------//
+	// -------------------------------------------//
 	SetVacancy(context.Context, *SetVacancyRequest) (*SetVacancyResponse, error)
 	DeleteVacancy(context.Context, *DeleteVacancyRequest) (*DeleteVacancyResponse, error)
 	// создать и редактировать компанию
