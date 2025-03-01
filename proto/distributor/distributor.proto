@@ -234,7 +234,7 @@ message GetTransactionsRequest {
 
 message CreateTransactionRequest {
   string distributor_id = 1;
-  int32 amount = 2;
+  int64 amount = 2;
   string currency = 3;
   string currency_account_id = 4;
   string request_id = 5;
@@ -514,7 +514,7 @@ message Transaction {
   string id = 1;
   TransactionType type = 2;
   TransactionStatus status = 3;
-  int32 amount = 4;
+  int64 amount = 4;
   string currency = 5;
   VacancyInfo vacancy = 6;
   google.protobuf.Timestamp created_at = 7;
