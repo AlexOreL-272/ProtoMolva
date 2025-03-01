@@ -322,8 +322,8 @@ message SetCompanyDataResponse {
 // <=============== BALANCE ===============>
 
 message GetBalanceResponse {
-  int32 raw_balance = 1;
-  int32 clean_balance = 2;
+  int64 raw_balance = 1;
+  int64 clean_balance = 2;
 }
 
 // <=============== TRANSACTIONS ===============>
