@@ -19,32 +19,37 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Crm_SayHello_FullMethodName                  = "/handlers.api.Crm/SayHello"
-	Crm_SayHello2_FullMethodName                 = "/handlers.api.Crm/SayHello2"
-	Crm_SaveNewUser_FullMethodName               = "/handlers.api.Crm/SaveNewUser"
-	Crm_CheckUserEmail_FullMethodName            = "/handlers.api.Crm/CheckUserEmail"
-	Crm_ChangeUserPassword_FullMethodName        = "/handlers.api.Crm/ChangeUserPassword"
-	Crm_ChangeUserEmail_FullMethodName           = "/handlers.api.Crm/ChangeUserEmail"
-	Crm_ChangeUserPhone_FullMethodName           = "/handlers.api.Crm/ChangeUserPhone"
-	Crm_ChangeUserProfile_FullMethodName         = "/handlers.api.Crm/ChangeUserProfile"
-	Crm_AddReview_FullMethodName                 = "/handlers.api.Crm/AddReview"
-	Crm_DeleteReview_FullMethodName              = "/handlers.api.Crm/DeleteReview"
-	Crm_GetReviewList_FullMethodName             = "/handlers.api.Crm/GetReviewList"
-	Crm_GetUserInfo_FullMethodName               = "/handlers.api.Crm/GetUserInfo"
-	Crm_GetVacancyList_FullMethodName            = "/handlers.api.Crm/GetVacancyList"
-	Crm_GetSubmissionList_FullMethodName         = "/handlers.api.Crm/GetSubmissionList"
-	Crm_SetSubmission_FullMethodName             = "/handlers.api.Crm/SetSubmission"
-	Crm_SetVacancy_FullMethodName                = "/handlers.api.Crm/SetVacancy"
-	Crm_DeleteVacancy_FullMethodName             = "/handlers.api.Crm/DeleteVacancy"
-	Crm_CreateCompanyTicket_FullMethodName       = "/handlers.api.Crm/CreateCompanyTicket"
-	Crm_GetCompanyList_FullMethodName            = "/handlers.api.Crm/GetCompanyList"
-	Crm_UpdateCompanyTicketStatus_FullMethodName = "/handlers.api.Crm/UpdateCompanyTicketStatus"
-	Crm_GetCompanyTickets_FullMethodName         = "/handlers.api.Crm/GetCompanyTickets"
-	Crm_SetClientValidation_FullMethodName       = "/handlers.api.Crm/SetClientValidation"
-	Crm_GetClientValidation_FullMethodName       = "/handlers.api.Crm/GetClientValidation"
-	Crm_GetBallance_FullMethodName               = "/handlers.api.Crm/GetBallance"
-	Crm_SetBallance_FullMethodName               = "/handlers.api.Crm/SetBallance"
-	Crm_SaveTransaction_FullMethodName           = "/handlers.api.Crm/SaveTransaction"
+	Crm_SayHello_FullMethodName                      = "/handlers.api.Crm/SayHello"
+	Crm_SayHello2_FullMethodName                     = "/handlers.api.Crm/SayHello2"
+	Crm_SaveNewUser_FullMethodName                   = "/handlers.api.Crm/SaveNewUser"
+	Crm_CheckUserEmail_FullMethodName                = "/handlers.api.Crm/CheckUserEmail"
+	Crm_ChangeUserPassword_FullMethodName            = "/handlers.api.Crm/ChangeUserPassword"
+	Crm_ChangeUserEmail_FullMethodName               = "/handlers.api.Crm/ChangeUserEmail"
+	Crm_ChangeUserPhone_FullMethodName               = "/handlers.api.Crm/ChangeUserPhone"
+	Crm_ChangeUserProfile_FullMethodName             = "/handlers.api.Crm/ChangeUserProfile"
+	Crm_AddReview_FullMethodName                     = "/handlers.api.Crm/AddReview"
+	Crm_DeleteReview_FullMethodName                  = "/handlers.api.Crm/DeleteReview"
+	Crm_GetReviewList_FullMethodName                 = "/handlers.api.Crm/GetReviewList"
+	Crm_GetUserInfo_FullMethodName                   = "/handlers.api.Crm/GetUserInfo"
+	Crm_GetVacancyList_FullMethodName                = "/handlers.api.Crm/GetVacancyList"
+	Crm_GetSubmissionList_FullMethodName             = "/handlers.api.Crm/GetSubmissionList"
+	Crm_SetSubmission_FullMethodName                 = "/handlers.api.Crm/SetSubmission"
+	Crm_SetVacancy_FullMethodName                    = "/handlers.api.Crm/SetVacancy"
+	Crm_DeleteVacancy_FullMethodName                 = "/handlers.api.Crm/DeleteVacancy"
+	Crm_CreateCompanyTicket_FullMethodName           = "/handlers.api.Crm/CreateCompanyTicket"
+	Crm_GetCompanyList_FullMethodName                = "/handlers.api.Crm/GetCompanyList"
+	Crm_UpdateCompanyTicketStatus_FullMethodName     = "/handlers.api.Crm/UpdateCompanyTicketStatus"
+	Crm_GetCompanyTickets_FullMethodName             = "/handlers.api.Crm/GetCompanyTickets"
+	Crm_SetClientValidation_FullMethodName           = "/handlers.api.Crm/SetClientValidation"
+	Crm_GetClientValidation_FullMethodName           = "/handlers.api.Crm/GetClientValidation"
+	Crm_GetBalance_FullMethodName                    = "/handlers.api.Crm/GetBalance"
+	Crm_SaveTransaction_FullMethodName               = "/handlers.api.Crm/SaveTransaction"
+	Crm_GetCompanyBankAccount_FullMethodName         = "/handlers.api.Crm/GetCompanyBankAccount"
+	Crm_GetTransactions_FullMethodName               = "/handlers.api.Crm/GetTransactions"
+	Crm_UpdateTransactionStatus_FullMethodName       = "/handlers.api.Crm/UpdateTransactionStatus"
+	Crm_CreateBankAccountTicket_FullMethodName       = "/handlers.api.Crm/CreateBankAccountTicket"
+	Crm_UpdateBankAccountTicketStatus_FullMethodName = "/handlers.api.Crm/UpdateBankAccountTicketStatus"
+	Crm_GetBankAccountTickets_FullMethodName         = "/handlers.api.Crm/GetBankAccountTickets"
 )
 
 // CrmClient is the client API for Crm service.
@@ -65,7 +70,7 @@ type CrmClient interface {
 	// добавить отзыв
 	AddReview(ctx context.Context, in *AddReviewRequest, opts ...grpc.CallOption) (*AddReviewResponse, error)
 	DeleteReview(ctx context.Context, in *DeleteReviewRequest, opts ...grpc.CallOption) (*DeleteReviewResponse, error)
-	// получить список отзывов
+	//получить список отзывов
 	GetReviewList(ctx context.Context, in *GetReviewListRequest, opts ...grpc.CallOption) (*GetReviewListResponse, error)
 	// получить информацию о пользователе
 	GetUserInfo(ctx context.Context, in *GetUserInfoRequest, opts ...grpc.CallOption) (*GetUserInfoResponse, error)
@@ -74,7 +79,7 @@ type CrmClient interface {
 	GetSubmissionList(ctx context.Context, in *GetSubmissionListRequest, opts ...grpc.CallOption) (*GetSubmissionListResponse, error)
 	// сохранить приглашение
 	SetSubmission(ctx context.Context, in *SetSubmissionRequest, opts ...grpc.CallOption) (*SetSubmissionResponse, error)
-	// -------------------------------------------//
+	//-------------------------------------------//
 	SetVacancy(ctx context.Context, in *SetVacancyRequest, opts ...grpc.CallOption) (*SetVacancyResponse, error)
 	DeleteVacancy(ctx context.Context, in *DeleteVacancyRequest, opts ...grpc.CallOption) (*DeleteVacancyResponse, error)
 	// создать и редактировать компанию
@@ -85,9 +90,14 @@ type CrmClient interface {
 	SetClientValidation(ctx context.Context, in *SetClientValidationRequest, opts ...grpc.CallOption) (*SetClientValidationResponse, error)
 	GetClientValidation(ctx context.Context, in *GetClientValidationRequest, opts ...grpc.CallOption) (*GetClientValidationResponse, error)
 	// финансы
-	GetBallance(ctx context.Context, in *GetBallanceRequest, opts ...grpc.CallOption) (*GetBallanceResponse, error)
-	SetBallance(ctx context.Context, in *SetBallanceRequest, opts ...grpc.CallOption) (*SetBallanceResponse, error)
+	GetBalance(ctx context.Context, in *GetBalanceRequest, opts ...grpc.CallOption) (*GetBalanceResponse, error)
 	SaveTransaction(ctx context.Context, in *SaveTransactionRequest, opts ...grpc.CallOption) (*SaveTransactionResponse, error)
+	GetCompanyBankAccount(ctx context.Context, in *GetCompanyBankAccountRequest, opts ...grpc.CallOption) (*GetCompanyBankAccountResponse, error)
+	GetTransactions(ctx context.Context, in *GetTransactionsRequest, opts ...grpc.CallOption) (*GetTransactionsResponse, error)
+	UpdateTransactionStatus(ctx context.Context, in *UpdateTransactionStatusRequest, opts ...grpc.CallOption) (*UpdateTransactionStatusResponse, error)
+	CreateBankAccountTicket(ctx context.Context, in *CreateBankAccountTicketRequest, opts ...grpc.CallOption) (*CreateBankAccountTicketResponse, error)
+	UpdateBankAccountTicketStatus(ctx context.Context, in *UpdateBankAccountTicketStatusRequest, opts ...grpc.CallOption) (*UpdateBankAccountTicketStatusResponse, error)
+	GetBankAccountTickets(ctx context.Context, in *GetBankAccountTicketsRequest, opts ...grpc.CallOption) (*GetBankAccountTicketsResponse, error)
 }
 
 type crmClient struct {
@@ -328,20 +338,10 @@ func (c *crmClient) GetClientValidation(ctx context.Context, in *GetClientValida
 	return out, nil
 }
 
-func (c *crmClient) GetBallance(ctx context.Context, in *GetBallanceRequest, opts ...grpc.CallOption) (*GetBallanceResponse, error) {
+func (c *crmClient) GetBalance(ctx context.Context, in *GetBalanceRequest, opts ...grpc.CallOption) (*GetBalanceResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetBallanceResponse)
-	err := c.cc.Invoke(ctx, Crm_GetBallance_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *crmClient) SetBallance(ctx context.Context, in *SetBallanceRequest, opts ...grpc.CallOption) (*SetBallanceResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SetBallanceResponse)
-	err := c.cc.Invoke(ctx, Crm_SetBallance_FullMethodName, in, out, cOpts...)
+	out := new(GetBalanceResponse)
+	err := c.cc.Invoke(ctx, Crm_GetBalance_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -352,6 +352,66 @@ func (c *crmClient) SaveTransaction(ctx context.Context, in *SaveTransactionRequ
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SaveTransactionResponse)
 	err := c.cc.Invoke(ctx, Crm_SaveTransaction_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *crmClient) GetCompanyBankAccount(ctx context.Context, in *GetCompanyBankAccountRequest, opts ...grpc.CallOption) (*GetCompanyBankAccountResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCompanyBankAccountResponse)
+	err := c.cc.Invoke(ctx, Crm_GetCompanyBankAccount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *crmClient) GetTransactions(ctx context.Context, in *GetTransactionsRequest, opts ...grpc.CallOption) (*GetTransactionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTransactionsResponse)
+	err := c.cc.Invoke(ctx, Crm_GetTransactions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *crmClient) UpdateTransactionStatus(ctx context.Context, in *UpdateTransactionStatusRequest, opts ...grpc.CallOption) (*UpdateTransactionStatusResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateTransactionStatusResponse)
+	err := c.cc.Invoke(ctx, Crm_UpdateTransactionStatus_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *crmClient) CreateBankAccountTicket(ctx context.Context, in *CreateBankAccountTicketRequest, opts ...grpc.CallOption) (*CreateBankAccountTicketResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateBankAccountTicketResponse)
+	err := c.cc.Invoke(ctx, Crm_CreateBankAccountTicket_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *crmClient) UpdateBankAccountTicketStatus(ctx context.Context, in *UpdateBankAccountTicketStatusRequest, opts ...grpc.CallOption) (*UpdateBankAccountTicketStatusResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateBankAccountTicketStatusResponse)
+	err := c.cc.Invoke(ctx, Crm_UpdateBankAccountTicketStatus_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *crmClient) GetBankAccountTickets(ctx context.Context, in *GetBankAccountTicketsRequest, opts ...grpc.CallOption) (*GetBankAccountTicketsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBankAccountTicketsResponse)
+	err := c.cc.Invoke(ctx, Crm_GetBankAccountTickets_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -376,7 +436,7 @@ type CrmServer interface {
 	// добавить отзыв
 	AddReview(context.Context, *AddReviewRequest) (*AddReviewResponse, error)
 	DeleteReview(context.Context, *DeleteReviewRequest) (*DeleteReviewResponse, error)
-	// получить список отзывов
+	//получить список отзывов
 	GetReviewList(context.Context, *GetReviewListRequest) (*GetReviewListResponse, error)
 	// получить информацию о пользователе
 	GetUserInfo(context.Context, *GetUserInfoRequest) (*GetUserInfoResponse, error)
@@ -385,7 +445,7 @@ type CrmServer interface {
 	GetSubmissionList(context.Context, *GetSubmissionListRequest) (*GetSubmissionListResponse, error)
 	// сохранить приглашение
 	SetSubmission(context.Context, *SetSubmissionRequest) (*SetSubmissionResponse, error)
-	// -------------------------------------------//
+	//-------------------------------------------//
 	SetVacancy(context.Context, *SetVacancyRequest) (*SetVacancyResponse, error)
 	DeleteVacancy(context.Context, *DeleteVacancyRequest) (*DeleteVacancyResponse, error)
 	// создать и редактировать компанию
@@ -396,9 +456,14 @@ type CrmServer interface {
 	SetClientValidation(context.Context, *SetClientValidationRequest) (*SetClientValidationResponse, error)
 	GetClientValidation(context.Context, *GetClientValidationRequest) (*GetClientValidationResponse, error)
 	// финансы
-	GetBallance(context.Context, *GetBallanceRequest) (*GetBallanceResponse, error)
-	SetBallance(context.Context, *SetBallanceRequest) (*SetBallanceResponse, error)
+	GetBalance(context.Context, *GetBalanceRequest) (*GetBalanceResponse, error)
 	SaveTransaction(context.Context, *SaveTransactionRequest) (*SaveTransactionResponse, error)
+	GetCompanyBankAccount(context.Context, *GetCompanyBankAccountRequest) (*GetCompanyBankAccountResponse, error)
+	GetTransactions(context.Context, *GetTransactionsRequest) (*GetTransactionsResponse, error)
+	UpdateTransactionStatus(context.Context, *UpdateTransactionStatusRequest) (*UpdateTransactionStatusResponse, error)
+	CreateBankAccountTicket(context.Context, *CreateBankAccountTicketRequest) (*CreateBankAccountTicketResponse, error)
+	UpdateBankAccountTicketStatus(context.Context, *UpdateBankAccountTicketStatusRequest) (*UpdateBankAccountTicketStatusResponse, error)
+	GetBankAccountTickets(context.Context, *GetBankAccountTicketsRequest) (*GetBankAccountTicketsResponse, error)
 	mustEmbedUnimplementedCrmServer()
 }
 
@@ -478,14 +543,29 @@ func (UnimplementedCrmServer) SetClientValidation(context.Context, *SetClientVal
 func (UnimplementedCrmServer) GetClientValidation(context.Context, *GetClientValidationRequest) (*GetClientValidationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetClientValidation not implemented")
 }
-func (UnimplementedCrmServer) GetBallance(context.Context, *GetBallanceRequest) (*GetBallanceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBallance not implemented")
-}
-func (UnimplementedCrmServer) SetBallance(context.Context, *SetBallanceRequest) (*SetBallanceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetBallance not implemented")
+func (UnimplementedCrmServer) GetBalance(context.Context, *GetBalanceRequest) (*GetBalanceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBalance not implemented")
 }
 func (UnimplementedCrmServer) SaveTransaction(context.Context, *SaveTransactionRequest) (*SaveTransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SaveTransaction not implemented")
+}
+func (UnimplementedCrmServer) GetCompanyBankAccount(context.Context, *GetCompanyBankAccountRequest) (*GetCompanyBankAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCompanyBankAccount not implemented")
+}
+func (UnimplementedCrmServer) GetTransactions(context.Context, *GetTransactionsRequest) (*GetTransactionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTransactions not implemented")
+}
+func (UnimplementedCrmServer) UpdateTransactionStatus(context.Context, *UpdateTransactionStatusRequest) (*UpdateTransactionStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTransactionStatus not implemented")
+}
+func (UnimplementedCrmServer) CreateBankAccountTicket(context.Context, *CreateBankAccountTicketRequest) (*CreateBankAccountTicketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateBankAccountTicket not implemented")
+}
+func (UnimplementedCrmServer) UpdateBankAccountTicketStatus(context.Context, *UpdateBankAccountTicketStatusRequest) (*UpdateBankAccountTicketStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateBankAccountTicketStatus not implemented")
+}
+func (UnimplementedCrmServer) GetBankAccountTickets(context.Context, *GetBankAccountTicketsRequest) (*GetBankAccountTicketsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBankAccountTickets not implemented")
 }
 func (UnimplementedCrmServer) mustEmbedUnimplementedCrmServer() {}
 func (UnimplementedCrmServer) testEmbeddedByValue()             {}
@@ -922,38 +1002,20 @@ func _Crm_GetClientValidation_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Crm_GetBallance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBallanceRequest)
+func _Crm_GetBalance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBalanceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CrmServer).GetBallance(ctx, in)
+		return srv.(CrmServer).GetBalance(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Crm_GetBallance_FullMethodName,
+		FullMethod: Crm_GetBalance_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CrmServer).GetBallance(ctx, req.(*GetBallanceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Crm_SetBallance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetBallanceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CrmServer).SetBallance(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Crm_SetBallance_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CrmServer).SetBallance(ctx, req.(*SetBallanceRequest))
+		return srv.(CrmServer).GetBalance(ctx, req.(*GetBalanceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -972,6 +1034,114 @@ func _Crm_SaveTransaction_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CrmServer).SaveTransaction(ctx, req.(*SaveTransactionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Crm_GetCompanyBankAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCompanyBankAccountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CrmServer).GetCompanyBankAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Crm_GetCompanyBankAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CrmServer).GetCompanyBankAccount(ctx, req.(*GetCompanyBankAccountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Crm_GetTransactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTransactionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CrmServer).GetTransactions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Crm_GetTransactions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CrmServer).GetTransactions(ctx, req.(*GetTransactionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Crm_UpdateTransactionStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateTransactionStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CrmServer).UpdateTransactionStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Crm_UpdateTransactionStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CrmServer).UpdateTransactionStatus(ctx, req.(*UpdateTransactionStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Crm_CreateBankAccountTicket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateBankAccountTicketRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CrmServer).CreateBankAccountTicket(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Crm_CreateBankAccountTicket_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CrmServer).CreateBankAccountTicket(ctx, req.(*CreateBankAccountTicketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Crm_UpdateBankAccountTicketStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateBankAccountTicketStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CrmServer).UpdateBankAccountTicketStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Crm_UpdateBankAccountTicketStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CrmServer).UpdateBankAccountTicketStatus(ctx, req.(*UpdateBankAccountTicketStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Crm_GetBankAccountTickets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBankAccountTicketsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CrmServer).GetBankAccountTickets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Crm_GetBankAccountTickets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CrmServer).GetBankAccountTickets(ctx, req.(*GetBankAccountTicketsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1076,16 +1246,36 @@ var Crm_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Crm_GetClientValidation_Handler,
 		},
 		{
-			MethodName: "GetBallance",
-			Handler:    _Crm_GetBallance_Handler,
-		},
-		{
-			MethodName: "SetBallance",
-			Handler:    _Crm_SetBallance_Handler,
+			MethodName: "GetBalance",
+			Handler:    _Crm_GetBalance_Handler,
 		},
 		{
 			MethodName: "SaveTransaction",
 			Handler:    _Crm_SaveTransaction_Handler,
+		},
+		{
+			MethodName: "GetCompanyBankAccount",
+			Handler:    _Crm_GetCompanyBankAccount_Handler,
+		},
+		{
+			MethodName: "GetTransactions",
+			Handler:    _Crm_GetTransactions_Handler,
+		},
+		{
+			MethodName: "UpdateTransactionStatus",
+			Handler:    _Crm_UpdateTransactionStatus_Handler,
+		},
+		{
+			MethodName: "CreateBankAccountTicket",
+			Handler:    _Crm_CreateBankAccountTicket_Handler,
+		},
+		{
+			MethodName: "UpdateBankAccountTicketStatus",
+			Handler:    _Crm_UpdateBankAccountTicketStatus_Handler,
+		},
+		{
+			MethodName: "GetBankAccountTickets",
+			Handler:    _Crm_GetBankAccountTickets_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
