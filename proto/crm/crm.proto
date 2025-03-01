@@ -54,10 +54,16 @@ service Crm {
     rpc GetClientValidation(GetClientValidationRequest) returns(GetClientValidationResponse) {};
 
     // финансы
-    rpc GetBallance(GetBallanceRequest) returns(GetBallanceResponse) {};
-    rpc SetBallance(SetBallanceRequest) returns(SetBallanceResponse) {};
+    rpc GetBalance(GetBalanceRequest) returns(GetBalanceResponse) {};
     rpc SaveTransaction(SaveTransactionRequest) returns(SaveTransactionResponse) {};
 
+    rpc GetCompanyBankAccount(GetCompanyBankAccountRequest) returns(GetCompanyBankAccountResponse) {};
+    rpc GetTransactions(GetTransactionsRequest) returns(GetTransactionsResponse) {};
+    rpc UpdateTransactionStatus(UpdateTransactionStatusRequest) returns(UpdateTransactionStatusResponse) {};
+
+    rpc CreateBankAccountTicket(CreateBankAccountTicketRequest) returns (CreateBankAccountTicketResponse) {};
+    rpc UpdateBankAccountTicketStatus(UpdateBankAccountTicketStatusRequest) returns (UpdateBankAccountTicketStatusResponse) {};
+    rpc GetBankAccountTickets(GetBankAccountTicketsRequest) returns (GetBankAccountTicketsResponse) {};
 }
 
 enum UserType {
@@ -459,48 +465,6 @@ message GetClientValidationResponse {
     ResponseStatus status = 3;
 }
 
-
-// в копейках
-message GetBallanceRequest {
-    string uid = 1;
-}
-
-message GetBallanceResponse {
-    int32 balance = 1;
-    string response = 2;
-}
-
-message SetBallanceRequest {
-    string uid = 1;
-    int32 balance = 2; // в копейках
-}
-
-message SetBallanceResponse {
-    ResponseStatus status = 1;
-    string response = 2;
-}
-
-message Transaction {
-    string id = 1;
-    string uid = 2;
-    int32 amount = 3;
-    string transaction_status = 4;
-    string created_at = 5;
-    string updated_at = 6;
-}
-
-message SaveTransactionRequest {
-    Transaction transaction = 1;
-}
-
-message SaveTransactionResponse {
-    ResponseStatus status = 1;
-    string response = 2;
-}
-
-
-
-
 message HelloRequest {
     string name = 1;
 }
@@ -545,3 +509,143 @@ message CompanyTicket {
     google.protobuf.Timestamp created_at = 6;
     google.protobuf.Timestamp updated_at = 7;
 }
+
+message GetBalanceRequest {
+    string owner_id = 1;
+}
+
+message GetBalanceResponse {
+    Balance balance = 1;
+    ResponseStatus status = 2;
+    string response = 3;
+}
+
+message Balance {
+    string id = 1;
+    string owner_id = 2;
+    int64 raw_balance = 3;
+    int64 clean_balance = 4;
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp updated_at = 6;
+}
+
+message GetCompanyBankAccountRequest {
+    string owner_id = 1;
+}
+
+message GetCompanyBankAccountResponse {
+    CompanyBankAccount accounts = 1;
+    ResponseStatus status = 2;
+    string response = 3;
+}
+
+message CompanyBankAccount {
+    string id = 1;
+    string owner_id = 2;
+    string account_number = 3;
+    string bank_name = 4;
+    string bik = 5;
+    string correspondent_account = 6;
+    string inn = 7;
+    string kpp = 8;
+    string ogrn = 9;
+    google.protobuf.Timestamp created_at = 10;
+    google.protobuf.Timestamp updated_at = 11;
+}
+
+
+message GetTransactionsRequest {
+    string owner_id = 1;
+    string status = 2; // Опционально, если нужно фильтровать по статусу
+    int32 offset = 3;
+    int32 amount = 5;
+}
+
+message Transaction {
+    string id = 1;
+    string uid = 2;
+    int32 amount = 3;
+    string transaction_status = 4;
+    string currency = 5;
+    int32 sign = 6; // -1, 1 или 0 - без фильтра
+    string created_at = 7;
+    string updated_at = 8;
+}
+
+message GetTransactionsResponse {
+    repeated Transaction transactions = 1;
+    ResponseStatus status = 2;
+    string response = 3;
+}
+
+message SaveTransactionRequest {
+    string id = 1; // Ключ идемпотентности
+    string owner_id = 2;
+    int64 amount = 3;
+    string currency = 4;
+}
+
+message SaveTransactionResponse {
+    ResponseStatus status = 1;
+    string response = 2;
+}
+
+message UpdateTransactionStatusRequest {
+    string transaction_id = 1;
+    string status = 2;
+}
+
+message UpdateTransactionStatusResponse {
+    ResponseStatus status = 1;
+    string response = 2;
+}
+
+
+message CreateBankAccountTicketRequest {
+    BankAccountTicket ticket = 1;
+}
+
+message CreateBankAccountTicketResponse {
+    ResponseStatus status = 1;
+    string response = 2;
+    string ticket_id = 3;
+    string owner_id = 4;
+}
+
+message UpdateBankAccountTicketStatusRequest {
+    string ticket_id = 1;
+    TicketStatus status = 2;
+}
+
+message UpdateBankAccountTicketStatusResponse {
+    ResponseStatus status = 1;
+    string response = 2;
+}
+
+message GetBankAccountTicketsRequest {
+    string owner_id = 1;
+
+}
+
+message GetBankAccountTicketsResponse {
+    repeated BankAccountTicket tickets = 1;
+    ResponseStatus status = 2;
+    string response = 3;
+}
+
+message BankAccountTicket {
+    string id = 1;
+    string owner_id = 2;
+    string uid = 3;
+    CompanyBankAccount bank_account_data = 4;
+    TicketStatus status = 5;
+    google.protobuf.Timestamp created_at = 6;
+    google.protobuf.Timestamp updated_at = 7;
+}
+
+
+
+
+
+
+
