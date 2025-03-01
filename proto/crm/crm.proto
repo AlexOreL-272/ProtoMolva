@@ -558,6 +558,7 @@ message GetTransactionsRequest {
     string owner_id = 1;
     string status = 2; // Опционально, если нужно фильтровать по статусу
     int32 offset = 3;
+    int32 sign = 4; // -1, 1 или 0 - без фильтра
     int32 amount = 5;
 }
 
@@ -567,9 +568,8 @@ message Transaction {
     int32 amount = 3;
     string transaction_status = 4;
     string currency = 5;
-    int32 sign = 6; // -1, 1 или 0 - без фильтра
-    google.protobuf.Timestamp created_at = 7;
-    google.protobuf.Timestamp updated_at = 8;
+    google.protobuf.Timestamp created_at = 6;
+    google.protobuf.Timestamp updated_at = 7;
 }
 
 message GetTransactionsResponse {
