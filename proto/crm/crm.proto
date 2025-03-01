@@ -534,7 +534,7 @@ message GetCompanyBankAccountRequest {
 }
 
 message GetCompanyBankAccountResponse {
-    CompanyBankAccount accounts = 1;
+    CompanyBankAccount account = 1;
     ResponseStatus status = 2;
     string response = 3;
 }
