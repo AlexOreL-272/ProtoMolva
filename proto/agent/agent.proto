@@ -286,7 +286,7 @@ message CreateTransactionResponse {
 // <=============== CURRENCY ACCOUNT ===============>
 
 message GetCurrencyAccountsResponse {
-  repeated CurrencyAccount currency_accounts = 1;
+  CurrencyAccount currency_accounts = 1;
 }
 
 message CreateCurrencyAccountResponse {

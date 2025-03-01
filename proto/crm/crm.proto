@@ -568,8 +568,8 @@ message Transaction {
     string transaction_status = 4;
     string currency = 5;
     int32 sign = 6; // -1, 1 или 0 - без фильтра
-    string created_at = 7;
-    string updated_at = 8;
+    google.protobuf.Timestamp created_at = 7;
+    google.protobuf.Timestamp updated_at = 8;
 }
 
 message GetTransactionsResponse {
@@ -579,7 +579,7 @@ message GetTransactionsResponse {
 }
 
 message SaveTransactionRequest {
-    string id = 1; // Ключ идемпотентности
+    string request_id = 1; // Ключ идемпотентности
     string owner_id = 2;
     int64 amount = 3;
     string currency = 4;
@@ -636,16 +636,8 @@ message GetBankAccountTicketsResponse {
 message BankAccountTicket {
     string id = 1;
     string owner_id = 2;
-    string uid = 3;
-    CompanyBankAccount bank_account_data = 4;
-    TicketStatus status = 5;
-    google.protobuf.Timestamp created_at = 6;
-    google.protobuf.Timestamp updated_at = 7;
+    CompanyBankAccount bank_account_data = 3;
+    TicketStatus status = 4;
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp updated_at = 6;
 }
-
-
-
-
-
-
-
