@@ -555,7 +555,7 @@ message CompanyBankAccount {
 
 
 message GetTransactionsRequest {
-    string bank_account_id = 1;
+    string agent_id = 1;
     string status = 2; // Опционально, если нужно фильтровать по статусу
     int32 offset = 3;
     int32 sign = 4; // -1, 1 или 0 - без фильтра
@@ -568,8 +568,8 @@ message Transaction {
     int32 amount = 3;
     string transaction_status = 4;
     string currency = 5;
-    string created_at = 6;
-    string updated_at = 7;
+    google.protobuf.Timestamp created_at = 6;
+    google.protobuf.Timestamp updated_at = 7;
     Payload payload = 8;
 }
 
@@ -589,8 +589,9 @@ message GetTransactionsResponse {
 message SaveTransactionRequest {
     string request_id = 1; // Ключ идемпотентности
     string bank_account_id = 2;
-    int64 amount = 3;
+    int32 amount = 3;
     string currency = 4;
+    Payload payload = 5;
 }
 
 message SaveTransactionResponse {
