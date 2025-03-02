@@ -555,11 +555,12 @@ message CompanyBankAccount {
 
 
 message GetTransactionsRequest {
-    string agent_id = 1;
-    string status = 2; // Опционально, если нужно фильтровать по статусу
-    int32 offset = 3;
-    int32 sign = 4; // -1, 1 или 0 - без фильтра
-    int32 amount = 5;
+    string owner_id = 1;
+    string bank_account_id = 2;
+    string status = 3; // Опционально, если нужно фильтровать по статусу
+    int32 offset = 4;
+    int32 sign = 5; // -1, 1 или 0 - без фильтра
+    int32 amount = 6;
 }
 
 message Transaction {
