@@ -578,10 +578,12 @@ message Transaction {
 }
 
 message Payload {
-    string distributor_id = 1;
-    string distributor_name = 2;
-    string distributor_legal_name = 3;
-    string origin = 4;
+    string company_id = 1;
+    string company_name = 2;
+    string company_legal_person = 3;
+    string vacancy_id = 4;
+    string vacancy_name = 5;
+    string origin = 6;
 }
 
 message GetTransactionsResponse {
@@ -592,7 +594,7 @@ message GetTransactionsResponse {
 
 message SaveTransactionRequest {
     string id = 1; // Ключ идемпотентности
-    string owner_id = 2;
+    string owner_id = 2; // uid агента или company_id дистрибьютора
     int64 amount = 3;
     string currency = 4;
     Payload payload = 5;

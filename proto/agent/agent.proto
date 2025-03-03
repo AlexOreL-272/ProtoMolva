@@ -197,11 +197,11 @@ message GetTransactionsRequest {
 }
 
 message CreateTransactionRequest {
-  string receiver_bank_account_id = 1;
+  string agent_id = 1;
   int64 amount = 2;
   string currency = 3;
-  string sender_bank_account_id = 4;
-  string request_id = 5;
+  string request_id = 4;
+  optional CompanyInfo company = 5; // компания, которая прислала деньги
 }
 
 // <=============== CURRENCY ACCOUNT ===============>
@@ -465,7 +465,7 @@ message Transaction {
   TransactionStatus status = 3;
   int64 amount = 4;
   string currency = 5;
-  CompanyInfo distributor = 6;
+  CompanyInfo company = 6;
   google.protobuf.Timestamp created_at = 7;
   google.protobuf.Timestamp updated_at = 8;
 }
