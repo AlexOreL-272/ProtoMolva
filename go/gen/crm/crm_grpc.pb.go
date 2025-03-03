@@ -44,7 +44,7 @@ const (
 	Crm_GetClientValidation_FullMethodName           = "/handlers.api.Crm/GetClientValidation"
 	Crm_GetBalance_FullMethodName                    = "/handlers.api.Crm/GetBalance"
 	Crm_SaveTransaction_FullMethodName               = "/handlers.api.Crm/SaveTransaction"
-	Crm_GetCompanyBankAccount_FullMethodName         = "/handlers.api.Crm/GetCompanyBankAccount"
+	Crm_GetBankAccount_FullMethodName                = "/handlers.api.Crm/GetBankAccount"
 	Crm_GetTransactions_FullMethodName               = "/handlers.api.Crm/GetTransactions"
 	Crm_UpdateTransactionStatus_FullMethodName       = "/handlers.api.Crm/UpdateTransactionStatus"
 	Crm_CreateBankAccountTicket_FullMethodName       = "/handlers.api.Crm/CreateBankAccountTicket"
@@ -92,7 +92,7 @@ type CrmClient interface {
 	// финансы
 	GetBalance(ctx context.Context, in *GetBalanceRequest, opts ...grpc.CallOption) (*GetBalanceResponse, error)
 	SaveTransaction(ctx context.Context, in *SaveTransactionRequest, opts ...grpc.CallOption) (*SaveTransactionResponse, error)
-	GetCompanyBankAccount(ctx context.Context, in *GetCompanyBankAccountRequest, opts ...grpc.CallOption) (*GetCompanyBankAccountResponse, error)
+	GetBankAccount(ctx context.Context, in *GetBankAccountRequest, opts ...grpc.CallOption) (*GetBankAccountResponse, error)
 	GetTransactions(ctx context.Context, in *GetTransactionsRequest, opts ...grpc.CallOption) (*GetTransactionsResponse, error)
 	UpdateTransactionStatus(ctx context.Context, in *UpdateTransactionStatusRequest, opts ...grpc.CallOption) (*UpdateTransactionStatusResponse, error)
 	CreateBankAccountTicket(ctx context.Context, in *CreateBankAccountTicketRequest, opts ...grpc.CallOption) (*CreateBankAccountTicketResponse, error)
@@ -358,10 +358,10 @@ func (c *crmClient) SaveTransaction(ctx context.Context, in *SaveTransactionRequ
 	return out, nil
 }
 
-func (c *crmClient) GetCompanyBankAccount(ctx context.Context, in *GetCompanyBankAccountRequest, opts ...grpc.CallOption) (*GetCompanyBankAccountResponse, error) {
+func (c *crmClient) GetBankAccount(ctx context.Context, in *GetBankAccountRequest, opts ...grpc.CallOption) (*GetBankAccountResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetCompanyBankAccountResponse)
-	err := c.cc.Invoke(ctx, Crm_GetCompanyBankAccount_FullMethodName, in, out, cOpts...)
+	out := new(GetBankAccountResponse)
+	err := c.cc.Invoke(ctx, Crm_GetBankAccount_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -458,7 +458,7 @@ type CrmServer interface {
 	// финансы
 	GetBalance(context.Context, *GetBalanceRequest) (*GetBalanceResponse, error)
 	SaveTransaction(context.Context, *SaveTransactionRequest) (*SaveTransactionResponse, error)
-	GetCompanyBankAccount(context.Context, *GetCompanyBankAccountRequest) (*GetCompanyBankAccountResponse, error)
+	GetBankAccount(context.Context, *GetBankAccountRequest) (*GetBankAccountResponse, error)
 	GetTransactions(context.Context, *GetTransactionsRequest) (*GetTransactionsResponse, error)
 	UpdateTransactionStatus(context.Context, *UpdateTransactionStatusRequest) (*UpdateTransactionStatusResponse, error)
 	CreateBankAccountTicket(context.Context, *CreateBankAccountTicketRequest) (*CreateBankAccountTicketResponse, error)
@@ -549,8 +549,8 @@ func (UnimplementedCrmServer) GetBalance(context.Context, *GetBalanceRequest) (*
 func (UnimplementedCrmServer) SaveTransaction(context.Context, *SaveTransactionRequest) (*SaveTransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SaveTransaction not implemented")
 }
-func (UnimplementedCrmServer) GetCompanyBankAccount(context.Context, *GetCompanyBankAccountRequest) (*GetCompanyBankAccountResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCompanyBankAccount not implemented")
+func (UnimplementedCrmServer) GetBankAccount(context.Context, *GetBankAccountRequest) (*GetBankAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBankAccount not implemented")
 }
 func (UnimplementedCrmServer) GetTransactions(context.Context, *GetTransactionsRequest) (*GetTransactionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTransactions not implemented")
@@ -1038,20 +1038,20 @@ func _Crm_SaveTransaction_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Crm_GetCompanyBankAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCompanyBankAccountRequest)
+func _Crm_GetBankAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBankAccountRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CrmServer).GetCompanyBankAccount(ctx, in)
+		return srv.(CrmServer).GetBankAccount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Crm_GetCompanyBankAccount_FullMethodName,
+		FullMethod: Crm_GetBankAccount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CrmServer).GetCompanyBankAccount(ctx, req.(*GetCompanyBankAccountRequest))
+		return srv.(CrmServer).GetBankAccount(ctx, req.(*GetBankAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1254,8 +1254,8 @@ var Crm_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Crm_SaveTransaction_Handler,
 		},
 		{
-			MethodName: "GetCompanyBankAccount",
-			Handler:    _Crm_GetCompanyBankAccount_Handler,
+			MethodName: "GetBankAccount",
+			Handler:    _Crm_GetBankAccount_Handler,
 		},
 		{
 			MethodName: "GetTransactions",

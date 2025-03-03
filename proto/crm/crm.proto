@@ -57,13 +57,14 @@ service Crm {
     rpc GetBalance(GetBalanceRequest) returns(GetBalanceResponse) {};
     rpc SaveTransaction(SaveTransactionRequest) returns(SaveTransactionResponse) {};
 
-    rpc GetCompanyBankAccount(GetCompanyBankAccountRequest) returns(GetCompanyBankAccountResponse) {};
+    rpc GetBankAccount(GetBankAccountRequest) returns(GetBankAccountResponse) {};
     rpc GetTransactions(GetTransactionsRequest) returns(GetTransactionsResponse) {};
     rpc UpdateTransactionStatus(UpdateTransactionStatusRequest) returns(UpdateTransactionStatusResponse) {};
 
     rpc CreateBankAccountTicket(CreateBankAccountTicketRequest) returns (CreateBankAccountTicketResponse) {};
     rpc UpdateBankAccountTicketStatus(UpdateBankAccountTicketStatusRequest) returns (UpdateBankAccountTicketStatusResponse) {};
     rpc GetBankAccountTickets(GetBankAccountTicketsRequest) returns (GetBankAccountTicketsResponse) {};
+
 }
 
 enum UserType {
@@ -510,6 +511,7 @@ message CompanyTicket {
     google.protobuf.Timestamp updated_at = 7;
 }
 
+
 message GetBalanceRequest {
     string owner_id = 1;
 }
@@ -529,11 +531,11 @@ message Balance {
     google.protobuf.Timestamp updated_at = 6;
 }
 
-message GetCompanyBankAccountRequest {
+message GetBankAccountRequest {
     string owner_id = 1;
 }
 
-message GetCompanyBankAccountResponse {
+message GetBankAccountResponse {
     CompanyBankAccount account = 1;
     ResponseStatus status = 2;
     string response = 3;
@@ -551,23 +553,24 @@ message CompanyBankAccount {
     string ogrn = 9;
     google.protobuf.Timestamp created_at = 10;
     google.protobuf.Timestamp updated_at = 11;
+    bool is_active = 12;
+    bool has_moderation_ticket = 13;
 }
 
 
 message GetTransactionsRequest {
     string owner_id = 1;
-    string bank_account_id = 2;
-    string status = 3; // Опционально, если нужно фильтровать по статусу
-    int32 offset = 4;
+    TicketStatus status = 2; // Опционально, если нужно фильтровать по статусу
+    int32 offset = 3;
+    int32 amount = 4;
     int32 sign = 5; // -1, 1 или 0 - без фильтра
-    int32 amount = 6;
 }
 
 message Transaction {
     string id = 1;
-    string bank_account_id = 2;
-    int32 amount = 3;
-    string transaction_status = 4;
+    string owner_id = 2;
+    int64 amount = 3;
+    TicketStatus transaction_status = 4;
     string currency = 5;
     google.protobuf.Timestamp created_at = 6;
     google.protobuf.Timestamp updated_at = 7;
@@ -588,9 +591,9 @@ message GetTransactionsResponse {
 }
 
 message SaveTransactionRequest {
-    string request_id = 1; // Ключ идемпотентности
-    string bank_account_id = 2;
-    int32 amount = 3;
+    string id = 1; // Ключ идемпотентности
+    string owner_id = 2;
+    int64 amount = 3;
     string currency = 4;
     Payload payload = 5;
 }
@@ -602,7 +605,7 @@ message SaveTransactionResponse {
 
 message UpdateTransactionStatusRequest {
     string transaction_id = 1;
-    string status = 2;
+    TicketStatus status = 2;
 }
 
 message UpdateTransactionStatusResponse {
@@ -634,6 +637,7 @@ message UpdateBankAccountTicketStatusResponse {
 
 message GetBankAccountTicketsRequest {
     string owner_id = 1;
+
 }
 
 message GetBankAccountTicketsResponse {

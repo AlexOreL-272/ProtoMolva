@@ -229,15 +229,14 @@ message GetBalanceRequest {
 
 message GetTransactionsRequest {
   optional string distributor_id = 1;
-  optional string bank_account_id = 2;
-  TransactionFilters filters = 3;
+  TransactionFilters filters = 2;
 }
 
 message CreateTransactionRequest {
-  string distributor_id = 1;
-  int32 amount = 2;
+  string receiver_bank_account_id = 1;
+  int64 amount = 2;
   string currency = 3;
-  string bank_account_id = 4;
+  string sender_bank_account_id = 4;
   string request_id = 5;
 }
 
@@ -515,7 +514,7 @@ message Transaction {
   string id = 1;
   TransactionType type = 2;
   TransactionStatus status = 3;
-  int32 amount = 4;
+  int64 amount = 4;
   string currency = 5;
   VacancyInfo vacancy = 6;
   google.protobuf.Timestamp created_at = 7;
