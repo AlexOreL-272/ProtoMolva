@@ -122,7 +122,7 @@ service Distributor {
   /// GetBankAccountsResponse
   rpc GetBankAccounts(GetBankAccountsRequest) returns (GetBankAccountsResponse) {
     option (google.api.http) = {
-      get : "/v1/distributor/{distributor_id}/currency_accounts"
+      get : "/v1/distributor/{distributor_id}/bank_accounts"
     };
   }
 
@@ -130,7 +130,7 @@ service Distributor {
   /// CreateBankAccountResponse
   rpc CreateBankAccount(CreateBankAccountRequest) returns (CreateBankAccountResponse) {
     option (google.api.http) = {
-      post : "/v1/distributor/{distributor_id}/currency_accounts"
+      post : "/v1/distributor/{distributor_id}/bank_accounts"
       body : "*"
     };
   }
@@ -139,7 +139,7 @@ service Distributor {
   /// EditBankAccountResponse
   rpc EditBankAccount(EditBankAccountRequest) returns (EditBankAccountResponse) {
     option (google.api.http) = {
-      put : "/v1/distributor/{distributor_id}/currency_accounts/{bank_account_id}"
+      put : "/v1/distributor/{distributor_id}/bank_accounts/{bank_account_id}"
       body : "*"
     };
   }
@@ -148,7 +148,7 @@ service Distributor {
   /// DeleteBankAccountResponse
   rpc DeleteBankAccount(DeleteBankAccountRequest) returns (DeleteBankAccountResponse) {
     option (google.api.http) = {
-      delete : "/v1/distributor/{distributor_id}/currency_accounts/{bank_account_id}"
+      delete : "/v1/distributor/{distributor_id}/bank_accounts/{bank_account_id}"
     };
   }
 }
@@ -233,7 +233,7 @@ message GetTransactionsRequest {
 }
 
 message CreateTransactionRequest {
-  string company_id = 1;
+  string bank_account_id = 1;
   int64 amount = 2;
   string currency = 3;
   string request_id = 4;
@@ -248,13 +248,13 @@ message GetBankAccountsRequest {
 
 message CreateBankAccountRequest {
   string distributor_id = 1;
-  BankAccountEditables currency_account = 2;
+  BankAccountEditables bank_account = 2;
 }
 
 message EditBankAccountRequest {
   string distributor_id = 1;
   string bank_account_id = 2;
-  BankAccountEditables currency_account = 3;
+  BankAccountEditables bank_account = 3;
 }
 
 message DeleteBankAccountRequest {
@@ -338,7 +338,7 @@ message CreateTransactionResponse {
 // <=============== CURRENCY ACCOUNT ===============>
 
 message GetBankAccountsResponse {
-  repeated BankAccount currency_accounts = 1;
+  repeated BankAccount bank_accounts = 1;
 }
 
 message CreateBankAccountResponse {

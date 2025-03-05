@@ -108,7 +108,7 @@ service Agent {
   /// GetBankAccountsResponse
   rpc GetBankAccounts(GetBankAccountsRequest) returns (GetBankAccountsResponse) {
     option (google.api.http) = {
-      get : "/v1/agents/{agent_id}/currency_accounts"
+      get : "/v1/agents/{agent_id}/bank_accounts"
     };
   }
 
@@ -116,7 +116,7 @@ service Agent {
   /// CreateBankAccountResponse
   rpc CreateBankAccount(CreateBankAccountRequest) returns (CreateBankAccountResponse) {
     option (google.api.http) = {
-      post : "/v1/agents/{agent_id}/currency_accounts"
+      post : "/v1/agents/{agent_id}/bank_accounts"
       body : "*"
     };
   }
@@ -125,7 +125,7 @@ service Agent {
   /// EditBankAccountResponse
   rpc EditBankAccount(EditBankAccountRequest) returns (EditBankAccountResponse) {
     option (google.api.http) = {
-      put : "/v1/agents/{agent_id}/currency_accounts/{bank_account_id}"
+      put : "/v1/agents/{agent_id}/bank_accounts/{bank_account_id}"
       body : "*"
     };
   }
@@ -134,7 +134,7 @@ service Agent {
   /// DeleteBankAccountResponse
   rpc DeleteBankAccount(DeleteBankAccountRequest) returns (DeleteBankAccountResponse) {
     option (google.api.http) = {
-      delete : "/v1/agents/{agent_id}/currency_accounts/{bank_account_id}"
+      delete : "/v1/agents/{agent_id}/bank_accounts/{bank_account_id}"
     };
   }
 }
@@ -212,13 +212,13 @@ message GetBankAccountsRequest {
 
 message CreateBankAccountRequest {
   string agent_id = 1;
-  BankAccountEditables currency_account = 2;
+  BankAccountEditables bank_account = 2;
 }
 
 message EditBankAccountRequest {
   string agent_id = 1;
   string bank_account_id = 2;
-  BankAccountEditables currency_account = 3;
+  BankAccountEditables bank_account = 3;
 }
 
 message DeleteBankAccountRequest {
@@ -286,7 +286,7 @@ message CreateTransactionResponse {
 // <=============== CURRENCY ACCOUNT ===============>
 
 message GetBankAccountsResponse {
-  BankAccount currency_account = 1;
+  BankAccount bank_account = 1;
 }
 
 message CreateBankAccountResponse {
