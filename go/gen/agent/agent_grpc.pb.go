@@ -19,21 +19,21 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Agent_GetVacancyList_FullMethodName        = "/service_agent.Agent/GetVacancyList"
-	Agent_GetSubmissionList_FullMethodName     = "/service_agent.Agent/GetSubmissionList"
-	Agent_DeleteSubmission_FullMethodName      = "/service_agent.Agent/DeleteSubmission"
-	Agent_GetProfileData_FullMethodName        = "/service_agent.Agent/GetProfileData"
-	Agent_SetProfileData_FullMethodName        = "/service_agent.Agent/SetProfileData"
-	Agent_GetCompanyData_FullMethodName        = "/service_agent.Agent/GetCompanyData"
-	Agent_GetCompaniesUid_FullMethodName       = "/service_agent.Agent/GetCompaniesUid"
-	Agent_SetCompanyData_FullMethodName        = "/service_agent.Agent/SetCompanyData"
-	Agent_GetBalance_FullMethodName            = "/service_agent.Agent/GetBalance"
-	Agent_GetTransactions_FullMethodName       = "/service_agent.Agent/GetTransactions"
-	Agent_CreateTransaction_FullMethodName     = "/service_agent.Agent/CreateTransaction"
-	Agent_GetCurrencyAccounts_FullMethodName   = "/service_agent.Agent/GetCurrencyAccounts"
-	Agent_CreateCurrencyAccount_FullMethodName = "/service_agent.Agent/CreateCurrencyAccount"
-	Agent_EditCurrencyAccount_FullMethodName   = "/service_agent.Agent/EditCurrencyAccount"
-	Agent_DeleteCurrencyAccount_FullMethodName = "/service_agent.Agent/DeleteCurrencyAccount"
+	Agent_GetVacancyList_FullMethodName    = "/service_agent.Agent/GetVacancyList"
+	Agent_GetSubmissionList_FullMethodName = "/service_agent.Agent/GetSubmissionList"
+	Agent_DeleteSubmission_FullMethodName  = "/service_agent.Agent/DeleteSubmission"
+	Agent_GetProfileData_FullMethodName    = "/service_agent.Agent/GetProfileData"
+	Agent_SetProfileData_FullMethodName    = "/service_agent.Agent/SetProfileData"
+	Agent_GetCompanyData_FullMethodName    = "/service_agent.Agent/GetCompanyData"
+	Agent_GetCompaniesUid_FullMethodName   = "/service_agent.Agent/GetCompaniesUid"
+	Agent_SetCompanyData_FullMethodName    = "/service_agent.Agent/SetCompanyData"
+	Agent_GetBalance_FullMethodName        = "/service_agent.Agent/GetBalance"
+	Agent_GetTransactions_FullMethodName   = "/service_agent.Agent/GetTransactions"
+	Agent_CreateTransaction_FullMethodName = "/service_agent.Agent/CreateTransaction"
+	Agent_GetBankAccounts_FullMethodName   = "/service_agent.Agent/GetBankAccounts"
+	Agent_CreateBankAccount_FullMethodName = "/service_agent.Agent/CreateBankAccount"
+	Agent_EditBankAccount_FullMethodName   = "/service_agent.Agent/EditBankAccount"
+	Agent_DeleteBankAccount_FullMethodName = "/service_agent.Agent/DeleteBankAccount"
 )
 
 // AgentClient is the client API for Agent service.
@@ -41,56 +41,56 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AgentClient interface {
 	// <-------------- VACANCY -------------->
-	// / Получить список вакансий. Получает GetVacancyListRequest, возвращает
-	// / GetVacancyListResponse
+	/// Получить список вакансий. Получает GetVacancyListRequest, возвращает
+	/// GetVacancyListResponse
 	GetVacancyList(ctx context.Context, in *GetVacancyListRequest, opts ...grpc.CallOption) (*GetVacancyListResponse, error)
 	// <-------------- SUBMISSION -------------->
-	// / Получить список заявок. Получает GetSubmissionListRequest, возвращает
-	// / GetSubmissionListResponse
+	/// Получить список заявок. Получает GetSubmissionListRequest, возвращает
+	/// GetSubmissionListResponse
 	GetSubmissionList(ctx context.Context, in *GetSubmissionListRequest, opts ...grpc.CallOption) (*GetSubmissionListResponse, error)
-	// / Метод для удаления заявки. Получает DeleteSubmissionRequest, возвращает
-	// / DeleteSubmissionResponse
+	/// Метод для удаления заявки. Получает DeleteSubmissionRequest, возвращает
+	/// DeleteSubmissionResponse
 	DeleteSubmission(ctx context.Context, in *DeleteSubmissionRequest, opts ...grpc.CallOption) (*DeleteSubmissionResponse, error)
 	// <-------------- PROFILE -------------->
-	// / Получить данные агента. Получает GetProfileRequest, возвращает
-	// / GetProfileResponse
+	/// Получить данные агента. Получает GetProfileRequest, возвращает
+	/// GetProfileResponse
 	GetProfileData(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
-	// / Метод для изменения данных агента. Получает SetProfileRequest, возвращает
-	// / SetProfileResponse
+	/// Метод для изменения данных агента. Получает SetProfileRequest, возвращает
+	/// SetProfileResponse
 	SetProfileData(ctx context.Context, in *SetProfileRequest, opts ...grpc.CallOption) (*SetProfileResponse, error)
 	// <-------------- COMPANY -------------->
-	// / Получить данные компании. Получает GetCompanyDataRequest, возвращает
-	// / GetCompanyDataResponse
+	/// Получить данные компании. Получает GetCompanyDataRequest, возвращает
+	/// GetCompanyDataResponse
 	GetCompanyData(ctx context.Context, in *GetCompanyDataRequest, opts ...grpc.CallOption) (*GetCompanyDataResponse, error)
 	// Получить список компаний по Uid. Получает GetCompanyDataRequest возвращает
 	// GetCompaniesUidResponse
 	GetCompaniesUid(ctx context.Context, in *GetCompanyDataRequest, opts ...grpc.CallOption) (*GetCompaniesUidResponse, error)
-	// / Метод для изменения данных компании. Получает SetCompanyDataRequest, возвращает
-	// / SetCompanyDataResponse
+	/// Метод для изменения данных компании. Получает SetCompanyDataRequest, возвращает
+	/// SetCompanyDataResponse
 	SetCompanyData(ctx context.Context, in *SetCompanyDataRequest, opts ...grpc.CallOption) (*SetCompanyDataResponse, error)
 	// <-------------- BALANCE -------------->
-	// / Получить баланс агента. Получает GetBalanceRequest, возвращает GetBalanceResponse
+	/// Получить баланс агента. Получает GetBalanceRequest, возвращает GetBalanceResponse
 	GetBalance(ctx context.Context, in *GetBalanceRequest, opts ...grpc.CallOption) (*GetBalanceResponse, error)
 	// <-------------- TRANSACTIONS -------------->
-	// / Получить список транзакций агента. Получает GetTransactionsRequest, возвращает
-	// / GetTransactionsResponse
+	/// Получить список транзакций агента. Получает GetTransactionsRequest, возвращает
+	/// GetTransactionsResponse
 	GetTransactions(ctx context.Context, in *GetTransactionsRequest, opts ...grpc.CallOption) (*GetTransactionsResponse, error)
-	// / Создать транзакцию. Получает CreateTransactionRequest, возвращает
-	// / CreateTransactionResponse
+	/// Создать транзакцию. Получает CreateTransactionRequest, возвращает
+	/// CreateTransactionResponse
 	CreateTransaction(ctx context.Context, in *CreateTransactionRequest, opts ...grpc.CallOption) (*CreateTransactionResponse, error)
 	// <-------------- CURRENCY ACCOUNT -------------->
-	// / Получить список расчетных счетов агента. Получает GetCurrencyAccountsRequest, возвращает
-	// / GetCurrencyAccountsResponse
-	GetCurrencyAccounts(ctx context.Context, in *GetCurrencyAccountsRequest, opts ...grpc.CallOption) (*GetCurrencyAccountsResponse, error)
-	// / Создать расчетный счет. Получает CreateCurrencyAccountRequest, возвращает
-	// / CreateCurrencyAccountResponse
-	CreateCurrencyAccount(ctx context.Context, in *CreateCurrencyAccountRequest, opts ...grpc.CallOption) (*CreateCurrencyAccountResponse, error)
-	// / Редактировать расчетный счет. Получает EditCurrencyAccountRequest, возвращает
-	// / EditCurrencyAccountResponse
-	EditCurrencyAccount(ctx context.Context, in *EditCurrencyAccountRequest, opts ...grpc.CallOption) (*EditCurrencyAccountResponse, error)
-	// / Удалить расчетный счет. Получает DeleteCurrencyAccountRequest, возвращает
-	// / DeleteCurrencyAccountResponse
-	DeleteCurrencyAccount(ctx context.Context, in *DeleteCurrencyAccountRequest, opts ...grpc.CallOption) (*DeleteCurrencyAccountResponse, error)
+	/// Получить список расчетных счетов агента. Получает GetBankAccountsRequest, возвращает
+	/// GetBankAccountsResponse
+	GetBankAccounts(ctx context.Context, in *GetBankAccountsRequest, opts ...grpc.CallOption) (*GetBankAccountsResponse, error)
+	/// Создать расчетный счет. Получает CreateBankAccountRequest, возвращает
+	/// CreateBankAccountResponse
+	CreateBankAccount(ctx context.Context, in *CreateBankAccountRequest, opts ...grpc.CallOption) (*CreateBankAccountResponse, error)
+	/// Редактировать расчетный счет. Получает EditBankAccountRequest, возвращает
+	/// EditBankAccountResponse
+	EditBankAccount(ctx context.Context, in *EditBankAccountRequest, opts ...grpc.CallOption) (*EditBankAccountResponse, error)
+	/// Удалить расчетный счет. Получает DeleteBankAccountRequest, возвращает
+	/// DeleteBankAccountResponse
+	DeleteBankAccount(ctx context.Context, in *DeleteBankAccountRequest, opts ...grpc.CallOption) (*DeleteBankAccountResponse, error)
 }
 
 type agentClient struct {
@@ -211,40 +211,40 @@ func (c *agentClient) CreateTransaction(ctx context.Context, in *CreateTransacti
 	return out, nil
 }
 
-func (c *agentClient) GetCurrencyAccounts(ctx context.Context, in *GetCurrencyAccountsRequest, opts ...grpc.CallOption) (*GetCurrencyAccountsResponse, error) {
+func (c *agentClient) GetBankAccounts(ctx context.Context, in *GetBankAccountsRequest, opts ...grpc.CallOption) (*GetBankAccountsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetCurrencyAccountsResponse)
-	err := c.cc.Invoke(ctx, Agent_GetCurrencyAccounts_FullMethodName, in, out, cOpts...)
+	out := new(GetBankAccountsResponse)
+	err := c.cc.Invoke(ctx, Agent_GetBankAccounts_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *agentClient) CreateCurrencyAccount(ctx context.Context, in *CreateCurrencyAccountRequest, opts ...grpc.CallOption) (*CreateCurrencyAccountResponse, error) {
+func (c *agentClient) CreateBankAccount(ctx context.Context, in *CreateBankAccountRequest, opts ...grpc.CallOption) (*CreateBankAccountResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateCurrencyAccountResponse)
-	err := c.cc.Invoke(ctx, Agent_CreateCurrencyAccount_FullMethodName, in, out, cOpts...)
+	out := new(CreateBankAccountResponse)
+	err := c.cc.Invoke(ctx, Agent_CreateBankAccount_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *agentClient) EditCurrencyAccount(ctx context.Context, in *EditCurrencyAccountRequest, opts ...grpc.CallOption) (*EditCurrencyAccountResponse, error) {
+func (c *agentClient) EditBankAccount(ctx context.Context, in *EditBankAccountRequest, opts ...grpc.CallOption) (*EditBankAccountResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(EditCurrencyAccountResponse)
-	err := c.cc.Invoke(ctx, Agent_EditCurrencyAccount_FullMethodName, in, out, cOpts...)
+	out := new(EditBankAccountResponse)
+	err := c.cc.Invoke(ctx, Agent_EditBankAccount_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *agentClient) DeleteCurrencyAccount(ctx context.Context, in *DeleteCurrencyAccountRequest, opts ...grpc.CallOption) (*DeleteCurrencyAccountResponse, error) {
+func (c *agentClient) DeleteBankAccount(ctx context.Context, in *DeleteBankAccountRequest, opts ...grpc.CallOption) (*DeleteBankAccountResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteCurrencyAccountResponse)
-	err := c.cc.Invoke(ctx, Agent_DeleteCurrencyAccount_FullMethodName, in, out, cOpts...)
+	out := new(DeleteBankAccountResponse)
+	err := c.cc.Invoke(ctx, Agent_DeleteBankAccount_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -256,56 +256,56 @@ func (c *agentClient) DeleteCurrencyAccount(ctx context.Context, in *DeleteCurre
 // for forward compatibility.
 type AgentServer interface {
 	// <-------------- VACANCY -------------->
-	// / Получить список вакансий. Получает GetVacancyListRequest, возвращает
-	// / GetVacancyListResponse
+	/// Получить список вакансий. Получает GetVacancyListRequest, возвращает
+	/// GetVacancyListResponse
 	GetVacancyList(context.Context, *GetVacancyListRequest) (*GetVacancyListResponse, error)
 	// <-------------- SUBMISSION -------------->
-	// / Получить список заявок. Получает GetSubmissionListRequest, возвращает
-	// / GetSubmissionListResponse
+	/// Получить список заявок. Получает GetSubmissionListRequest, возвращает
+	/// GetSubmissionListResponse
 	GetSubmissionList(context.Context, *GetSubmissionListRequest) (*GetSubmissionListResponse, error)
-	// / Метод для удаления заявки. Получает DeleteSubmissionRequest, возвращает
-	// / DeleteSubmissionResponse
+	/// Метод для удаления заявки. Получает DeleteSubmissionRequest, возвращает
+	/// DeleteSubmissionResponse
 	DeleteSubmission(context.Context, *DeleteSubmissionRequest) (*DeleteSubmissionResponse, error)
 	// <-------------- PROFILE -------------->
-	// / Получить данные агента. Получает GetProfileRequest, возвращает
-	// / GetProfileResponse
+	/// Получить данные агента. Получает GetProfileRequest, возвращает
+	/// GetProfileResponse
 	GetProfileData(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
-	// / Метод для изменения данных агента. Получает SetProfileRequest, возвращает
-	// / SetProfileResponse
+	/// Метод для изменения данных агента. Получает SetProfileRequest, возвращает
+	/// SetProfileResponse
 	SetProfileData(context.Context, *SetProfileRequest) (*SetProfileResponse, error)
 	// <-------------- COMPANY -------------->
-	// / Получить данные компании. Получает GetCompanyDataRequest, возвращает
-	// / GetCompanyDataResponse
+	/// Получить данные компании. Получает GetCompanyDataRequest, возвращает
+	/// GetCompanyDataResponse
 	GetCompanyData(context.Context, *GetCompanyDataRequest) (*GetCompanyDataResponse, error)
 	// Получить список компаний по Uid. Получает GetCompanyDataRequest возвращает
 	// GetCompaniesUidResponse
 	GetCompaniesUid(context.Context, *GetCompanyDataRequest) (*GetCompaniesUidResponse, error)
-	// / Метод для изменения данных компании. Получает SetCompanyDataRequest, возвращает
-	// / SetCompanyDataResponse
+	/// Метод для изменения данных компании. Получает SetCompanyDataRequest, возвращает
+	/// SetCompanyDataResponse
 	SetCompanyData(context.Context, *SetCompanyDataRequest) (*SetCompanyDataResponse, error)
 	// <-------------- BALANCE -------------->
-	// / Получить баланс агента. Получает GetBalanceRequest, возвращает GetBalanceResponse
+	/// Получить баланс агента. Получает GetBalanceRequest, возвращает GetBalanceResponse
 	GetBalance(context.Context, *GetBalanceRequest) (*GetBalanceResponse, error)
 	// <-------------- TRANSACTIONS -------------->
-	// / Получить список транзакций агента. Получает GetTransactionsRequest, возвращает
-	// / GetTransactionsResponse
+	/// Получить список транзакций агента. Получает GetTransactionsRequest, возвращает
+	/// GetTransactionsResponse
 	GetTransactions(context.Context, *GetTransactionsRequest) (*GetTransactionsResponse, error)
-	// / Создать транзакцию. Получает CreateTransactionRequest, возвращает
-	// / CreateTransactionResponse
+	/// Создать транзакцию. Получает CreateTransactionRequest, возвращает
+	/// CreateTransactionResponse
 	CreateTransaction(context.Context, *CreateTransactionRequest) (*CreateTransactionResponse, error)
 	// <-------------- CURRENCY ACCOUNT -------------->
-	// / Получить список расчетных счетов агента. Получает GetCurrencyAccountsRequest, возвращает
-	// / GetCurrencyAccountsResponse
-	GetCurrencyAccounts(context.Context, *GetCurrencyAccountsRequest) (*GetCurrencyAccountsResponse, error)
-	// / Создать расчетный счет. Получает CreateCurrencyAccountRequest, возвращает
-	// / CreateCurrencyAccountResponse
-	CreateCurrencyAccount(context.Context, *CreateCurrencyAccountRequest) (*CreateCurrencyAccountResponse, error)
-	// / Редактировать расчетный счет. Получает EditCurrencyAccountRequest, возвращает
-	// / EditCurrencyAccountResponse
-	EditCurrencyAccount(context.Context, *EditCurrencyAccountRequest) (*EditCurrencyAccountResponse, error)
-	// / Удалить расчетный счет. Получает DeleteCurrencyAccountRequest, возвращает
-	// / DeleteCurrencyAccountResponse
-	DeleteCurrencyAccount(context.Context, *DeleteCurrencyAccountRequest) (*DeleteCurrencyAccountResponse, error)
+	/// Получить список расчетных счетов агента. Получает GetBankAccountsRequest, возвращает
+	/// GetBankAccountsResponse
+	GetBankAccounts(context.Context, *GetBankAccountsRequest) (*GetBankAccountsResponse, error)
+	/// Создать расчетный счет. Получает CreateBankAccountRequest, возвращает
+	/// CreateBankAccountResponse
+	CreateBankAccount(context.Context, *CreateBankAccountRequest) (*CreateBankAccountResponse, error)
+	/// Редактировать расчетный счет. Получает EditBankAccountRequest, возвращает
+	/// EditBankAccountResponse
+	EditBankAccount(context.Context, *EditBankAccountRequest) (*EditBankAccountResponse, error)
+	/// Удалить расчетный счет. Получает DeleteBankAccountRequest, возвращает
+	/// DeleteBankAccountResponse
+	DeleteBankAccount(context.Context, *DeleteBankAccountRequest) (*DeleteBankAccountResponse, error)
 	mustEmbedUnimplementedAgentServer()
 }
 
@@ -349,17 +349,17 @@ func (UnimplementedAgentServer) GetTransactions(context.Context, *GetTransaction
 func (UnimplementedAgentServer) CreateTransaction(context.Context, *CreateTransactionRequest) (*CreateTransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTransaction not implemented")
 }
-func (UnimplementedAgentServer) GetCurrencyAccounts(context.Context, *GetCurrencyAccountsRequest) (*GetCurrencyAccountsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCurrencyAccounts not implemented")
+func (UnimplementedAgentServer) GetBankAccounts(context.Context, *GetBankAccountsRequest) (*GetBankAccountsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBankAccounts not implemented")
 }
-func (UnimplementedAgentServer) CreateCurrencyAccount(context.Context, *CreateCurrencyAccountRequest) (*CreateCurrencyAccountResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateCurrencyAccount not implemented")
+func (UnimplementedAgentServer) CreateBankAccount(context.Context, *CreateBankAccountRequest) (*CreateBankAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateBankAccount not implemented")
 }
-func (UnimplementedAgentServer) EditCurrencyAccount(context.Context, *EditCurrencyAccountRequest) (*EditCurrencyAccountResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method EditCurrencyAccount not implemented")
+func (UnimplementedAgentServer) EditBankAccount(context.Context, *EditBankAccountRequest) (*EditBankAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EditBankAccount not implemented")
 }
-func (UnimplementedAgentServer) DeleteCurrencyAccount(context.Context, *DeleteCurrencyAccountRequest) (*DeleteCurrencyAccountResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteCurrencyAccount not implemented")
+func (UnimplementedAgentServer) DeleteBankAccount(context.Context, *DeleteBankAccountRequest) (*DeleteBankAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteBankAccount not implemented")
 }
 func (UnimplementedAgentServer) mustEmbedUnimplementedAgentServer() {}
 func (UnimplementedAgentServer) testEmbeddedByValue()               {}
@@ -580,74 +580,74 @@ func _Agent_CreateTransaction_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Agent_GetCurrencyAccounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCurrencyAccountsRequest)
+func _Agent_GetBankAccounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBankAccountsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AgentServer).GetCurrencyAccounts(ctx, in)
+		return srv.(AgentServer).GetBankAccounts(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Agent_GetCurrencyAccounts_FullMethodName,
+		FullMethod: Agent_GetBankAccounts_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AgentServer).GetCurrencyAccounts(ctx, req.(*GetCurrencyAccountsRequest))
+		return srv.(AgentServer).GetBankAccounts(ctx, req.(*GetBankAccountsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Agent_CreateCurrencyAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateCurrencyAccountRequest)
+func _Agent_CreateBankAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateBankAccountRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AgentServer).CreateCurrencyAccount(ctx, in)
+		return srv.(AgentServer).CreateBankAccount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Agent_CreateCurrencyAccount_FullMethodName,
+		FullMethod: Agent_CreateBankAccount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AgentServer).CreateCurrencyAccount(ctx, req.(*CreateCurrencyAccountRequest))
+		return srv.(AgentServer).CreateBankAccount(ctx, req.(*CreateBankAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Agent_EditCurrencyAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EditCurrencyAccountRequest)
+func _Agent_EditBankAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EditBankAccountRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AgentServer).EditCurrencyAccount(ctx, in)
+		return srv.(AgentServer).EditBankAccount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Agent_EditCurrencyAccount_FullMethodName,
+		FullMethod: Agent_EditBankAccount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AgentServer).EditCurrencyAccount(ctx, req.(*EditCurrencyAccountRequest))
+		return srv.(AgentServer).EditBankAccount(ctx, req.(*EditBankAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Agent_DeleteCurrencyAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteCurrencyAccountRequest)
+func _Agent_DeleteBankAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteBankAccountRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AgentServer).DeleteCurrencyAccount(ctx, in)
+		return srv.(AgentServer).DeleteBankAccount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Agent_DeleteCurrencyAccount_FullMethodName,
+		FullMethod: Agent_DeleteBankAccount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AgentServer).DeleteCurrencyAccount(ctx, req.(*DeleteCurrencyAccountRequest))
+		return srv.(AgentServer).DeleteBankAccount(ctx, req.(*DeleteBankAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -704,20 +704,20 @@ var Agent_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Agent_CreateTransaction_Handler,
 		},
 		{
-			MethodName: "GetCurrencyAccounts",
-			Handler:    _Agent_GetCurrencyAccounts_Handler,
+			MethodName: "GetBankAccounts",
+			Handler:    _Agent_GetBankAccounts_Handler,
 		},
 		{
-			MethodName: "CreateCurrencyAccount",
-			Handler:    _Agent_CreateCurrencyAccount_Handler,
+			MethodName: "CreateBankAccount",
+			Handler:    _Agent_CreateBankAccount_Handler,
 		},
 		{
-			MethodName: "EditCurrencyAccount",
-			Handler:    _Agent_EditCurrencyAccount_Handler,
+			MethodName: "EditBankAccount",
+			Handler:    _Agent_EditBankAccount_Handler,
 		},
 		{
-			MethodName: "DeleteCurrencyAccount",
-			Handler:    _Agent_DeleteCurrencyAccount_Handler,
+			MethodName: "DeleteBankAccount",
+			Handler:    _Agent_DeleteBankAccount_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -34,10 +34,10 @@ const (
 	Distributor_GetBalance_FullMethodName               = "/service_distributor.Distributor/GetBalance"
 	Distributor_GetTransactions_FullMethodName          = "/service_distributor.Distributor/GetTransactions"
 	Distributor_CreateTransaction_FullMethodName        = "/service_distributor.Distributor/CreateTransaction"
-	Distributor_GetCurrencyAccounts_FullMethodName      = "/service_distributor.Distributor/GetCurrencyAccounts"
-	Distributor_CreateCurrencyAccount_FullMethodName    = "/service_distributor.Distributor/CreateCurrencyAccount"
-	Distributor_EditCurrencyAccount_FullMethodName      = "/service_distributor.Distributor/EditCurrencyAccount"
-	Distributor_DeleteCurrencyAccount_FullMethodName    = "/service_distributor.Distributor/DeleteCurrencyAccount"
+	Distributor_GetBankAccounts_FullMethodName          = "/service_distributor.Distributor/GetBankAccounts"
+	Distributor_CreateBankAccount_FullMethodName        = "/service_distributor.Distributor/CreateBankAccount"
+	Distributor_EditBankAccount_FullMethodName          = "/service_distributor.Distributor/EditBankAccount"
+	Distributor_DeleteBankAccount_FullMethodName        = "/service_distributor.Distributor/DeleteBankAccount"
 )
 
 // DistributorClient is the client API for Distributor service.
@@ -73,18 +73,18 @@ type DistributorClient interface {
 	/// CreateTransactionResponse
 	CreateTransaction(ctx context.Context, in *CreateTransactionRequest, opts ...grpc.CallOption) (*CreateTransactionResponse, error)
 	// <-------------- CURRENCY ACCOUNT -------------->
-	/// Получить список расчетных счетов дистрибьютора. Получает GetCurrencyAccountsRequest, возвращает
-	/// GetCurrencyAccountsResponse
-	GetCurrencyAccounts(ctx context.Context, in *GetCurrencyAccountsRequest, opts ...grpc.CallOption) (*GetCurrencyAccountsResponse, error)
-	/// Создать расчетный счет. Получает CreateCurrencyAccountRequest, возвращает
-	/// CreateCurrencyAccountResponse
-	CreateCurrencyAccount(ctx context.Context, in *CreateCurrencyAccountRequest, opts ...grpc.CallOption) (*CreateCurrencyAccountResponse, error)
-	/// Редактировать расчетный счет. Получает EditCurrencyAccountRequest, возвращает
-	/// EditCurrencyAccountResponse
-	EditCurrencyAccount(ctx context.Context, in *EditCurrencyAccountRequest, opts ...grpc.CallOption) (*EditCurrencyAccountResponse, error)
-	/// Удалить расчетный счет. Получает DeleteCurrencyAccountRequest, возвращает
-	/// DeleteCurrencyAccountResponse
-	DeleteCurrencyAccount(ctx context.Context, in *DeleteCurrencyAccountRequest, opts ...grpc.CallOption) (*DeleteCurrencyAccountResponse, error)
+	/// Получить список расчетных счетов дистрибьютора. Получает GetBankAccountsRequest, возвращает
+	/// GetBankAccountsResponse
+	GetBankAccounts(ctx context.Context, in *GetBankAccountsRequest, opts ...grpc.CallOption) (*GetBankAccountsResponse, error)
+	/// Создать расчетный счет. Получает CreateBankAccountRequest, возвращает
+	/// CreateBankAccountResponse
+	CreateBankAccount(ctx context.Context, in *CreateBankAccountRequest, opts ...grpc.CallOption) (*CreateBankAccountResponse, error)
+	/// Редактировать расчетный счет. Получает EditBankAccountRequest, возвращает
+	/// EditBankAccountResponse
+	EditBankAccount(ctx context.Context, in *EditBankAccountRequest, opts ...grpc.CallOption) (*EditBankAccountResponse, error)
+	/// Удалить расчетный счет. Получает DeleteBankAccountRequest, возвращает
+	/// DeleteBankAccountResponse
+	DeleteBankAccount(ctx context.Context, in *DeleteBankAccountRequest, opts ...grpc.CallOption) (*DeleteBankAccountResponse, error)
 }
 
 type distributorClient struct {
@@ -245,40 +245,40 @@ func (c *distributorClient) CreateTransaction(ctx context.Context, in *CreateTra
 	return out, nil
 }
 
-func (c *distributorClient) GetCurrencyAccounts(ctx context.Context, in *GetCurrencyAccountsRequest, opts ...grpc.CallOption) (*GetCurrencyAccountsResponse, error) {
+func (c *distributorClient) GetBankAccounts(ctx context.Context, in *GetBankAccountsRequest, opts ...grpc.CallOption) (*GetBankAccountsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetCurrencyAccountsResponse)
-	err := c.cc.Invoke(ctx, Distributor_GetCurrencyAccounts_FullMethodName, in, out, cOpts...)
+	out := new(GetBankAccountsResponse)
+	err := c.cc.Invoke(ctx, Distributor_GetBankAccounts_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *distributorClient) CreateCurrencyAccount(ctx context.Context, in *CreateCurrencyAccountRequest, opts ...grpc.CallOption) (*CreateCurrencyAccountResponse, error) {
+func (c *distributorClient) CreateBankAccount(ctx context.Context, in *CreateBankAccountRequest, opts ...grpc.CallOption) (*CreateBankAccountResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateCurrencyAccountResponse)
-	err := c.cc.Invoke(ctx, Distributor_CreateCurrencyAccount_FullMethodName, in, out, cOpts...)
+	out := new(CreateBankAccountResponse)
+	err := c.cc.Invoke(ctx, Distributor_CreateBankAccount_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *distributorClient) EditCurrencyAccount(ctx context.Context, in *EditCurrencyAccountRequest, opts ...grpc.CallOption) (*EditCurrencyAccountResponse, error) {
+func (c *distributorClient) EditBankAccount(ctx context.Context, in *EditBankAccountRequest, opts ...grpc.CallOption) (*EditBankAccountResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(EditCurrencyAccountResponse)
-	err := c.cc.Invoke(ctx, Distributor_EditCurrencyAccount_FullMethodName, in, out, cOpts...)
+	out := new(EditBankAccountResponse)
+	err := c.cc.Invoke(ctx, Distributor_EditBankAccount_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *distributorClient) DeleteCurrencyAccount(ctx context.Context, in *DeleteCurrencyAccountRequest, opts ...grpc.CallOption) (*DeleteCurrencyAccountResponse, error) {
+func (c *distributorClient) DeleteBankAccount(ctx context.Context, in *DeleteBankAccountRequest, opts ...grpc.CallOption) (*DeleteBankAccountResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteCurrencyAccountResponse)
-	err := c.cc.Invoke(ctx, Distributor_DeleteCurrencyAccount_FullMethodName, in, out, cOpts...)
+	out := new(DeleteBankAccountResponse)
+	err := c.cc.Invoke(ctx, Distributor_DeleteBankAccount_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -318,18 +318,18 @@ type DistributorServer interface {
 	/// CreateTransactionResponse
 	CreateTransaction(context.Context, *CreateTransactionRequest) (*CreateTransactionResponse, error)
 	// <-------------- CURRENCY ACCOUNT -------------->
-	/// Получить список расчетных счетов дистрибьютора. Получает GetCurrencyAccountsRequest, возвращает
-	/// GetCurrencyAccountsResponse
-	GetCurrencyAccounts(context.Context, *GetCurrencyAccountsRequest) (*GetCurrencyAccountsResponse, error)
-	/// Создать расчетный счет. Получает CreateCurrencyAccountRequest, возвращает
-	/// CreateCurrencyAccountResponse
-	CreateCurrencyAccount(context.Context, *CreateCurrencyAccountRequest) (*CreateCurrencyAccountResponse, error)
-	/// Редактировать расчетный счет. Получает EditCurrencyAccountRequest, возвращает
-	/// EditCurrencyAccountResponse
-	EditCurrencyAccount(context.Context, *EditCurrencyAccountRequest) (*EditCurrencyAccountResponse, error)
-	/// Удалить расчетный счет. Получает DeleteCurrencyAccountRequest, возвращает
-	/// DeleteCurrencyAccountResponse
-	DeleteCurrencyAccount(context.Context, *DeleteCurrencyAccountRequest) (*DeleteCurrencyAccountResponse, error)
+	/// Получить список расчетных счетов дистрибьютора. Получает GetBankAccountsRequest, возвращает
+	/// GetBankAccountsResponse
+	GetBankAccounts(context.Context, *GetBankAccountsRequest) (*GetBankAccountsResponse, error)
+	/// Создать расчетный счет. Получает CreateBankAccountRequest, возвращает
+	/// CreateBankAccountResponse
+	CreateBankAccount(context.Context, *CreateBankAccountRequest) (*CreateBankAccountResponse, error)
+	/// Редактировать расчетный счет. Получает EditBankAccountRequest, возвращает
+	/// EditBankAccountResponse
+	EditBankAccount(context.Context, *EditBankAccountRequest) (*EditBankAccountResponse, error)
+	/// Удалить расчетный счет. Получает DeleteBankAccountRequest, возвращает
+	/// DeleteBankAccountResponse
+	DeleteBankAccount(context.Context, *DeleteBankAccountRequest) (*DeleteBankAccountResponse, error)
 	mustEmbedUnimplementedDistributorServer()
 }
 
@@ -385,17 +385,17 @@ func (UnimplementedDistributorServer) GetTransactions(context.Context, *GetTrans
 func (UnimplementedDistributorServer) CreateTransaction(context.Context, *CreateTransactionRequest) (*CreateTransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTransaction not implemented")
 }
-func (UnimplementedDistributorServer) GetCurrencyAccounts(context.Context, *GetCurrencyAccountsRequest) (*GetCurrencyAccountsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCurrencyAccounts not implemented")
+func (UnimplementedDistributorServer) GetBankAccounts(context.Context, *GetBankAccountsRequest) (*GetBankAccountsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBankAccounts not implemented")
 }
-func (UnimplementedDistributorServer) CreateCurrencyAccount(context.Context, *CreateCurrencyAccountRequest) (*CreateCurrencyAccountResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateCurrencyAccount not implemented")
+func (UnimplementedDistributorServer) CreateBankAccount(context.Context, *CreateBankAccountRequest) (*CreateBankAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateBankAccount not implemented")
 }
-func (UnimplementedDistributorServer) EditCurrencyAccount(context.Context, *EditCurrencyAccountRequest) (*EditCurrencyAccountResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method EditCurrencyAccount not implemented")
+func (UnimplementedDistributorServer) EditBankAccount(context.Context, *EditBankAccountRequest) (*EditBankAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EditBankAccount not implemented")
 }
-func (UnimplementedDistributorServer) DeleteCurrencyAccount(context.Context, *DeleteCurrencyAccountRequest) (*DeleteCurrencyAccountResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteCurrencyAccount not implemented")
+func (UnimplementedDistributorServer) DeleteBankAccount(context.Context, *DeleteBankAccountRequest) (*DeleteBankAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteBankAccount not implemented")
 }
 func (UnimplementedDistributorServer) mustEmbedUnimplementedDistributorServer() {}
 func (UnimplementedDistributorServer) testEmbeddedByValue()                     {}
@@ -688,74 +688,74 @@ func _Distributor_CreateTransaction_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Distributor_GetCurrencyAccounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCurrencyAccountsRequest)
+func _Distributor_GetBankAccounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBankAccountsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DistributorServer).GetCurrencyAccounts(ctx, in)
+		return srv.(DistributorServer).GetBankAccounts(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Distributor_GetCurrencyAccounts_FullMethodName,
+		FullMethod: Distributor_GetBankAccounts_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DistributorServer).GetCurrencyAccounts(ctx, req.(*GetCurrencyAccountsRequest))
+		return srv.(DistributorServer).GetBankAccounts(ctx, req.(*GetBankAccountsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Distributor_CreateCurrencyAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateCurrencyAccountRequest)
+func _Distributor_CreateBankAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateBankAccountRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DistributorServer).CreateCurrencyAccount(ctx, in)
+		return srv.(DistributorServer).CreateBankAccount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Distributor_CreateCurrencyAccount_FullMethodName,
+		FullMethod: Distributor_CreateBankAccount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DistributorServer).CreateCurrencyAccount(ctx, req.(*CreateCurrencyAccountRequest))
+		return srv.(DistributorServer).CreateBankAccount(ctx, req.(*CreateBankAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Distributor_EditCurrencyAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EditCurrencyAccountRequest)
+func _Distributor_EditBankAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EditBankAccountRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DistributorServer).EditCurrencyAccount(ctx, in)
+		return srv.(DistributorServer).EditBankAccount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Distributor_EditCurrencyAccount_FullMethodName,
+		FullMethod: Distributor_EditBankAccount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DistributorServer).EditCurrencyAccount(ctx, req.(*EditCurrencyAccountRequest))
+		return srv.(DistributorServer).EditBankAccount(ctx, req.(*EditBankAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Distributor_DeleteCurrencyAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteCurrencyAccountRequest)
+func _Distributor_DeleteBankAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteBankAccountRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DistributorServer).DeleteCurrencyAccount(ctx, in)
+		return srv.(DistributorServer).DeleteBankAccount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Distributor_DeleteCurrencyAccount_FullMethodName,
+		FullMethod: Distributor_DeleteBankAccount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DistributorServer).DeleteCurrencyAccount(ctx, req.(*DeleteCurrencyAccountRequest))
+		return srv.(DistributorServer).DeleteBankAccount(ctx, req.(*DeleteBankAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -828,20 +828,20 @@ var Distributor_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Distributor_CreateTransaction_Handler,
 		},
 		{
-			MethodName: "GetCurrencyAccounts",
-			Handler:    _Distributor_GetCurrencyAccounts_Handler,
+			MethodName: "GetBankAccounts",
+			Handler:    _Distributor_GetBankAccounts_Handler,
 		},
 		{
-			MethodName: "CreateCurrencyAccount",
-			Handler:    _Distributor_CreateCurrencyAccount_Handler,
+			MethodName: "CreateBankAccount",
+			Handler:    _Distributor_CreateBankAccount_Handler,
 		},
 		{
-			MethodName: "EditCurrencyAccount",
-			Handler:    _Distributor_EditCurrencyAccount_Handler,
+			MethodName: "EditBankAccount",
+			Handler:    _Distributor_EditBankAccount_Handler,
 		},
 		{
-			MethodName: "DeleteCurrencyAccount",
-			Handler:    _Distributor_DeleteCurrencyAccount_Handler,
+			MethodName: "DeleteBankAccount",
+			Handler:    _Distributor_DeleteBankAccount_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
