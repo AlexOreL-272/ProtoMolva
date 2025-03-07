@@ -234,10 +234,10 @@ message GetTransactionsRequest {
 
 message CreateTransactionRequest {
   string distributor_id = 1;
-  int32 amount = 2;
+  int64 amount = 2;
   string currency = 3;
   string bank_account_id = 4;
-  VacancyInfo vacancy = 5;
+  optional VacancyInfo vacancy = 5; // не передается, если пополнение, например
   string request_id = 6;
 }
 
@@ -448,7 +448,7 @@ message VacancyInfo {
 message SubmissionFilters {
   optional string vacancy_id = 1;
   optional SubmissionsStatus status = 2;
-  optional int32 amount = 3;
+    optional int32 amount = 3;
   optional int32 offset = 4;
 }
 
@@ -522,7 +522,7 @@ message Transaction {
   TransactionStatus status = 3;
   int64 amount = 4;
   string currency = 5;
-  VacancyInfo vacancy = 6;
+  optional VacancyInfo vacancy = 6;
   google.protobuf.Timestamp created_at = 7;
   google.protobuf.Timestamp updated_at = 8;
 }
@@ -543,11 +543,11 @@ message BankAccount {
 }
 
 message BankAccountEditables {
-  string account_number = 1;
-  string bank_name = 2;
-  string bik = 3;
-  string correspondent_account = 4;
-  string inn = 5;
-  string kpp = 6;
-  string ogrn = 7;
+  optional string account_number = 1;
+  optional string bank_name = 2;
+  optional string bik = 3;
+  optional string correspondent_account = 4;
+  optional string inn = 5;
+  optional string kpp = 6;
+  optional string ogrn = 7;
 }

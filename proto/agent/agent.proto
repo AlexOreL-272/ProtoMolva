@@ -201,7 +201,7 @@ message CreateTransactionRequest {
   int32 amount = 2;
   string currency = 3;
   string bank_account_id = 4;
-  DistributorInfo distributor = 5;
+  optional CompanyInfo company = 5;
   string request_id = 6;
 }
 
@@ -428,7 +428,7 @@ message ClientData {
   optional string resume = 7;
 }
 
-message DistributorInfo {
+message CompanyInfo {
   string id = 1;
   string name = 2;
   string legal_name = 3;
@@ -471,7 +471,7 @@ message Transaction {
   TransactionStatus status = 3;
   int64 amount = 4;
   string currency = 5;
-  DistributorInfo distributor = 6;
+  optional CompanyInfo distributor = 6; // не передается, если пополнили через админку, например
   google.protobuf.Timestamp created_at = 7;
   google.protobuf.Timestamp updated_at = 8;
 }
@@ -492,11 +492,11 @@ message BankAccount {
 }
 
 message BankAccountEditables {
-  string account_number = 1;
-  string bank_name = 2;
-  string bik = 3;
-  string correspondent_account = 4;
-  string inn = 5;
-  string kpp = 6;
-  string ogrn = 7;
+  optional string account_number = 1;
+  optional string bank_name = 2;
+  optional string bik = 3;
+  optional string correspondent_account = 4;
+  optional string inn = 5;
+  optional string kpp = 6;
+  optional string ogrn = 7;
 }
