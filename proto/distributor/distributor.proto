@@ -237,7 +237,8 @@ message CreateTransactionRequest {
   int32 amount = 2;
   string currency = 3;
   string bank_account_id = 4;
-  string request_id = 5;
+  VacancyInfo vacancy = 5;
+  string request_id = 6;
 }
 
 // <=============== CURRENCY ACCOUNT ===============>
@@ -322,8 +323,8 @@ message SetCompanyDataResponse {
 // <=============== BALANCE ===============>
 
 message GetBalanceResponse {
-  int32 raw_balance = 1;
-  int32 clean_balance = 2;
+  int64 raw_balance = 1;
+  int64 clean_balance = 2;
 }
 
 // <=============== TRANSACTIONS ===============>
@@ -518,7 +519,7 @@ message Transaction {
   string id = 1;
   TransactionType type = 2;
   TransactionStatus status = 3;
-  int32 amount = 4;
+  int64 amount = 4;
   string currency = 5;
   VacancyInfo vacancy = 6;
   google.protobuf.Timestamp created_at = 7;
