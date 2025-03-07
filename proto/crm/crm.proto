@@ -57,13 +57,16 @@ service Crm {
     rpc GetBalance(GetBalanceRequest) returns(GetBalanceResponse) {};
     rpc SaveTransaction(SaveTransactionRequest) returns(SaveTransactionResponse) {};
 
-    rpc GetCompanyBankAccount(GetCompanyBankAccountRequest) returns(GetCompanyBankAccountResponse) {};
+    rpc GetBankAccounts(GetBankAccountsRequest) returns(GetBankAccountsResponse) {};
     rpc GetTransactions(GetTransactionsRequest) returns(GetTransactionsResponse) {};
     rpc UpdateTransactionStatus(UpdateTransactionStatusRequest) returns(UpdateTransactionStatusResponse) {};
 
-    rpc CreateBankAccountTicket(CreateBankAccountTicketRequest) returns (CreateBankAccountTicketResponse) {};
-    rpc UpdateBankAccountTicketStatus(UpdateBankAccountTicketStatusRequest) returns (UpdateBankAccountTicketStatusResponse) {};
-    rpc GetBankAccountTickets(GetBankAccountTicketsRequest) returns (GetBankAccountTicketsResponse) {};
+    rpc UpdateBankAccount(UpdateBankAccountRequest) returns (UpdateBankAccountResponse) {};
+
+    // rpc CreateBankAccountTicket(CreateBankAccountTicketRequest) returns (CreateBankAccountTicketResponse) {};
+    // rpc UpdateBankAccountTicketStatus(UpdateBankAccountTicketStatusRequest) returns (UpdateBankAccountTicketStatusResponse) {};
+    // rpc GetBankAccountTickets(GetBankAccountTicketsRequest) returns (GetBankAccountTicketsResponse) {};
+
 }
 
 enum UserType {
@@ -465,6 +468,9 @@ message GetClientValidationResponse {
     ResponseStatus status = 3;
 }
 
+
+
+
 message HelloRequest {
     string name = 1;
 }
@@ -510,6 +516,7 @@ message CompanyTicket {
     google.protobuf.Timestamp updated_at = 7;
 }
 
+
 message GetBalanceRequest {
     string owner_id = 1;
 }
@@ -529,17 +536,17 @@ message Balance {
     google.protobuf.Timestamp updated_at = 6;
 }
 
-message GetCompanyBankAccountRequest {
+message GetBankAccountsRequest {
     string owner_id = 1;
 }
 
-message GetCompanyBankAccountResponse {
-    CompanyBankAccount account = 1;
+message GetBankAccountsResponse {
+    repeated BankAccount bank_accounts = 1;
     ResponseStatus status = 2;
     string response = 3;
 }
 
-message CompanyBankAccount {
+message BankAccount {
     string id = 1;
     string owner_id = 2;
     string account_number = 3;
@@ -551,25 +558,39 @@ message CompanyBankAccount {
     string ogrn = 9;
     google.protobuf.Timestamp created_at = 10;
     google.protobuf.Timestamp updated_at = 11;
+    bool is_active = 12;
+    bool has_moderation_ticket = 13;
 }
 
 
 message GetTransactionsRequest {
-    string owner_id = 1;
-    string status = 2; // Опционально, если нужно фильтровать по статусу
-    int32 offset = 3;
-    int32 sign = 4; // -1, 1 или 0 - без фильтра
+    string owner_id = 1; // either owner_id either bank_account_id
+    string bank_account_id = 2;
+    TicketStatus status = 3; // Опционально, если нужно фильтровать по статусу
+    int32 offset = 4;
     int32 amount = 5;
+    int32 sign = 6;
 }
+
+
 
 message Transaction {
     string id = 1;
-    string uid = 2;
-    int32 amount = 3;
-    string transaction_status = 4;
-    string currency = 5;
-    google.protobuf.Timestamp created_at = 6;
-    google.protobuf.Timestamp updated_at = 7;
+    string owner_id = 2;
+    string bank_account_id = 3;
+    int32 amount = 4;
+    TicketStatus transaction_status = 5;
+    string currency = 6;
+    google.protobuf.Timestamp created_at = 7;
+    google.protobuf.Timestamp updated_at = 8;
+    Payload payload = 9;
+}
+
+message Payload {
+    string distributor_id = 1;
+    string distributor_name = 2;
+    string distributor_legal_name = 3;
+    string origin = 4;
 }
 
 message GetTransactionsResponse {
@@ -579,10 +600,9 @@ message GetTransactionsResponse {
 }
 
 message SaveTransactionRequest {
-    string request_id = 1; // Ключ идемпотентности
-    string owner_id = 2;
-    int64 amount = 3;
-    string currency = 4;
+    Transaction transaction = 1;
+    // ожидается наличие id, owner_id, bank_account_id, amount_currency, payload--optional
+    // отсутсвие полей, которые не обозначены не проверяется
 }
 
 message SaveTransactionResponse {
@@ -592,7 +612,7 @@ message SaveTransactionResponse {
 
 message UpdateTransactionStatusRequest {
     string transaction_id = 1;
-    string status = 2;
+    TicketStatus status = 2;
 }
 
 message UpdateTransactionStatusResponse {
@@ -601,43 +621,56 @@ message UpdateTransactionStatusResponse {
 }
 
 
-message CreateBankAccountTicketRequest {
-    BankAccountTicket ticket = 1;
+message UpdateBankAccountRequest {
+    BankAccount ticket = 1;
+    // id передан -- редачит, не передан -- создает
+    // передавить и айди и оунер_айди НЕЛЬЗЯ СМЕРТЬ КИШКИ СКЕЛЕТЫ
 }
 
-message CreateBankAccountTicketResponse {
+message UpdateBankAccountResponse {
     ResponseStatus status = 1;
     string response = 2;
-    string ticket_id = 3;
-    string owner_id = 4;
+    string bank_account_id = 3;
 }
 
-message UpdateBankAccountTicketStatusRequest {
-    string ticket_id = 1;
-    TicketStatus status = 2;
-}
 
-message UpdateBankAccountTicketStatusResponse {
-    ResponseStatus status = 1;
-    string response = 2;
-}
+// message CreateBankAccountTicketRequest {
+//     BankAccountTicket ticket = 1;
+// }
 
-message GetBankAccountTicketsRequest {
-    string owner_id = 1;
+// message CreateBankAccountTicketResponse {
+//     ResponseStatus status = 1;
+//     string response = 2;
+//     string ticket_id = 3;
+//     string owner_id = 4;
+// }
 
-}
+// message UpdateBankAccountTicketStatusRequest {
+//     string ticket_id = 1;
+//     TicketStatus status = 2;
+// }
 
-message GetBankAccountTicketsResponse {
-    repeated BankAccountTicket tickets = 1;
-    ResponseStatus status = 2;
-    string response = 3;
-}
+// message UpdateBankAccountTicketStatusResponse {
+//     ResponseStatus status = 1;
+//     string response = 2;
+// }
 
-message BankAccountTicket {
-    string id = 1;
-    string owner_id = 2;
-    CompanyBankAccount bank_account_data = 3;
-    TicketStatus status = 4;
-    google.protobuf.Timestamp created_at = 5;
-    google.protobuf.Timestamp updated_at = 6;
-}
+// message GetBankAccountTicketsRequest {
+//     string owner_id = 1;
+
+// }
+
+// message GetBankAccountTicketsResponse {
+//     repeated BankAccountTicket tickets = 1;
+//     ResponseStatus status = 2;
+//     string response = 3;
+// }
+
+// message BankAccountTicket {
+//     string id = 1;
+//     string owner_id = 2;
+//     BankAccount bank_account_data = 3;
+//     TicketStatus status = 4;
+//     google.protobuf.Timestamp created_at = 5;
+//     google.protobuf.Timestamp updated_at = 6;
+// }

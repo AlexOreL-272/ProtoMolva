@@ -104,37 +104,37 @@ service Agent {
   }
 
   // <-------------- CURRENCY ACCOUNT -------------->
-  /// Получить список расчетных счетов агента. Получает GetCurrencyAccountsRequest, возвращает
-  /// GetCurrencyAccountsResponse
-  rpc GetCurrencyAccounts(GetCurrencyAccountsRequest) returns (GetCurrencyAccountsResponse) {
+  /// Получить список расчетных счетов агента. Получает GetBankAccountsRequest, возвращает
+  /// GetBankAccountsResponse
+  rpc GetBankAccounts(GetBankAccountsRequest) returns (GetBankAccountsResponse) {
     option (google.api.http) = {
-      get : "/v1/agents/{agent_id}/currency_accounts"
+      get : "/v1/agents/{agent_id}/bank_accounts"
     };
   }
 
-  /// Создать расчетный счет. Получает CreateCurrencyAccountRequest, возвращает
-  /// CreateCurrencyAccountResponse
-  rpc CreateCurrencyAccount(CreateCurrencyAccountRequest) returns (CreateCurrencyAccountResponse) {
+  /// Создать расчетный счет. Получает CreateBankAccountRequest, возвращает
+  /// CreateBankAccountResponse
+  rpc CreateBankAccount(CreateBankAccountRequest) returns (CreateBankAccountResponse) {
     option (google.api.http) = {
-      post : "/v1/agents/{agent_id}/currency_accounts"
+      post : "/v1/agents/{agent_id}/bank_accounts"
       body : "*"
     };
   }
 
-  /// Редактировать расчетный счет. Получает EditCurrencyAccountRequest, возвращает
-  /// EditCurrencyAccountResponse
-  rpc EditCurrencyAccount(EditCurrencyAccountRequest) returns (EditCurrencyAccountResponse) {
+  /// Редактировать расчетный счет. Получает EditBankAccountRequest, возвращает
+  /// EditBankAccountResponse
+  rpc EditBankAccount(EditBankAccountRequest) returns (EditBankAccountResponse) {
     option (google.api.http) = {
-      put : "/v1/agents/{agent_id}/currency_accounts/{currency_account_id}"
+      put : "/v1/agents/{agent_id}/bank_accounts/{bank_account_id}"
       body : "*"
     };
   }
 
-  /// Удалить расчетный счет. Получает DeleteCurrencyAccountRequest, возвращает
-  /// DeleteCurrencyAccountResponse
-  rpc DeleteCurrencyAccount(DeleteCurrencyAccountRequest) returns (DeleteCurrencyAccountResponse) {
+  /// Удалить расчетный счет. Получает DeleteBankAccountRequest, возвращает
+  /// DeleteBankAccountResponse
+  rpc DeleteBankAccount(DeleteBankAccountRequest) returns (DeleteBankAccountResponse) {
     option (google.api.http) = {
-      delete : "/v1/agents/{agent_id}/currency_accounts/{currency_account_id}"
+      delete : "/v1/agents/{agent_id}/bank_accounts/{bank_account_id}"
     };
   }
 }
@@ -200,30 +200,30 @@ message CreateTransactionRequest {
   string agent_id = 1;
   int32 amount = 2;
   string currency = 3;
-  string currency_account_id = 4;
+  string bank_account_id = 4;
   string request_id = 5;
 }
 
 // <=============== CURRENCY ACCOUNT ===============>
 
-message GetCurrencyAccountsRequest {
+message GetBankAccountsRequest {
   string agent_id = 1;
 }
 
-message CreateCurrencyAccountRequest {
+message CreateBankAccountRequest {
   string agent_id = 1;
-  CurrencyAccountEditables currency_account = 2;
+  BankAccountEditables bank_account = 2;
 }
 
-message EditCurrencyAccountRequest {
+message EditBankAccountRequest {
   string agent_id = 1;
-  string currency_account_id = 2;
-  CurrencyAccountEditables currency_account = 3;
+  string bank_account_id = 2;
+  BankAccountEditables bank_account = 3;
 }
 
-message DeleteCurrencyAccountRequest {
+message DeleteBankAccountRequest {
   string agent_id = 1;
-  string currency_account_id = 2;
+  string bank_account_id = 2;
 }
 
 // <-------------- RESPONSES -------------->
@@ -281,21 +281,25 @@ message GetTransactionsResponse {
 }
 
 message CreateTransactionResponse {
+  string id = 1;
 }
 
 // <=============== CURRENCY ACCOUNT ===============>
 
-message GetCurrencyAccountsResponse {
-  CurrencyAccount currency_account = 1;
+message GetBankAccountsResponse {
+  BankAccount bank_account = 1;
 }
 
-message CreateCurrencyAccountResponse {
+message CreateBankAccountResponse {
+  string bank_account_id = 1;
 }
 
-message EditCurrencyAccountResponse {
+message EditBankAccountResponse {
+  BankAccountEditables bank_account = 1;
 }
 
-message DeleteCurrencyAccountResponse {
+message DeleteBankAccountResponse {
+  string bank_account_id = 1;
 }
 
 // <-------------- SOURCES -------------->
@@ -472,7 +476,7 @@ message Transaction {
 
 // <=============== CURRENCY ACCOUNT ===============>
 
-message CurrencyAccount {
+message BankAccount {
   string id = 1;
   string account_number = 2;
   string bank_name = 3;
@@ -485,7 +489,7 @@ message CurrencyAccount {
   google.protobuf.Timestamp updated_at = 10;
 }
 
-message CurrencyAccountEditables {
+message BankAccountEditables {
   string account_number = 1;
   string bank_name = 2;
   string bik = 3;
