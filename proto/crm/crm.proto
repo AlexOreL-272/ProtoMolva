@@ -578,7 +578,7 @@ message Transaction {
     string id = 1;
     string owner_id = 2;
     string bank_account_id = 3;
-    int32 amount = 4;
+    int64 amount = 4;
     TicketStatus transaction_status = 5;
     string currency = 6;
     google.protobuf.Timestamp created_at = 7;
@@ -587,10 +587,12 @@ message Transaction {
 }
 
 message Payload {
-    string distributor_id = 1;
-    string distributor_name = 2;
-    string distributor_legal_name = 3;
+    string company_id = 1;
+    string company_name = 2;
+    string company_legal_person = 3;
     string origin = 4;
+    string vacancy_id = 5;
+    string vacancy_name = 6;
 }
 
 message GetTransactionsResponse {

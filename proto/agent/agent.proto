@@ -288,7 +288,7 @@ message CreateTransactionResponse {
 // <=============== CURRENCY ACCOUNT ===============>
 
 message GetBankAccountsResponse {
-  BankAccount bank_account = 1;
+  repeated BankAccount bank_account = 1;
 }
 
 message CreateBankAccountResponse {
@@ -296,7 +296,8 @@ message CreateBankAccountResponse {
 }
 
 message EditBankAccountResponse {
-  BankAccountEditables bank_account = 1;
+  string bank_account_id = 1;
+  BankAccountEditables bank_account = 2;
 }
 
 message DeleteBankAccountResponse {

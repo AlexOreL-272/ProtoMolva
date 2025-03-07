@@ -348,7 +348,8 @@ message CreateBankAccountResponse {
 }
 
 message EditBankAccountResponse {
-  BankAccountEditables bank_account = 1;
+  string bank_account_id = 1;
+  BankAccountEditables bank_account = 2;
 }
 
 message DeleteBankAccountResponse {
