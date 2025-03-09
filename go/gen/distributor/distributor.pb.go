@@ -29,7 +29,7 @@ const (
 	SubmissionsStatus_SUBM_IN_PROGRESS  SubmissionsStatus = 1 // В процессе
 	SubmissionsStatus_SUBM_ON_INTERVIEW SubmissionsStatus = 2 // На собеседовании
 	SubmissionsStatus_SUBM_DECLINED     SubmissionsStatus = 3 // Отклонено
-	SubmissionsStatus_SUBM_SUSPENDED    SubmissionsStatus = 4 // Приостановлено (как будто удалено)
+	SubmissionsStatus_SUBM_SUSPENDED    SubmissionsStatus = 4 // Приостановлено(как будто удалено)
 	SubmissionsStatus_SUBM_ACCEPTED     SubmissionsStatus = 5 // Принято
 )
 

@@ -364,7 +364,7 @@ enum SubmissionsStatus {
   SUBM_IN_PROGRESS = 1;  // В процессе
   SUBM_ON_INTERVIEW = 2; // На собеседовании
   SUBM_DECLINED = 3;     // Отклонено
-  SUBM_SUSPENDED = 4;    // Приостановлено (как будто удалено)
+  SUBM_SUSPENDED = 4;    // Приостановлено(как будто удалено)
   SUBM_ACCEPTED = 5;     // Принято
 }
 
