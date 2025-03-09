@@ -245,6 +245,7 @@ message CreateTransactionRequest {
 
 message GetBankAccountsRequest {
   string distributor_id = 1;
+  bool is_company = 2; // agent or company
 }
 
 message CreateBankAccountRequest {
@@ -511,7 +512,7 @@ message CompanyBrief {
 // <=============== TRANSACTION ===============>
 
 message TransactionFilters {
-  optional string type = 1;     // Тип транзакции (replenishment / withdrawal)
+  string type = 1;              // Тип транзакции (replenishment / withdrawal)
   optional int32 page_id = 2;   // Alias на offset
   optional int32 page_size = 3; // Alias на limit
 }

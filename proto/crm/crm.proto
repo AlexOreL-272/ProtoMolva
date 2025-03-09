@@ -558,8 +558,7 @@ message BankAccount {
     string ogrn = 9;
     google.protobuf.Timestamp created_at = 10;
     google.protobuf.Timestamp updated_at = 11;
-    bool is_active = 12;
-    bool has_moderation_ticket = 13;
+    string owner_type = 12; //agent or company
 }
 
 
@@ -589,7 +588,7 @@ message Transaction {
 message Payload {
     string company_id = 1;
     string company_name = 2;
-    string company_legal_person = 3;
+    string company_legal_name = 3;
     string origin = 4;
     string vacancy_id = 5;
     string vacancy_name = 6;
@@ -624,7 +623,7 @@ message UpdateTransactionStatusResponse {
 
 
 message UpdateBankAccountRequest {
-    BankAccount ticket = 1;
+    BankAccount bank_account = 1;
     // id передан -- редачит, не передан -- создает
     // передавить и айди и оунер_айди НЕЛЬЗЯ СМЕРТЬ КИШКИ СКЕЛЕТЫ
 }
