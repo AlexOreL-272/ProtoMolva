@@ -472,7 +472,7 @@ message Transaction {
   TransactionStatus status = 3;
   int64 amount = 4;
   string currency = 5;
-  optional CompanyInfo distributor = 6; // не передается, если пополнили через админку, например
+  optional CompanyInfo company = 6; // не передается, если пополнили через админку, например
   google.protobuf.Timestamp created_at = 7;
   google.protobuf.Timestamp updated_at = 8;
 }
