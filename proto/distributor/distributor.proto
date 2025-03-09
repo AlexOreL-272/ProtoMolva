@@ -250,7 +250,6 @@ message GetBankAccountsRequest {
 message CreateBankAccountRequest {
   string distributor_id = 1;
   BankAccountEditables bank_account = 2;
-  bool is_company = 3; // agent or company
 }
 
 message EditBankAccountRequest {
