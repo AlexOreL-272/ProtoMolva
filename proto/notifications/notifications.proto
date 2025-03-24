@@ -20,7 +20,8 @@ message SendEmailRequest {
 message Attachment {
   string name = 1;
   string content_type = 2;
-  bytes body = 3;
+  string content_disposition = 3;
+  bytes body = 4;
 }
 
 message Embedded {
