@@ -26,4 +26,5 @@ message Attachment {
 message Embedded {
   string cid = 1;
   bytes body = 2;
+  string content_type = 3;
 }
