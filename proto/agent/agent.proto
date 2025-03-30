@@ -482,14 +482,15 @@ message Transaction {
 message BankAccount {
   string id = 1;
   string account_number = 2;
-  string bank_name = 3;
-  string bik = 4;
-  string correspondent_account = 5;
-  string inn = 6;
-  string kpp = 7;
-  string ogrn = 8;
-  google.protobuf.Timestamp created_at = 9;
-  google.protobuf.Timestamp updated_at = 10;
+  string account_name = 3;
+  string bank_name = 4;
+  string bik = 5;
+  string correspondent_account = 6;
+  string inn = 7;
+  string kpp = 8;
+  string ogrn = 9;
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
 }
 
 message BankAccountEditables {
