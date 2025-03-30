@@ -550,15 +550,16 @@ message BankAccount {
     string id = 1;
     string owner_id = 2;
     string account_number = 3;
-    string bank_name = 4;
-    string bik = 5;
-    string correspondent_account = 6;
-    string inn = 7;
-    string kpp = 8;
-    string ogrn = 9;
-    google.protobuf.Timestamp created_at = 10;
-    google.protobuf.Timestamp updated_at = 11;
-    string owner_type = 12; //agent or company
+    string account_name = 4;
+    string bank_name = 5;
+    string bik = 6;
+    string correspondent_account = 7;
+    string inn = 8;
+    string kpp = 9;
+    string ogrn = 10;
+    google.protobuf.Timestamp created_at = 11;
+    google.protobuf.Timestamp updated_at = 12;
+    string owner_type = 13; //agent or company
 }
 
 

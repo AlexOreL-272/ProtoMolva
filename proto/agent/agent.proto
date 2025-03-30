@@ -495,10 +495,11 @@ message BankAccount {
 
 message BankAccountEditables {
   optional string account_number = 1;
-  optional string bank_name = 2;
-  optional string bik = 3;
-  optional string correspondent_account = 4;
-  optional string inn = 5;
-  optional string kpp = 6;
-  optional string ogrn = 7;
+  optional string account_name = 2;
+  optional string bank_name = 3;
+  optional string bik = 4;
+  optional string correspondent_account = 5;
+  optional string inn = 6;
+  optional string kpp = 7;
+  optional string ogrn = 8;
 }
