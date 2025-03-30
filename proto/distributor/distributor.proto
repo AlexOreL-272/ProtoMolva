@@ -528,7 +528,6 @@ message Transaction {
 }
 
 // <=============== CURRENCY ACCOUNT ===============>
-
 message BankAccount {
   string id = 1;
   string account_number = 2;
