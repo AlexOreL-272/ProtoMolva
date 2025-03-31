@@ -1096,6 +1096,53 @@ func (x *GetBankAccountsRequest) GetDistributorId() string {
 	return ""
 }
 
+type GetCompanyBankAccountsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CompanyId string `protobuf:"bytes,1,opt,name=company_id,json=companyId,proto3" json:"company_id,omitempty"`
+}
+
+func (x *GetCompanyBankAccountsRequest) Reset() {
+	*x = GetCompanyBankAccountsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_distributor_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCompanyBankAccountsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCompanyBankAccountsRequest) ProtoMessage() {}
+
+func (x *GetCompanyBankAccountsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_distributor_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCompanyBankAccountsRequest.ProtoReflect.Descriptor instead.
+func (*GetCompanyBankAccountsRequest) Descriptor() ([]byte, []int) {
+	return file_distributor_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *GetCompanyBankAccountsRequest) GetCompanyId() string {
+	if x != nil {
+		return x.CompanyId
+	}
+	return ""
+}
+
 type CreateBankAccountRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1108,7 +1155,7 @@ type CreateBankAccountRequest struct {
 func (x *CreateBankAccountRequest) Reset() {
 	*x = CreateBankAccountRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[15]
+		mi := &file_distributor_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1121,7 +1168,7 @@ func (x *CreateBankAccountRequest) String() string {
 func (*CreateBankAccountRequest) ProtoMessage() {}
 
 func (x *CreateBankAccountRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[15]
+	mi := &file_distributor_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1134,7 +1181,7 @@ func (x *CreateBankAccountRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateBankAccountRequest.ProtoReflect.Descriptor instead.
 func (*CreateBankAccountRequest) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{15}
+	return file_distributor_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *CreateBankAccountRequest) GetDistributorId() string {
@@ -1164,7 +1211,7 @@ type EditBankAccountRequest struct {
 func (x *EditBankAccountRequest) Reset() {
 	*x = EditBankAccountRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[16]
+		mi := &file_distributor_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1177,7 +1224,7 @@ func (x *EditBankAccountRequest) String() string {
 func (*EditBankAccountRequest) ProtoMessage() {}
 
 func (x *EditBankAccountRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[16]
+	mi := &file_distributor_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1190,7 +1237,7 @@ func (x *EditBankAccountRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EditBankAccountRequest.ProtoReflect.Descriptor instead.
 func (*EditBankAccountRequest) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{16}
+	return file_distributor_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *EditBankAccountRequest) GetDistributorId() string {
@@ -1226,7 +1273,7 @@ type DeleteBankAccountRequest struct {
 func (x *DeleteBankAccountRequest) Reset() {
 	*x = DeleteBankAccountRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[17]
+		mi := &file_distributor_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1239,7 +1286,7 @@ func (x *DeleteBankAccountRequest) String() string {
 func (*DeleteBankAccountRequest) ProtoMessage() {}
 
 func (x *DeleteBankAccountRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[17]
+	mi := &file_distributor_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1252,7 +1299,7 @@ func (x *DeleteBankAccountRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBankAccountRequest.ProtoReflect.Descriptor instead.
 func (*DeleteBankAccountRequest) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{17}
+	return file_distributor_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *DeleteBankAccountRequest) GetDistributorId() string {
@@ -1280,7 +1327,7 @@ type GetVacancyListResponse struct {
 func (x *GetVacancyListResponse) Reset() {
 	*x = GetVacancyListResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[18]
+		mi := &file_distributor_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1293,7 +1340,7 @@ func (x *GetVacancyListResponse) String() string {
 func (*GetVacancyListResponse) ProtoMessage() {}
 
 func (x *GetVacancyListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[18]
+	mi := &file_distributor_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1306,7 +1353,7 @@ func (x *GetVacancyListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetVacancyListResponse.ProtoReflect.Descriptor instead.
 func (*GetVacancyListResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{18}
+	return file_distributor_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GetVacancyListResponse) GetVacancies() []*Vacancy {
@@ -1327,7 +1374,7 @@ type CreateVacancyResponse struct {
 func (x *CreateVacancyResponse) Reset() {
 	*x = CreateVacancyResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[19]
+		mi := &file_distributor_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1340,7 +1387,7 @@ func (x *CreateVacancyResponse) String() string {
 func (*CreateVacancyResponse) ProtoMessage() {}
 
 func (x *CreateVacancyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[19]
+	mi := &file_distributor_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1353,7 +1400,7 @@ func (x *CreateVacancyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateVacancyResponse.ProtoReflect.Descriptor instead.
 func (*CreateVacancyResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{19}
+	return file_distributor_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *CreateVacancyResponse) GetVacancy() *Vacancy {
@@ -1374,7 +1421,7 @@ type EditVacancyResponse struct {
 func (x *EditVacancyResponse) Reset() {
 	*x = EditVacancyResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[20]
+		mi := &file_distributor_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1387,7 +1434,7 @@ func (x *EditVacancyResponse) String() string {
 func (*EditVacancyResponse) ProtoMessage() {}
 
 func (x *EditVacancyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[20]
+	mi := &file_distributor_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1400,7 +1447,7 @@ func (x *EditVacancyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EditVacancyResponse.ProtoReflect.Descriptor instead.
 func (*EditVacancyResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{20}
+	return file_distributor_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *EditVacancyResponse) GetVacancy() *Vacancy {
@@ -1419,7 +1466,7 @@ type DeleteVacancyResponse struct {
 func (x *DeleteVacancyResponse) Reset() {
 	*x = DeleteVacancyResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[21]
+		mi := &file_distributor_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1432,7 +1479,7 @@ func (x *DeleteVacancyResponse) String() string {
 func (*DeleteVacancyResponse) ProtoMessage() {}
 
 func (x *DeleteVacancyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[21]
+	mi := &file_distributor_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1445,7 +1492,7 @@ func (x *DeleteVacancyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteVacancyResponse.ProtoReflect.Descriptor instead.
 func (*DeleteVacancyResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{21}
+	return file_distributor_proto_rawDescGZIP(), []int{22}
 }
 
 type SendVacancyToModerationResponse struct {
@@ -1457,7 +1504,7 @@ type SendVacancyToModerationResponse struct {
 func (x *SendVacancyToModerationResponse) Reset() {
 	*x = SendVacancyToModerationResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[22]
+		mi := &file_distributor_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1470,7 +1517,7 @@ func (x *SendVacancyToModerationResponse) String() string {
 func (*SendVacancyToModerationResponse) ProtoMessage() {}
 
 func (x *SendVacancyToModerationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[22]
+	mi := &file_distributor_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1483,7 +1530,7 @@ func (x *SendVacancyToModerationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SendVacancyToModerationResponse.ProtoReflect.Descriptor instead.
 func (*SendVacancyToModerationResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{22}
+	return file_distributor_proto_rawDescGZIP(), []int{23}
 }
 
 type GetSubmissionsForVacancyResponse struct {
@@ -1497,7 +1544,7 @@ type GetSubmissionsForVacancyResponse struct {
 func (x *GetSubmissionsForVacancyResponse) Reset() {
 	*x = GetSubmissionsForVacancyResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[23]
+		mi := &file_distributor_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1510,7 +1557,7 @@ func (x *GetSubmissionsForVacancyResponse) String() string {
 func (*GetSubmissionsForVacancyResponse) ProtoMessage() {}
 
 func (x *GetSubmissionsForVacancyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[23]
+	mi := &file_distributor_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1523,7 +1570,7 @@ func (x *GetSubmissionsForVacancyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSubmissionsForVacancyResponse.ProtoReflect.Descriptor instead.
 func (*GetSubmissionsForVacancyResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{23}
+	return file_distributor_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *GetSubmissionsForVacancyResponse) GetSubmissions() []*Submission {
@@ -1544,7 +1591,7 @@ type SetSubmissionStatusResponse struct {
 func (x *SetSubmissionStatusResponse) Reset() {
 	*x = SetSubmissionStatusResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[24]
+		mi := &file_distributor_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1557,7 +1604,7 @@ func (x *SetSubmissionStatusResponse) String() string {
 func (*SetSubmissionStatusResponse) ProtoMessage() {}
 
 func (x *SetSubmissionStatusResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[24]
+	mi := &file_distributor_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1570,7 +1617,7 @@ func (x *SetSubmissionStatusResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetSubmissionStatusResponse.ProtoReflect.Descriptor instead.
 func (*SetSubmissionStatusResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{24}
+	return file_distributor_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *SetSubmissionStatusResponse) GetSubmission() *Submission {
@@ -1591,7 +1638,7 @@ type GetProfileResponse struct {
 func (x *GetProfileResponse) Reset() {
 	*x = GetProfileResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[25]
+		mi := &file_distributor_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1604,7 +1651,7 @@ func (x *GetProfileResponse) String() string {
 func (*GetProfileResponse) ProtoMessage() {}
 
 func (x *GetProfileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[25]
+	mi := &file_distributor_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1617,7 +1664,7 @@ func (x *GetProfileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProfileResponse.ProtoReflect.Descriptor instead.
 func (*GetProfileResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{25}
+	return file_distributor_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *GetProfileResponse) GetProfile() *FullPersonalData {
@@ -1638,7 +1685,7 @@ type SetProfileResponse struct {
 func (x *SetProfileResponse) Reset() {
 	*x = SetProfileResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[26]
+		mi := &file_distributor_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1651,7 +1698,7 @@ func (x *SetProfileResponse) String() string {
 func (*SetProfileResponse) ProtoMessage() {}
 
 func (x *SetProfileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[26]
+	mi := &file_distributor_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1664,7 +1711,7 @@ func (x *SetProfileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetProfileResponse.ProtoReflect.Descriptor instead.
 func (*SetProfileResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{26}
+	return file_distributor_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *SetProfileResponse) GetProfile() *FullPersonalData {
@@ -1685,7 +1732,7 @@ type GetCompanyDataResponse struct {
 func (x *GetCompanyDataResponse) Reset() {
 	*x = GetCompanyDataResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[27]
+		mi := &file_distributor_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1698,7 +1745,7 @@ func (x *GetCompanyDataResponse) String() string {
 func (*GetCompanyDataResponse) ProtoMessage() {}
 
 func (x *GetCompanyDataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[27]
+	mi := &file_distributor_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1711,7 +1758,7 @@ func (x *GetCompanyDataResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCompanyDataResponse.ProtoReflect.Descriptor instead.
 func (*GetCompanyDataResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{27}
+	return file_distributor_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *GetCompanyDataResponse) GetCompany() *Company {
@@ -1732,7 +1779,7 @@ type GetCompaniesUidResponse struct {
 func (x *GetCompaniesUidResponse) Reset() {
 	*x = GetCompaniesUidResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[28]
+		mi := &file_distributor_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1745,7 +1792,7 @@ func (x *GetCompaniesUidResponse) String() string {
 func (*GetCompaniesUidResponse) ProtoMessage() {}
 
 func (x *GetCompaniesUidResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[28]
+	mi := &file_distributor_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1758,7 +1805,7 @@ func (x *GetCompaniesUidResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCompaniesUidResponse.ProtoReflect.Descriptor instead.
 func (*GetCompaniesUidResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{28}
+	return file_distributor_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *GetCompaniesUidResponse) GetCompanies() []*CompanyBrief {
@@ -1779,7 +1826,7 @@ type SetCompanyDataResponse struct {
 func (x *SetCompanyDataResponse) Reset() {
 	*x = SetCompanyDataResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[29]
+		mi := &file_distributor_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1792,7 +1839,7 @@ func (x *SetCompanyDataResponse) String() string {
 func (*SetCompanyDataResponse) ProtoMessage() {}
 
 func (x *SetCompanyDataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[29]
+	mi := &file_distributor_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1805,7 +1852,7 @@ func (x *SetCompanyDataResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetCompanyDataResponse.ProtoReflect.Descriptor instead.
 func (*SetCompanyDataResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{29}
+	return file_distributor_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *SetCompanyDataResponse) GetCompany() *Company {
@@ -1827,7 +1874,7 @@ type GetBalanceResponse struct {
 func (x *GetBalanceResponse) Reset() {
 	*x = GetBalanceResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[30]
+		mi := &file_distributor_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1840,7 +1887,7 @@ func (x *GetBalanceResponse) String() string {
 func (*GetBalanceResponse) ProtoMessage() {}
 
 func (x *GetBalanceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[30]
+	mi := &file_distributor_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1853,7 +1900,7 @@ func (x *GetBalanceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBalanceResponse.ProtoReflect.Descriptor instead.
 func (*GetBalanceResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{30}
+	return file_distributor_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *GetBalanceResponse) GetRawBalance() int64 {
@@ -1881,7 +1928,7 @@ type GetTransactionsResponse struct {
 func (x *GetTransactionsResponse) Reset() {
 	*x = GetTransactionsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[31]
+		mi := &file_distributor_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1894,7 +1941,7 @@ func (x *GetTransactionsResponse) String() string {
 func (*GetTransactionsResponse) ProtoMessage() {}
 
 func (x *GetTransactionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[31]
+	mi := &file_distributor_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1907,7 +1954,7 @@ func (x *GetTransactionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTransactionsResponse.ProtoReflect.Descriptor instead.
 func (*GetTransactionsResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{31}
+	return file_distributor_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *GetTransactionsResponse) GetTransactions() []*Transaction {
@@ -1928,7 +1975,7 @@ type CreateTransactionResponse struct {
 func (x *CreateTransactionResponse) Reset() {
 	*x = CreateTransactionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[32]
+		mi := &file_distributor_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1941,7 +1988,7 @@ func (x *CreateTransactionResponse) String() string {
 func (*CreateTransactionResponse) ProtoMessage() {}
 
 func (x *CreateTransactionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[32]
+	mi := &file_distributor_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1954,7 +2001,7 @@ func (x *CreateTransactionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateTransactionResponse.ProtoReflect.Descriptor instead.
 func (*CreateTransactionResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{32}
+	return file_distributor_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *CreateTransactionResponse) GetId() string {
@@ -1975,7 +2022,7 @@ type GetBankAccountsResponse struct {
 func (x *GetBankAccountsResponse) Reset() {
 	*x = GetBankAccountsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[33]
+		mi := &file_distributor_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1988,7 +2035,7 @@ func (x *GetBankAccountsResponse) String() string {
 func (*GetBankAccountsResponse) ProtoMessage() {}
 
 func (x *GetBankAccountsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[33]
+	mi := &file_distributor_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2001,7 +2048,7 @@ func (x *GetBankAccountsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBankAccountsResponse.ProtoReflect.Descriptor instead.
 func (*GetBankAccountsResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{33}
+	return file_distributor_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *GetBankAccountsResponse) GetBankAccounts() []*BankAccount {
@@ -2022,7 +2069,7 @@ type CreateBankAccountResponse struct {
 func (x *CreateBankAccountResponse) Reset() {
 	*x = CreateBankAccountResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[34]
+		mi := &file_distributor_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2035,7 +2082,7 @@ func (x *CreateBankAccountResponse) String() string {
 func (*CreateBankAccountResponse) ProtoMessage() {}
 
 func (x *CreateBankAccountResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[34]
+	mi := &file_distributor_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2048,7 +2095,7 @@ func (x *CreateBankAccountResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateBankAccountResponse.ProtoReflect.Descriptor instead.
 func (*CreateBankAccountResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{34}
+	return file_distributor_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *CreateBankAccountResponse) GetBankAccountId() string {
@@ -2070,7 +2117,7 @@ type EditBankAccountResponse struct {
 func (x *EditBankAccountResponse) Reset() {
 	*x = EditBankAccountResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[35]
+		mi := &file_distributor_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2083,7 +2130,7 @@ func (x *EditBankAccountResponse) String() string {
 func (*EditBankAccountResponse) ProtoMessage() {}
 
 func (x *EditBankAccountResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[35]
+	mi := &file_distributor_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2096,7 +2143,7 @@ func (x *EditBankAccountResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EditBankAccountResponse.ProtoReflect.Descriptor instead.
 func (*EditBankAccountResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{35}
+	return file_distributor_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *EditBankAccountResponse) GetBankAccountId() string {
@@ -2124,7 +2171,7 @@ type DeleteBankAccountResponse struct {
 func (x *DeleteBankAccountResponse) Reset() {
 	*x = DeleteBankAccountResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[36]
+		mi := &file_distributor_proto_msgTypes[37]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2137,7 +2184,7 @@ func (x *DeleteBankAccountResponse) String() string {
 func (*DeleteBankAccountResponse) ProtoMessage() {}
 
 func (x *DeleteBankAccountResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[36]
+	mi := &file_distributor_proto_msgTypes[37]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2150,7 +2197,7 @@ func (x *DeleteBankAccountResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBankAccountResponse.ProtoReflect.Descriptor instead.
 func (*DeleteBankAccountResponse) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{36}
+	return file_distributor_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *DeleteBankAccountResponse) GetBankAccountId() string {
@@ -2172,7 +2219,7 @@ type VacancyModeration struct {
 func (x *VacancyModeration) Reset() {
 	*x = VacancyModeration{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[37]
+		mi := &file_distributor_proto_msgTypes[38]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2185,7 +2232,7 @@ func (x *VacancyModeration) String() string {
 func (*VacancyModeration) ProtoMessage() {}
 
 func (x *VacancyModeration) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[37]
+	mi := &file_distributor_proto_msgTypes[38]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2198,7 +2245,7 @@ func (x *VacancyModeration) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VacancyModeration.ProtoReflect.Descriptor instead.
 func (*VacancyModeration) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{37}
+	return file_distributor_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *VacancyModeration) GetStatus() VacancyStatus {
@@ -2226,7 +2273,7 @@ type Image struct {
 func (x *Image) Reset() {
 	*x = Image{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[38]
+		mi := &file_distributor_proto_msgTypes[39]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2239,7 +2286,7 @@ func (x *Image) String() string {
 func (*Image) ProtoMessage() {}
 
 func (x *Image) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[38]
+	mi := &file_distributor_proto_msgTypes[39]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2252,7 +2299,7 @@ func (x *Image) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Image.ProtoReflect.Descriptor instead.
 func (*Image) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{38}
+	return file_distributor_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *Image) GetStorageLink() string {
@@ -2283,7 +2330,7 @@ type VacancyFilters struct {
 func (x *VacancyFilters) Reset() {
 	*x = VacancyFilters{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[39]
+		mi := &file_distributor_proto_msgTypes[40]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2296,7 +2343,7 @@ func (x *VacancyFilters) String() string {
 func (*VacancyFilters) ProtoMessage() {}
 
 func (x *VacancyFilters) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[39]
+	mi := &file_distributor_proto_msgTypes[40]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2309,7 +2356,7 @@ func (x *VacancyFilters) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VacancyFilters.ProtoReflect.Descriptor instead.
 func (*VacancyFilters) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{39}
+	return file_distributor_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *VacancyFilters) GetDistributorId() string {
@@ -2417,7 +2464,7 @@ type Vacancy struct {
 func (x *Vacancy) Reset() {
 	*x = Vacancy{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[40]
+		mi := &file_distributor_proto_msgTypes[41]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2430,7 +2477,7 @@ func (x *Vacancy) String() string {
 func (*Vacancy) ProtoMessage() {}
 
 func (x *Vacancy) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[40]
+	mi := &file_distributor_proto_msgTypes[41]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2443,7 +2490,7 @@ func (x *Vacancy) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Vacancy.ProtoReflect.Descriptor instead.
 func (*Vacancy) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{40}
+	return file_distributor_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *Vacancy) GetVacancyId() string {
@@ -2584,7 +2631,7 @@ type VacancyInfo struct {
 func (x *VacancyInfo) Reset() {
 	*x = VacancyInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[41]
+		mi := &file_distributor_proto_msgTypes[42]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2597,7 +2644,7 @@ func (x *VacancyInfo) String() string {
 func (*VacancyInfo) ProtoMessage() {}
 
 func (x *VacancyInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[41]
+	mi := &file_distributor_proto_msgTypes[42]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2610,7 +2657,7 @@ func (x *VacancyInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VacancyInfo.ProtoReflect.Descriptor instead.
 func (*VacancyInfo) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{41}
+	return file_distributor_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *VacancyInfo) GetId() string {
@@ -2641,7 +2688,7 @@ type SubmissionFilters struct {
 func (x *SubmissionFilters) Reset() {
 	*x = SubmissionFilters{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[42]
+		mi := &file_distributor_proto_msgTypes[43]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2654,7 +2701,7 @@ func (x *SubmissionFilters) String() string {
 func (*SubmissionFilters) ProtoMessage() {}
 
 func (x *SubmissionFilters) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[42]
+	mi := &file_distributor_proto_msgTypes[43]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2667,7 +2714,7 @@ func (x *SubmissionFilters) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubmissionFilters.ProtoReflect.Descriptor instead.
 func (*SubmissionFilters) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{42}
+	return file_distributor_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *SubmissionFilters) GetVacancyId() string {
@@ -2713,7 +2760,7 @@ type Submission struct {
 func (x *Submission) Reset() {
 	*x = Submission{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[43]
+		mi := &file_distributor_proto_msgTypes[44]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2726,7 +2773,7 @@ func (x *Submission) String() string {
 func (*Submission) ProtoMessage() {}
 
 func (x *Submission) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[43]
+	mi := &file_distributor_proto_msgTypes[44]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2739,7 +2786,7 @@ func (x *Submission) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Submission.ProtoReflect.Descriptor instead.
 func (*Submission) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{43}
+	return file_distributor_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *Submission) GetAgentId() string {
@@ -2797,7 +2844,7 @@ type FullPersonalData struct {
 func (x *FullPersonalData) Reset() {
 	*x = FullPersonalData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[44]
+		mi := &file_distributor_proto_msgTypes[45]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2810,7 +2857,7 @@ func (x *FullPersonalData) String() string {
 func (*FullPersonalData) ProtoMessage() {}
 
 func (x *FullPersonalData) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[44]
+	mi := &file_distributor_proto_msgTypes[45]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2823,7 +2870,7 @@ func (x *FullPersonalData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FullPersonalData.ProtoReflect.Descriptor instead.
 func (*FullPersonalData) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{44}
+	return file_distributor_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *FullPersonalData) GetUuid() string {
@@ -2913,7 +2960,7 @@ type ClientData struct {
 func (x *ClientData) Reset() {
 	*x = ClientData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[45]
+		mi := &file_distributor_proto_msgTypes[46]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2926,7 +2973,7 @@ func (x *ClientData) String() string {
 func (*ClientData) ProtoMessage() {}
 
 func (x *ClientData) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[45]
+	mi := &file_distributor_proto_msgTypes[46]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2939,7 +2986,7 @@ func (x *ClientData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClientData.ProtoReflect.Descriptor instead.
 func (*ClientData) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{45}
+	return file_distributor_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *ClientData) GetUuid() string {
@@ -3014,7 +3061,7 @@ type Company struct {
 func (x *Company) Reset() {
 	*x = Company{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[46]
+		mi := &file_distributor_proto_msgTypes[47]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3027,7 +3074,7 @@ func (x *Company) String() string {
 func (*Company) ProtoMessage() {}
 
 func (x *Company) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[46]
+	mi := &file_distributor_proto_msgTypes[47]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3040,7 +3087,7 @@ func (x *Company) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Company.ProtoReflect.Descriptor instead.
 func (*Company) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{46}
+	return file_distributor_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *Company) GetCompanyId() string {
@@ -3146,7 +3193,7 @@ type CompanyBrief struct {
 func (x *CompanyBrief) Reset() {
 	*x = CompanyBrief{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[47]
+		mi := &file_distributor_proto_msgTypes[48]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3159,7 +3206,7 @@ func (x *CompanyBrief) String() string {
 func (*CompanyBrief) ProtoMessage() {}
 
 func (x *CompanyBrief) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[47]
+	mi := &file_distributor_proto_msgTypes[48]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3172,7 +3219,7 @@ func (x *CompanyBrief) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CompanyBrief.ProtoReflect.Descriptor instead.
 func (*CompanyBrief) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{47}
+	return file_distributor_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *CompanyBrief) GetCompanyId() string {
@@ -3202,7 +3249,7 @@ type TransactionFilters struct {
 func (x *TransactionFilters) Reset() {
 	*x = TransactionFilters{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[48]
+		mi := &file_distributor_proto_msgTypes[49]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3215,7 +3262,7 @@ func (x *TransactionFilters) String() string {
 func (*TransactionFilters) ProtoMessage() {}
 
 func (x *TransactionFilters) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[48]
+	mi := &file_distributor_proto_msgTypes[49]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3228,7 +3275,7 @@ func (x *TransactionFilters) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransactionFilters.ProtoReflect.Descriptor instead.
 func (*TransactionFilters) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{48}
+	return file_distributor_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *TransactionFilters) GetType() string {
@@ -3270,7 +3317,7 @@ type Transaction struct {
 func (x *Transaction) Reset() {
 	*x = Transaction{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[49]
+		mi := &file_distributor_proto_msgTypes[50]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3283,7 +3330,7 @@ func (x *Transaction) String() string {
 func (*Transaction) ProtoMessage() {}
 
 func (x *Transaction) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[49]
+	mi := &file_distributor_proto_msgTypes[50]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3296,7 +3343,7 @@ func (x *Transaction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction.ProtoReflect.Descriptor instead.
 func (*Transaction) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{49}
+	return file_distributor_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *Transaction) GetId() string {
@@ -3377,7 +3424,7 @@ type BankAccount struct {
 func (x *BankAccount) Reset() {
 	*x = BankAccount{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[50]
+		mi := &file_distributor_proto_msgTypes[51]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3390,7 +3437,7 @@ func (x *BankAccount) String() string {
 func (*BankAccount) ProtoMessage() {}
 
 func (x *BankAccount) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[50]
+	mi := &file_distributor_proto_msgTypes[51]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3403,7 +3450,7 @@ func (x *BankAccount) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BankAccount.ProtoReflect.Descriptor instead.
 func (*BankAccount) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{50}
+	return file_distributor_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *BankAccount) GetId() string {
@@ -3501,7 +3548,7 @@ type BankAccountEditables struct {
 func (x *BankAccountEditables) Reset() {
 	*x = BankAccountEditables{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_distributor_proto_msgTypes[51]
+		mi := &file_distributor_proto_msgTypes[52]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3514,7 +3561,7 @@ func (x *BankAccountEditables) String() string {
 func (*BankAccountEditables) ProtoMessage() {}
 
 func (x *BankAccountEditables) ProtoReflect() protoreflect.Message {
-	mi := &file_distributor_proto_msgTypes[51]
+	mi := &file_distributor_proto_msgTypes[52]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3527,7 +3574,7 @@ func (x *BankAccountEditables) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BankAccountEditables.ProtoReflect.Descriptor instead.
 func (*BankAccountEditables) Descriptor() ([]byte, []int) {
-	return file_distributor_proto_rawDescGZIP(), []int{51}
+	return file_distributor_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *BankAccountEditables) GetAccountNumber() string {
@@ -3714,7 +3761,11 @@ var file_distributor_proto_rawDesc = []byte{
 	0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
 	0x25, 0x0a, 0x0e, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x5f, 0x69,
 	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62,
-	0x75, 0x74, 0x6f, 0x72, 0x49, 0x64, 0x22, 0x8f, 0x01, 0x0a, 0x18, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x75, 0x74, 0x6f, 0x72, 0x49, 0x64, 0x22, 0x3e, 0x0a, 0x1d, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x6d,
+	0x70, 0x61, 0x6e, 0x79, 0x42, 0x61, 0x6e, 0x6b, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x6f, 0x6d, 0x70, 0x61,
+	0x6e, 0x79, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x63, 0x6f, 0x6d,
+	0x70, 0x61, 0x6e, 0x79, 0x49, 0x64, 0x22, 0x8f, 0x01, 0x0a, 0x18, 0x43, 0x72, 0x65, 0x61, 0x74,
 	0x65, 0x42, 0x61, 0x6e, 0x6b, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75,
 	0x65, 0x73, 0x74, 0x12, 0x25, 0x0a, 0x0e, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74,
 	0x6f, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x64, 0x69, 0x73,
@@ -4183,7 +4234,7 @@ var file_distributor_proto_rawDesc = []byte{
 	0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x52, 0x45, 0x50, 0x4c, 0x45, 0x4e, 0x49, 0x53, 0x48,
 	0x4d, 0x45, 0x4e, 0x54, 0x10, 0x01, 0x12, 0x19, 0x0a, 0x15, 0x54, 0x52, 0x41, 0x4e, 0x53, 0x5f,
 	0x54, 0x59, 0x50, 0x45, 0x5f, 0x57, 0x49, 0x54, 0x48, 0x44, 0x52, 0x41, 0x57, 0x41, 0x4c, 0x10,
-	0x02, 0x32, 0xe9, 0x19, 0x0a, 0x0b, 0x44, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f,
+	0x02, 0x32, 0xb3, 0x1b, 0x0a, 0x0b, 0x44, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f,
 	0x72, 0x12, 0x9d, 0x01, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x56, 0x61, 0x63, 0x61, 0x6e, 0x63, 0x79,
 	0x4c, 0x69, 0x73, 0x74, 0x12, 0x2a, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x64,
 	0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x56, 0x61,
@@ -4355,43 +4406,56 @@ var file_distributor_proto_rawDesc = []byte{
 	0x02, 0x30, 0x12, 0x2e, 0x2f, 0x76, 0x31, 0x2f, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75,
 	0x74, 0x6f, 0x72, 0x2f, 0x7b, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72,
 	0x5f, 0x69, 0x64, 0x7d, 0x2f, 0x62, 0x61, 0x6e, 0x6b, 0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e,
-	0x74, 0x73, 0x12, 0xad, 0x01, 0x0a, 0x11, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x61, 0x6e,
-	0x6b, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x2d, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x5f, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x2e, 0x43,
-	0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x61, 0x6e, 0x6b, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2e, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
-	0x65, 0x5f, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x2e, 0x43, 0x72,
-	0x65, 0x61, 0x74, 0x65, 0x42, 0x61, 0x6e, 0x6b, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x39, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x33, 0x3a,
-	0x01, 0x2a, 0x22, 0x2e, 0x2f, 0x76, 0x31, 0x2f, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75,
-	0x74, 0x6f, 0x72, 0x2f, 0x7b, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72,
-	0x5f, 0x69, 0x64, 0x7d, 0x2f, 0x62, 0x61, 0x6e, 0x6b, 0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e,
-	0x74, 0x73, 0x12, 0xb9, 0x01, 0x0a, 0x0f, 0x45, 0x64, 0x69, 0x74, 0x42, 0x61, 0x6e, 0x6b, 0x41,
-	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x2b, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
-	0x5f, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x2e, 0x45, 0x64, 0x69,
-	0x74, 0x42, 0x61, 0x6e, 0x6b, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x64, 0x69,
-	0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x2e, 0x45, 0x64, 0x69, 0x74, 0x42, 0x61,
+	0x74, 0x73, 0x12, 0xc7, 0x01, 0x0a, 0x16, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x6d, 0x70, 0x61, 0x6e,
+	0x79, 0x42, 0x61, 0x6e, 0x6b, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x12, 0x32, 0x2e,
+	0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75,
+	0x74, 0x6f, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x42, 0x61,
+	0x6e, 0x6b, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x2c, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x64, 0x69, 0x73, 0x74,
+	0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x61, 0x6e, 0x6b, 0x41,
+	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x4b, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x45, 0x12, 0x43, 0x2f, 0x76, 0x31, 0x2f, 0x64, 0x69, 0x73,
+	0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x2f, 0x7b, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69,
+	0x62, 0x75, 0x74, 0x6f, 0x72, 0x5f, 0x69, 0x64, 0x7d, 0x2f, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e,
+	0x79, 0x2f, 0x7b, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x5f, 0x69, 0x64, 0x7d, 0x2f, 0x62,
+	0x61, 0x6e, 0x6b, 0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x12, 0xad, 0x01, 0x0a,
+	0x11, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x61, 0x6e, 0x6b, 0x41, 0x63, 0x63, 0x6f, 0x75,
+	0x6e, 0x74, 0x12, 0x2d, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x64, 0x69, 0x73,
+	0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42,
+	0x61, 0x6e, 0x6b, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x2e, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x64, 0x69, 0x73, 0x74,
+	0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x61,
 	0x6e, 0x6b, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x22, 0x4b, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x45, 0x3a, 0x01, 0x2a, 0x1a, 0x40, 0x2f, 0x76,
+	0x65, 0x22, 0x39, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x33, 0x3a, 0x01, 0x2a, 0x22, 0x2e, 0x2f, 0x76,
 	0x31, 0x2f, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x2f, 0x7b, 0x64,
 	0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x5f, 0x69, 0x64, 0x7d, 0x2f, 0x62,
-	0x61, 0x6e, 0x6b, 0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x2f, 0x7b, 0x62, 0x61,
-	0x6e, 0x6b, 0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x7d, 0x12, 0xbc,
-	0x01, 0x0a, 0x11, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x61, 0x6e, 0x6b, 0x41, 0x63, 0x63,
-	0x6f, 0x75, 0x6e, 0x74, 0x12, 0x2d, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x64,
-	0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74,
-	0x65, 0x42, 0x61, 0x6e, 0x6b, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x2e, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x64, 0x69,
-	0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
-	0x42, 0x61, 0x6e, 0x6b, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x22, 0x48, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x42, 0x2a, 0x40, 0x2f, 0x76, 0x31,
-	0x2f, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x2f, 0x7b, 0x64, 0x69,
-	0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x5f, 0x69, 0x64, 0x7d, 0x2f, 0x62, 0x61,
-	0x6e, 0x6b, 0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x2f, 0x7b, 0x62, 0x61, 0x6e,
-	0x6b, 0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x7d, 0x42, 0x15, 0x5a,
-	0x13, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62,
-	0x75, 0x74, 0x6f, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x61, 0x6e, 0x6b, 0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x12, 0xb9, 0x01, 0x0a,
+	0x0f, 0x45, 0x64, 0x69, 0x74, 0x42, 0x61, 0x6e, 0x6b, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74,
+	0x12, 0x2b, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x64, 0x69, 0x73, 0x74, 0x72,
+	0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x2e, 0x45, 0x64, 0x69, 0x74, 0x42, 0x61, 0x6e, 0x6b, 0x41,
+	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e,
+	0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75,
+	0x74, 0x6f, 0x72, 0x2e, 0x45, 0x64, 0x69, 0x74, 0x42, 0x61, 0x6e, 0x6b, 0x41, 0x63, 0x63, 0x6f,
+	0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x4b, 0x82, 0xd3, 0xe4,
+	0x93, 0x02, 0x45, 0x3a, 0x01, 0x2a, 0x1a, 0x40, 0x2f, 0x76, 0x31, 0x2f, 0x64, 0x69, 0x73, 0x74,
+	0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x2f, 0x7b, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62,
+	0x75, 0x74, 0x6f, 0x72, 0x5f, 0x69, 0x64, 0x7d, 0x2f, 0x62, 0x61, 0x6e, 0x6b, 0x5f, 0x61, 0x63,
+	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x2f, 0x7b, 0x62, 0x61, 0x6e, 0x6b, 0x5f, 0x61, 0x63, 0x63,
+	0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x7d, 0x12, 0xbc, 0x01, 0x0a, 0x11, 0x44, 0x65, 0x6c,
+	0x65, 0x74, 0x65, 0x42, 0x61, 0x6e, 0x6b, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x2d,
+	0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62,
+	0x75, 0x74, 0x6f, 0x72, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x61, 0x6e, 0x6b, 0x41,
+	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2e, 0x2e,
+	0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75,
+	0x74, 0x6f, 0x72, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x61, 0x6e, 0x6b, 0x41, 0x63,
+	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x48, 0x82,
+	0xd3, 0xe4, 0x93, 0x02, 0x42, 0x2a, 0x40, 0x2f, 0x76, 0x31, 0x2f, 0x64, 0x69, 0x73, 0x74, 0x72,
+	0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x2f, 0x7b, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75,
+	0x74, 0x6f, 0x72, 0x5f, 0x69, 0x64, 0x7d, 0x2f, 0x62, 0x61, 0x6e, 0x6b, 0x5f, 0x61, 0x63, 0x63,
+	0x6f, 0x75, 0x6e, 0x74, 0x73, 0x2f, 0x7b, 0x62, 0x61, 0x6e, 0x6b, 0x5f, 0x61, 0x63, 0x63, 0x6f,
+	0x75, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x7d, 0x42, 0x15, 0x5a, 0x13, 0x73, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x65, 0x2e, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x6f, 0x72, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -4407,7 +4471,7 @@ func file_distributor_proto_rawDescGZIP() []byte {
 }
 
 var file_distributor_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_distributor_proto_msgTypes = make([]protoimpl.MessageInfo, 52)
+var file_distributor_proto_msgTypes = make([]protoimpl.MessageInfo, 53)
 var file_distributor_proto_goTypes = []interface{}{
 	(SubmissionsStatus)(0),                   // 0: service_distributor.SubmissionsStatus
 	(VacancyStatus)(0),                       // 1: service_distributor.VacancyStatus
@@ -4428,85 +4492,86 @@ var file_distributor_proto_goTypes = []interface{}{
 	(*GetTransactionsRequest)(nil),           // 16: service_distributor.GetTransactionsRequest
 	(*CreateTransactionRequest)(nil),         // 17: service_distributor.CreateTransactionRequest
 	(*GetBankAccountsRequest)(nil),           // 18: service_distributor.GetBankAccountsRequest
-	(*CreateBankAccountRequest)(nil),         // 19: service_distributor.CreateBankAccountRequest
-	(*EditBankAccountRequest)(nil),           // 20: service_distributor.EditBankAccountRequest
-	(*DeleteBankAccountRequest)(nil),         // 21: service_distributor.DeleteBankAccountRequest
-	(*GetVacancyListResponse)(nil),           // 22: service_distributor.GetVacancyListResponse
-	(*CreateVacancyResponse)(nil),            // 23: service_distributor.CreateVacancyResponse
-	(*EditVacancyResponse)(nil),              // 24: service_distributor.EditVacancyResponse
-	(*DeleteVacancyResponse)(nil),            // 25: service_distributor.DeleteVacancyResponse
-	(*SendVacancyToModerationResponse)(nil),  // 26: service_distributor.SendVacancyToModerationResponse
-	(*GetSubmissionsForVacancyResponse)(nil), // 27: service_distributor.GetSubmissionsForVacancyResponse
-	(*SetSubmissionStatusResponse)(nil),      // 28: service_distributor.SetSubmissionStatusResponse
-	(*GetProfileResponse)(nil),               // 29: service_distributor.GetProfileResponse
-	(*SetProfileResponse)(nil),               // 30: service_distributor.SetProfileResponse
-	(*GetCompanyDataResponse)(nil),           // 31: service_distributor.GetCompanyDataResponse
-	(*GetCompaniesUidResponse)(nil),          // 32: service_distributor.GetCompaniesUidResponse
-	(*SetCompanyDataResponse)(nil),           // 33: service_distributor.SetCompanyDataResponse
-	(*GetBalanceResponse)(nil),               // 34: service_distributor.GetBalanceResponse
-	(*GetTransactionsResponse)(nil),          // 35: service_distributor.GetTransactionsResponse
-	(*CreateTransactionResponse)(nil),        // 36: service_distributor.CreateTransactionResponse
-	(*GetBankAccountsResponse)(nil),          // 37: service_distributor.GetBankAccountsResponse
-	(*CreateBankAccountResponse)(nil),        // 38: service_distributor.CreateBankAccountResponse
-	(*EditBankAccountResponse)(nil),          // 39: service_distributor.EditBankAccountResponse
-	(*DeleteBankAccountResponse)(nil),        // 40: service_distributor.DeleteBankAccountResponse
-	(*VacancyModeration)(nil),                // 41: service_distributor.VacancyModeration
-	(*Image)(nil),                            // 42: service_distributor.Image
-	(*VacancyFilters)(nil),                   // 43: service_distributor.VacancyFilters
-	(*Vacancy)(nil),                          // 44: service_distributor.Vacancy
-	(*VacancyInfo)(nil),                      // 45: service_distributor.VacancyInfo
-	(*SubmissionFilters)(nil),                // 46: service_distributor.SubmissionFilters
-	(*Submission)(nil),                       // 47: service_distributor.Submission
-	(*FullPersonalData)(nil),                 // 48: service_distributor.FullPersonalData
-	(*ClientData)(nil),                       // 49: service_distributor.ClientData
-	(*Company)(nil),                          // 50: service_distributor.Company
-	(*CompanyBrief)(nil),                     // 51: service_distributor.CompanyBrief
-	(*TransactionFilters)(nil),               // 52: service_distributor.TransactionFilters
-	(*Transaction)(nil),                      // 53: service_distributor.Transaction
-	(*BankAccount)(nil),                      // 54: service_distributor.BankAccount
-	(*BankAccountEditables)(nil),             // 55: service_distributor.BankAccountEditables
-	(*timestamppb.Timestamp)(nil),            // 56: google.protobuf.Timestamp
+	(*GetCompanyBankAccountsRequest)(nil),    // 19: service_distributor.GetCompanyBankAccountsRequest
+	(*CreateBankAccountRequest)(nil),         // 20: service_distributor.CreateBankAccountRequest
+	(*EditBankAccountRequest)(nil),           // 21: service_distributor.EditBankAccountRequest
+	(*DeleteBankAccountRequest)(nil),         // 22: service_distributor.DeleteBankAccountRequest
+	(*GetVacancyListResponse)(nil),           // 23: service_distributor.GetVacancyListResponse
+	(*CreateVacancyResponse)(nil),            // 24: service_distributor.CreateVacancyResponse
+	(*EditVacancyResponse)(nil),              // 25: service_distributor.EditVacancyResponse
+	(*DeleteVacancyResponse)(nil),            // 26: service_distributor.DeleteVacancyResponse
+	(*SendVacancyToModerationResponse)(nil),  // 27: service_distributor.SendVacancyToModerationResponse
+	(*GetSubmissionsForVacancyResponse)(nil), // 28: service_distributor.GetSubmissionsForVacancyResponse
+	(*SetSubmissionStatusResponse)(nil),      // 29: service_distributor.SetSubmissionStatusResponse
+	(*GetProfileResponse)(nil),               // 30: service_distributor.GetProfileResponse
+	(*SetProfileResponse)(nil),               // 31: service_distributor.SetProfileResponse
+	(*GetCompanyDataResponse)(nil),           // 32: service_distributor.GetCompanyDataResponse
+	(*GetCompaniesUidResponse)(nil),          // 33: service_distributor.GetCompaniesUidResponse
+	(*SetCompanyDataResponse)(nil),           // 34: service_distributor.SetCompanyDataResponse
+	(*GetBalanceResponse)(nil),               // 35: service_distributor.GetBalanceResponse
+	(*GetTransactionsResponse)(nil),          // 36: service_distributor.GetTransactionsResponse
+	(*CreateTransactionResponse)(nil),        // 37: service_distributor.CreateTransactionResponse
+	(*GetBankAccountsResponse)(nil),          // 38: service_distributor.GetBankAccountsResponse
+	(*CreateBankAccountResponse)(nil),        // 39: service_distributor.CreateBankAccountResponse
+	(*EditBankAccountResponse)(nil),          // 40: service_distributor.EditBankAccountResponse
+	(*DeleteBankAccountResponse)(nil),        // 41: service_distributor.DeleteBankAccountResponse
+	(*VacancyModeration)(nil),                // 42: service_distributor.VacancyModeration
+	(*Image)(nil),                            // 43: service_distributor.Image
+	(*VacancyFilters)(nil),                   // 44: service_distributor.VacancyFilters
+	(*Vacancy)(nil),                          // 45: service_distributor.Vacancy
+	(*VacancyInfo)(nil),                      // 46: service_distributor.VacancyInfo
+	(*SubmissionFilters)(nil),                // 47: service_distributor.SubmissionFilters
+	(*Submission)(nil),                       // 48: service_distributor.Submission
+	(*FullPersonalData)(nil),                 // 49: service_distributor.FullPersonalData
+	(*ClientData)(nil),                       // 50: service_distributor.ClientData
+	(*Company)(nil),                          // 51: service_distributor.Company
+	(*CompanyBrief)(nil),                     // 52: service_distributor.CompanyBrief
+	(*TransactionFilters)(nil),               // 53: service_distributor.TransactionFilters
+	(*Transaction)(nil),                      // 54: service_distributor.Transaction
+	(*BankAccount)(nil),                      // 55: service_distributor.BankAccount
+	(*BankAccountEditables)(nil),             // 56: service_distributor.BankAccountEditables
+	(*timestamppb.Timestamp)(nil),            // 57: google.protobuf.Timestamp
 }
 var file_distributor_proto_depIdxs = []int32{
-	43, // 0: service_distributor.GetVacancyListRequest.filters:type_name -> service_distributor.VacancyFilters
-	44, // 1: service_distributor.CreateVacancyRequest.vacancy:type_name -> service_distributor.Vacancy
-	44, // 2: service_distributor.EditVacancyRequest.vacancy:type_name -> service_distributor.Vacancy
-	46, // 3: service_distributor.GetSubmissionsForVacancyRequest.filters:type_name -> service_distributor.SubmissionFilters
+	44, // 0: service_distributor.GetVacancyListRequest.filters:type_name -> service_distributor.VacancyFilters
+	45, // 1: service_distributor.CreateVacancyRequest.vacancy:type_name -> service_distributor.Vacancy
+	45, // 2: service_distributor.EditVacancyRequest.vacancy:type_name -> service_distributor.Vacancy
+	47, // 3: service_distributor.GetSubmissionsForVacancyRequest.filters:type_name -> service_distributor.SubmissionFilters
 	0,  // 4: service_distributor.SetSubmissionStatusRequest.status:type_name -> service_distributor.SubmissionsStatus
-	48, // 5: service_distributor.SetProfileRequest.profile:type_name -> service_distributor.FullPersonalData
-	50, // 6: service_distributor.SetCompanyDataRequest.company:type_name -> service_distributor.Company
-	52, // 7: service_distributor.GetTransactionsRequest.filters:type_name -> service_distributor.TransactionFilters
-	45, // 8: service_distributor.CreateTransactionRequest.vacancy:type_name -> service_distributor.VacancyInfo
-	55, // 9: service_distributor.CreateBankAccountRequest.bank_account:type_name -> service_distributor.BankAccountEditables
-	55, // 10: service_distributor.EditBankAccountRequest.bank_account:type_name -> service_distributor.BankAccountEditables
-	44, // 11: service_distributor.GetVacancyListResponse.vacancies:type_name -> service_distributor.Vacancy
-	44, // 12: service_distributor.CreateVacancyResponse.vacancy:type_name -> service_distributor.Vacancy
-	44, // 13: service_distributor.EditVacancyResponse.vacancy:type_name -> service_distributor.Vacancy
-	47, // 14: service_distributor.GetSubmissionsForVacancyResponse.submissions:type_name -> service_distributor.Submission
-	47, // 15: service_distributor.SetSubmissionStatusResponse.submission:type_name -> service_distributor.Submission
-	48, // 16: service_distributor.GetProfileResponse.profile:type_name -> service_distributor.FullPersonalData
-	48, // 17: service_distributor.SetProfileResponse.profile:type_name -> service_distributor.FullPersonalData
-	50, // 18: service_distributor.GetCompanyDataResponse.company:type_name -> service_distributor.Company
-	51, // 19: service_distributor.GetCompaniesUidResponse.companies:type_name -> service_distributor.CompanyBrief
-	50, // 20: service_distributor.SetCompanyDataResponse.company:type_name -> service_distributor.Company
-	53, // 21: service_distributor.GetTransactionsResponse.transactions:type_name -> service_distributor.Transaction
-	54, // 22: service_distributor.GetBankAccountsResponse.bank_accounts:type_name -> service_distributor.BankAccount
-	55, // 23: service_distributor.EditBankAccountResponse.bank_account:type_name -> service_distributor.BankAccountEditables
+	49, // 5: service_distributor.SetProfileRequest.profile:type_name -> service_distributor.FullPersonalData
+	51, // 6: service_distributor.SetCompanyDataRequest.company:type_name -> service_distributor.Company
+	53, // 7: service_distributor.GetTransactionsRequest.filters:type_name -> service_distributor.TransactionFilters
+	46, // 8: service_distributor.CreateTransactionRequest.vacancy:type_name -> service_distributor.VacancyInfo
+	56, // 9: service_distributor.CreateBankAccountRequest.bank_account:type_name -> service_distributor.BankAccountEditables
+	56, // 10: service_distributor.EditBankAccountRequest.bank_account:type_name -> service_distributor.BankAccountEditables
+	45, // 11: service_distributor.GetVacancyListResponse.vacancies:type_name -> service_distributor.Vacancy
+	45, // 12: service_distributor.CreateVacancyResponse.vacancy:type_name -> service_distributor.Vacancy
+	45, // 13: service_distributor.EditVacancyResponse.vacancy:type_name -> service_distributor.Vacancy
+	48, // 14: service_distributor.GetSubmissionsForVacancyResponse.submissions:type_name -> service_distributor.Submission
+	48, // 15: service_distributor.SetSubmissionStatusResponse.submission:type_name -> service_distributor.Submission
+	49, // 16: service_distributor.GetProfileResponse.profile:type_name -> service_distributor.FullPersonalData
+	49, // 17: service_distributor.SetProfileResponse.profile:type_name -> service_distributor.FullPersonalData
+	51, // 18: service_distributor.GetCompanyDataResponse.company:type_name -> service_distributor.Company
+	52, // 19: service_distributor.GetCompaniesUidResponse.companies:type_name -> service_distributor.CompanyBrief
+	51, // 20: service_distributor.SetCompanyDataResponse.company:type_name -> service_distributor.Company
+	54, // 21: service_distributor.GetTransactionsResponse.transactions:type_name -> service_distributor.Transaction
+	55, // 22: service_distributor.GetBankAccountsResponse.bank_accounts:type_name -> service_distributor.BankAccount
+	56, // 23: service_distributor.EditBankAccountResponse.bank_account:type_name -> service_distributor.BankAccountEditables
 	1,  // 24: service_distributor.VacancyModeration.status:type_name -> service_distributor.VacancyStatus
 	1,  // 25: service_distributor.VacancyFilters.status:type_name -> service_distributor.VacancyStatus
-	41, // 26: service_distributor.Vacancy.moderation:type_name -> service_distributor.VacancyModeration
-	56, // 27: service_distributor.Vacancy.create_date:type_name -> google.protobuf.Timestamp
+	42, // 26: service_distributor.Vacancy.moderation:type_name -> service_distributor.VacancyModeration
+	57, // 27: service_distributor.Vacancy.create_date:type_name -> google.protobuf.Timestamp
 	0,  // 28: service_distributor.SubmissionFilters.status:type_name -> service_distributor.SubmissionsStatus
 	0,  // 29: service_distributor.Submission.status:type_name -> service_distributor.SubmissionsStatus
-	49, // 30: service_distributor.Submission.client_data:type_name -> service_distributor.ClientData
-	42, // 31: service_distributor.FullPersonalData.user_image:type_name -> service_distributor.Image
+	50, // 30: service_distributor.Submission.client_data:type_name -> service_distributor.ClientData
+	43, // 31: service_distributor.FullPersonalData.user_image:type_name -> service_distributor.Image
 	3,  // 32: service_distributor.Transaction.type:type_name -> service_distributor.TransactionType
 	2,  // 33: service_distributor.Transaction.status:type_name -> service_distributor.TransactionStatus
-	45, // 34: service_distributor.Transaction.vacancy:type_name -> service_distributor.VacancyInfo
-	56, // 35: service_distributor.Transaction.created_at:type_name -> google.protobuf.Timestamp
-	56, // 36: service_distributor.Transaction.updated_at:type_name -> google.protobuf.Timestamp
-	56, // 37: service_distributor.BankAccount.created_at:type_name -> google.protobuf.Timestamp
-	56, // 38: service_distributor.BankAccount.updated_at:type_name -> google.protobuf.Timestamp
+	46, // 34: service_distributor.Transaction.vacancy:type_name -> service_distributor.VacancyInfo
+	57, // 35: service_distributor.Transaction.created_at:type_name -> google.protobuf.Timestamp
+	57, // 36: service_distributor.Transaction.updated_at:type_name -> google.protobuf.Timestamp
+	57, // 37: service_distributor.BankAccount.created_at:type_name -> google.protobuf.Timestamp
+	57, // 38: service_distributor.BankAccount.updated_at:type_name -> google.protobuf.Timestamp
 	4,  // 39: service_distributor.Distributor.GetVacancyList:input_type -> service_distributor.GetVacancyListRequest
 	5,  // 40: service_distributor.Distributor.CreateVacancy:input_type -> service_distributor.CreateVacancyRequest
 	6,  // 41: service_distributor.Distributor.EditVacancy:input_type -> service_distributor.EditVacancyRequest
@@ -4523,30 +4588,32 @@ var file_distributor_proto_depIdxs = []int32{
 	16, // 52: service_distributor.Distributor.GetTransactions:input_type -> service_distributor.GetTransactionsRequest
 	17, // 53: service_distributor.Distributor.CreateTransaction:input_type -> service_distributor.CreateTransactionRequest
 	18, // 54: service_distributor.Distributor.GetBankAccounts:input_type -> service_distributor.GetBankAccountsRequest
-	19, // 55: service_distributor.Distributor.CreateBankAccount:input_type -> service_distributor.CreateBankAccountRequest
-	20, // 56: service_distributor.Distributor.EditBankAccount:input_type -> service_distributor.EditBankAccountRequest
-	21, // 57: service_distributor.Distributor.DeleteBankAccount:input_type -> service_distributor.DeleteBankAccountRequest
-	22, // 58: service_distributor.Distributor.GetVacancyList:output_type -> service_distributor.GetVacancyListResponse
-	23, // 59: service_distributor.Distributor.CreateVacancy:output_type -> service_distributor.CreateVacancyResponse
-	24, // 60: service_distributor.Distributor.EditVacancy:output_type -> service_distributor.EditVacancyResponse
-	25, // 61: service_distributor.Distributor.DeleteVacancy:output_type -> service_distributor.DeleteVacancyResponse
-	26, // 62: service_distributor.Distributor.SendVacancyToModeration:output_type -> service_distributor.SendVacancyToModerationResponse
-	27, // 63: service_distributor.Distributor.GetSubmissionsForVacancy:output_type -> service_distributor.GetSubmissionsForVacancyResponse
-	28, // 64: service_distributor.Distributor.SetSubmissionStatus:output_type -> service_distributor.SetSubmissionStatusResponse
-	29, // 65: service_distributor.Distributor.GetProfileData:output_type -> service_distributor.GetProfileResponse
-	30, // 66: service_distributor.Distributor.SetProfileData:output_type -> service_distributor.SetProfileResponse
-	31, // 67: service_distributor.Distributor.GetCompanyData:output_type -> service_distributor.GetCompanyDataResponse
-	32, // 68: service_distributor.Distributor.GetCompaniesUid:output_type -> service_distributor.GetCompaniesUidResponse
-	33, // 69: service_distributor.Distributor.SetCompanyData:output_type -> service_distributor.SetCompanyDataResponse
-	34, // 70: service_distributor.Distributor.GetBalance:output_type -> service_distributor.GetBalanceResponse
-	35, // 71: service_distributor.Distributor.GetTransactions:output_type -> service_distributor.GetTransactionsResponse
-	36, // 72: service_distributor.Distributor.CreateTransaction:output_type -> service_distributor.CreateTransactionResponse
-	37, // 73: service_distributor.Distributor.GetBankAccounts:output_type -> service_distributor.GetBankAccountsResponse
-	38, // 74: service_distributor.Distributor.CreateBankAccount:output_type -> service_distributor.CreateBankAccountResponse
-	39, // 75: service_distributor.Distributor.EditBankAccount:output_type -> service_distributor.EditBankAccountResponse
-	40, // 76: service_distributor.Distributor.DeleteBankAccount:output_type -> service_distributor.DeleteBankAccountResponse
-	58, // [58:77] is the sub-list for method output_type
-	39, // [39:58] is the sub-list for method input_type
+	19, // 55: service_distributor.Distributor.GetCompanyBankAccounts:input_type -> service_distributor.GetCompanyBankAccountsRequest
+	20, // 56: service_distributor.Distributor.CreateBankAccount:input_type -> service_distributor.CreateBankAccountRequest
+	21, // 57: service_distributor.Distributor.EditBankAccount:input_type -> service_distributor.EditBankAccountRequest
+	22, // 58: service_distributor.Distributor.DeleteBankAccount:input_type -> service_distributor.DeleteBankAccountRequest
+	23, // 59: service_distributor.Distributor.GetVacancyList:output_type -> service_distributor.GetVacancyListResponse
+	24, // 60: service_distributor.Distributor.CreateVacancy:output_type -> service_distributor.CreateVacancyResponse
+	25, // 61: service_distributor.Distributor.EditVacancy:output_type -> service_distributor.EditVacancyResponse
+	26, // 62: service_distributor.Distributor.DeleteVacancy:output_type -> service_distributor.DeleteVacancyResponse
+	27, // 63: service_distributor.Distributor.SendVacancyToModeration:output_type -> service_distributor.SendVacancyToModerationResponse
+	28, // 64: service_distributor.Distributor.GetSubmissionsForVacancy:output_type -> service_distributor.GetSubmissionsForVacancyResponse
+	29, // 65: service_distributor.Distributor.SetSubmissionStatus:output_type -> service_distributor.SetSubmissionStatusResponse
+	30, // 66: service_distributor.Distributor.GetProfileData:output_type -> service_distributor.GetProfileResponse
+	31, // 67: service_distributor.Distributor.SetProfileData:output_type -> service_distributor.SetProfileResponse
+	32, // 68: service_distributor.Distributor.GetCompanyData:output_type -> service_distributor.GetCompanyDataResponse
+	33, // 69: service_distributor.Distributor.GetCompaniesUid:output_type -> service_distributor.GetCompaniesUidResponse
+	34, // 70: service_distributor.Distributor.SetCompanyData:output_type -> service_distributor.SetCompanyDataResponse
+	35, // 71: service_distributor.Distributor.GetBalance:output_type -> service_distributor.GetBalanceResponse
+	36, // 72: service_distributor.Distributor.GetTransactions:output_type -> service_distributor.GetTransactionsResponse
+	37, // 73: service_distributor.Distributor.CreateTransaction:output_type -> service_distributor.CreateTransactionResponse
+	38, // 74: service_distributor.Distributor.GetBankAccounts:output_type -> service_distributor.GetBankAccountsResponse
+	38, // 75: service_distributor.Distributor.GetCompanyBankAccounts:output_type -> service_distributor.GetBankAccountsResponse
+	39, // 76: service_distributor.Distributor.CreateBankAccount:output_type -> service_distributor.CreateBankAccountResponse
+	40, // 77: service_distributor.Distributor.EditBankAccount:output_type -> service_distributor.EditBankAccountResponse
+	41, // 78: service_distributor.Distributor.DeleteBankAccount:output_type -> service_distributor.DeleteBankAccountResponse
+	59, // [59:79] is the sub-list for method output_type
+	39, // [39:59] is the sub-list for method input_type
 	39, // [39:39] is the sub-list for extension type_name
 	39, // [39:39] is the sub-list for extension extendee
 	0,  // [0:39] is the sub-list for field type_name
@@ -4739,7 +4806,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateBankAccountRequest); i {
+			switch v := v.(*GetCompanyBankAccountsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4751,7 +4818,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EditBankAccountRequest); i {
+			switch v := v.(*CreateBankAccountRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4763,7 +4830,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteBankAccountRequest); i {
+			switch v := v.(*EditBankAccountRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4775,7 +4842,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetVacancyListResponse); i {
+			switch v := v.(*DeleteBankAccountRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4787,7 +4854,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateVacancyResponse); i {
+			switch v := v.(*GetVacancyListResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4799,7 +4866,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EditVacancyResponse); i {
+			switch v := v.(*CreateVacancyResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4811,7 +4878,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteVacancyResponse); i {
+			switch v := v.(*EditVacancyResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4823,7 +4890,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SendVacancyToModerationResponse); i {
+			switch v := v.(*DeleteVacancyResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4835,7 +4902,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetSubmissionsForVacancyResponse); i {
+			switch v := v.(*SendVacancyToModerationResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4847,7 +4914,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SetSubmissionStatusResponse); i {
+			switch v := v.(*GetSubmissionsForVacancyResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4859,7 +4926,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetProfileResponse); i {
+			switch v := v.(*SetSubmissionStatusResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4871,7 +4938,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SetProfileResponse); i {
+			switch v := v.(*GetProfileResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4883,7 +4950,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetCompanyDataResponse); i {
+			switch v := v.(*SetProfileResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4895,7 +4962,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetCompaniesUidResponse); i {
+			switch v := v.(*GetCompanyDataResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4907,7 +4974,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SetCompanyDataResponse); i {
+			switch v := v.(*GetCompaniesUidResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4919,7 +4986,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetBalanceResponse); i {
+			switch v := v.(*SetCompanyDataResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4931,7 +4998,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetTransactionsResponse); i {
+			switch v := v.(*GetBalanceResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4943,7 +5010,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateTransactionResponse); i {
+			switch v := v.(*GetTransactionsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4955,7 +5022,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetBankAccountsResponse); i {
+			switch v := v.(*CreateTransactionResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4967,7 +5034,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateBankAccountResponse); i {
+			switch v := v.(*GetBankAccountsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4979,7 +5046,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EditBankAccountResponse); i {
+			switch v := v.(*CreateBankAccountResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4991,7 +5058,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteBankAccountResponse); i {
+			switch v := v.(*EditBankAccountResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5003,7 +5070,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*VacancyModeration); i {
+			switch v := v.(*DeleteBankAccountResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5015,7 +5082,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Image); i {
+			switch v := v.(*VacancyModeration); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5027,7 +5094,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*VacancyFilters); i {
+			switch v := v.(*Image); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5039,7 +5106,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Vacancy); i {
+			switch v := v.(*VacancyFilters); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5051,7 +5118,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*VacancyInfo); i {
+			switch v := v.(*Vacancy); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5063,7 +5130,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SubmissionFilters); i {
+			switch v := v.(*VacancyInfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5075,7 +5142,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Submission); i {
+			switch v := v.(*SubmissionFilters); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5087,7 +5154,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FullPersonalData); i {
+			switch v := v.(*Submission); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5099,7 +5166,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ClientData); i {
+			switch v := v.(*FullPersonalData); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5111,7 +5178,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Company); i {
+			switch v := v.(*ClientData); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5123,7 +5190,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[47].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CompanyBrief); i {
+			switch v := v.(*Company); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5135,7 +5202,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[48].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TransactionFilters); i {
+			switch v := v.(*CompanyBrief); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5147,7 +5214,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[49].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Transaction); i {
+			switch v := v.(*TransactionFilters); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5159,7 +5226,7 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[50].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BankAccount); i {
+			switch v := v.(*Transaction); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5171,6 +5238,18 @@ func file_distributor_proto_init() {
 			}
 		}
 		file_distributor_proto_msgTypes[51].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BankAccount); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_distributor_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*BankAccountEditables); i {
 			case 0:
 				return &v.state
@@ -5185,22 +5264,22 @@ func file_distributor_proto_init() {
 	}
 	file_distributor_proto_msgTypes[10].OneofWrappers = []interface{}{}
 	file_distributor_proto_msgTypes[13].OneofWrappers = []interface{}{}
-	file_distributor_proto_msgTypes[39].OneofWrappers = []interface{}{}
 	file_distributor_proto_msgTypes[40].OneofWrappers = []interface{}{}
-	file_distributor_proto_msgTypes[42].OneofWrappers = []interface{}{}
-	file_distributor_proto_msgTypes[44].OneofWrappers = []interface{}{}
+	file_distributor_proto_msgTypes[41].OneofWrappers = []interface{}{}
+	file_distributor_proto_msgTypes[43].OneofWrappers = []interface{}{}
 	file_distributor_proto_msgTypes[45].OneofWrappers = []interface{}{}
 	file_distributor_proto_msgTypes[46].OneofWrappers = []interface{}{}
-	file_distributor_proto_msgTypes[48].OneofWrappers = []interface{}{}
+	file_distributor_proto_msgTypes[47].OneofWrappers = []interface{}{}
 	file_distributor_proto_msgTypes[49].OneofWrappers = []interface{}{}
-	file_distributor_proto_msgTypes[51].OneofWrappers = []interface{}{}
+	file_distributor_proto_msgTypes[50].OneofWrappers = []interface{}{}
+	file_distributor_proto_msgTypes[52].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_distributor_proto_rawDesc,
 			NumEnums:      4,
-			NumMessages:   52,
+			NumMessages:   53,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

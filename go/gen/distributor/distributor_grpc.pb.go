@@ -35,6 +35,7 @@ const (
 	Distributor_GetTransactions_FullMethodName          = "/service_distributor.Distributor/GetTransactions"
 	Distributor_CreateTransaction_FullMethodName        = "/service_distributor.Distributor/CreateTransaction"
 	Distributor_GetBankAccounts_FullMethodName          = "/service_distributor.Distributor/GetBankAccounts"
+	Distributor_GetCompanyBankAccounts_FullMethodName   = "/service_distributor.Distributor/GetCompanyBankAccounts"
 	Distributor_CreateBankAccount_FullMethodName        = "/service_distributor.Distributor/CreateBankAccount"
 	Distributor_EditBankAccount_FullMethodName          = "/service_distributor.Distributor/EditBankAccount"
 	Distributor_DeleteBankAccount_FullMethodName        = "/service_distributor.Distributor/DeleteBankAccount"
@@ -76,6 +77,9 @@ type DistributorClient interface {
 	/// Получить список расчетных счетов дистрибьютора. Получает GetBankAccountsRequest, возвращает
 	/// GetBankAccountsResponse
 	GetBankAccounts(ctx context.Context, in *GetBankAccountsRequest, opts ...grpc.CallOption) (*GetBankAccountsResponse, error)
+	/// Получить список расчетных счетов компании. Получает GetCompanyBankAccountsRequest, возвращает
+	/// GetBankAccountsResponse
+	GetCompanyBankAccounts(ctx context.Context, in *GetCompanyBankAccountsRequest, opts ...grpc.CallOption) (*GetBankAccountsResponse, error)
 	/// Создать расчетный счет. Получает CreateBankAccountRequest, возвращает
 	/// CreateBankAccountResponse
 	CreateBankAccount(ctx context.Context, in *CreateBankAccountRequest, opts ...grpc.CallOption) (*CreateBankAccountResponse, error)
@@ -255,6 +259,16 @@ func (c *distributorClient) GetBankAccounts(ctx context.Context, in *GetBankAcco
 	return out, nil
 }
 
+func (c *distributorClient) GetCompanyBankAccounts(ctx context.Context, in *GetCompanyBankAccountsRequest, opts ...grpc.CallOption) (*GetBankAccountsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBankAccountsResponse)
+	err := c.cc.Invoke(ctx, Distributor_GetCompanyBankAccounts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *distributorClient) CreateBankAccount(ctx context.Context, in *CreateBankAccountRequest, opts ...grpc.CallOption) (*CreateBankAccountResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateBankAccountResponse)
@@ -321,6 +335,9 @@ type DistributorServer interface {
 	/// Получить список расчетных счетов дистрибьютора. Получает GetBankAccountsRequest, возвращает
 	/// GetBankAccountsResponse
 	GetBankAccounts(context.Context, *GetBankAccountsRequest) (*GetBankAccountsResponse, error)
+	/// Получить список расчетных счетов компании. Получает GetCompanyBankAccountsRequest, возвращает
+	/// GetBankAccountsResponse
+	GetCompanyBankAccounts(context.Context, *GetCompanyBankAccountsRequest) (*GetBankAccountsResponse, error)
 	/// Создать расчетный счет. Получает CreateBankAccountRequest, возвращает
 	/// CreateBankAccountResponse
 	CreateBankAccount(context.Context, *CreateBankAccountRequest) (*CreateBankAccountResponse, error)
@@ -387,6 +404,9 @@ func (UnimplementedDistributorServer) CreateTransaction(context.Context, *Create
 }
 func (UnimplementedDistributorServer) GetBankAccounts(context.Context, *GetBankAccountsRequest) (*GetBankAccountsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBankAccounts not implemented")
+}
+func (UnimplementedDistributorServer) GetCompanyBankAccounts(context.Context, *GetCompanyBankAccountsRequest) (*GetBankAccountsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCompanyBankAccounts not implemented")
 }
 func (UnimplementedDistributorServer) CreateBankAccount(context.Context, *CreateBankAccountRequest) (*CreateBankAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBankAccount not implemented")
@@ -706,6 +726,24 @@ func _Distributor_GetBankAccounts_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Distributor_GetCompanyBankAccounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCompanyBankAccountsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DistributorServer).GetCompanyBankAccounts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Distributor_GetCompanyBankAccounts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DistributorServer).GetCompanyBankAccounts(ctx, req.(*GetCompanyBankAccountsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Distributor_CreateBankAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateBankAccountRequest)
 	if err := dec(in); err != nil {
@@ -830,6 +868,10 @@ var Distributor_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBankAccounts",
 			Handler:    _Distributor_GetBankAccounts_Handler,
+		},
+		{
+			MethodName: "GetCompanyBankAccounts",
+			Handler:    _Distributor_GetCompanyBankAccounts_Handler,
 		},
 		{
 			MethodName: "CreateBankAccount",
