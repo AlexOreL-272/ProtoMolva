@@ -126,6 +126,14 @@ service Distributor {
     };
   }
 
+  /// Получить список расчетных счетов компании. Получает GetCompanyBankAccountsRequest, возвращает
+  /// GetBankAccountsResponse
+  rpc GetCompanyBankAccounts(GetCompanyBankAccountsRequest) returns (GetBankAccountsResponse) {
+    option (google.api.http) = {
+      get : "/v1/distributor/{distributor_id}/company/{company_id}/bank_accounts"
+    };
+  }
+
   /// Создать расчетный счет. Получает CreateBankAccountRequest, возвращает
   /// CreateBankAccountResponse
   rpc CreateBankAccount(CreateBankAccountRequest) returns (CreateBankAccountResponse) {
@@ -241,10 +249,14 @@ message CreateTransactionRequest {
   string request_id = 6;
 }
 
-// <=============== CURRENCY ACCOUNT ===============>
+// <=============== BANK ACCOUNT ===============>
 
 message GetBankAccountsRequest {
   string distributor_id = 1;
+}
+
+message GetCompanyBankAccountsRequest {
+  string company_id = 1;
 }
 
 message CreateBankAccountRequest {
