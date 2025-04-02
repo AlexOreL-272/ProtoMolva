@@ -136,7 +136,7 @@ service Distributor {
 
   /// Создать расчетный счет. Получает CreateBankAccountRequest, возвращает
   /// CreateBankAccountResponse
-  rpc CreateBankAccount(CreateBankAccountRequest) returns (CreateBankAccountResponse) {
+  rpc CreateBankAccount(CreateBankAccountRequest) returns (GetCompanyBankAccountsResponse) {
     option (google.api.http) = {
       post : "/v1/distributor/{distributor_id}/bank_accounts"
       body : "*"
@@ -352,6 +352,10 @@ message CreateTransactionResponse {
 // <=============== CURRENCY ACCOUNT ===============>
 
 message GetBankAccountsResponse {
+  repeated BankAccount bank_accounts = 1;
+}
+
+message GetCompanyBankAccountsResponse {
   repeated BankAccount bank_accounts = 1;
 }
 

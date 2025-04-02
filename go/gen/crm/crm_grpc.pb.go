@@ -20,7 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	Crm_SayHello_FullMethodName                  = "/handlers.api.Crm/SayHello"
-	Crm_SayHello2_FullMethodName                 = "/handlers.api.Crm/SayHello2"
+	Crm_Ping_FullMethodName                      = "/handlers.api.Crm/Ping"
 	Crm_SaveNewUser_FullMethodName               = "/handlers.api.Crm/SaveNewUser"
 	Crm_CheckUserEmail_FullMethodName            = "/handlers.api.Crm/CheckUserEmail"
 	Crm_ChangeUserPassword_FullMethodName        = "/handlers.api.Crm/ChangeUserPassword"
@@ -55,7 +55,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CrmClient interface {
 	SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloResponse, error)
-	SayHello2(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloResponse, error)
+	Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingResponse, error)
 	// регистрация
 	SaveNewUser(ctx context.Context, in *SaveNewUserRequest, opts ...grpc.CallOption) (*SaveNewUserResponse, error)
 	// авторизация
@@ -114,10 +114,10 @@ func (c *crmClient) SayHello(ctx context.Context, in *HelloRequest, opts ...grpc
 	return out, nil
 }
 
-func (c *crmClient) SayHello2(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloResponse, error) {
+func (c *crmClient) Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(HelloResponse)
-	err := c.cc.Invoke(ctx, Crm_SayHello2_FullMethodName, in, out, cOpts...)
+	out := new(PingResponse)
+	err := c.cc.Invoke(ctx, Crm_Ping_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -399,7 +399,7 @@ func (c *crmClient) UpdateBankAccount(ctx context.Context, in *UpdateBankAccount
 // for forward compatibility.
 type CrmServer interface {
 	SayHello(context.Context, *HelloRequest) (*HelloResponse, error)
-	SayHello2(context.Context, *HelloRequest) (*HelloResponse, error)
+	Ping(context.Context, *PingRequest) (*PingResponse, error)
 	// регистрация
 	SaveNewUser(context.Context, *SaveNewUserRequest) (*SaveNewUserResponse, error)
 	// авторизация
@@ -451,8 +451,8 @@ type UnimplementedCrmServer struct{}
 func (UnimplementedCrmServer) SayHello(context.Context, *HelloRequest) (*HelloResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SayHello not implemented")
 }
-func (UnimplementedCrmServer) SayHello2(context.Context, *HelloRequest) (*HelloResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SayHello2 not implemented")
+func (UnimplementedCrmServer) Ping(context.Context, *PingRequest) (*PingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
 }
 func (UnimplementedCrmServer) SaveNewUser(context.Context, *SaveNewUserRequest) (*SaveNewUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SaveNewUser not implemented")
@@ -574,20 +574,20 @@ func _Crm_SayHello_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Crm_SayHello2_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HelloRequest)
+func _Crm_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PingRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CrmServer).SayHello2(ctx, in)
+		return srv.(CrmServer).Ping(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Crm_SayHello2_FullMethodName,
+		FullMethod: Crm_Ping_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CrmServer).SayHello2(ctx, req.(*HelloRequest))
+		return srv.(CrmServer).Ping(ctx, req.(*PingRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1090,8 +1090,8 @@ var Crm_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Crm_SayHello_Handler,
 		},
 		{
-			MethodName: "SayHello2",
-			Handler:    _Crm_SayHello2_Handler,
+			MethodName: "Ping",
+			Handler:    _Crm_Ping_Handler,
 		},
 		{
 			MethodName: "SaveNewUser",

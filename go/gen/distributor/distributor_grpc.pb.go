@@ -82,7 +82,7 @@ type DistributorClient interface {
 	GetCompanyBankAccounts(ctx context.Context, in *GetCompanyBankAccountsRequest, opts ...grpc.CallOption) (*GetBankAccountsResponse, error)
 	/// Создать расчетный счет. Получает CreateBankAccountRequest, возвращает
 	/// CreateBankAccountResponse
-	CreateBankAccount(ctx context.Context, in *CreateBankAccountRequest, opts ...grpc.CallOption) (*CreateBankAccountResponse, error)
+	CreateBankAccount(ctx context.Context, in *CreateBankAccountRequest, opts ...grpc.CallOption) (*GetCompanyBankAccountsResponse, error)
 	/// Редактировать расчетный счет. Получает EditBankAccountRequest, возвращает
 	/// EditBankAccountResponse
 	EditBankAccount(ctx context.Context, in *EditBankAccountRequest, opts ...grpc.CallOption) (*EditBankAccountResponse, error)
@@ -269,9 +269,9 @@ func (c *distributorClient) GetCompanyBankAccounts(ctx context.Context, in *GetC
 	return out, nil
 }
 
-func (c *distributorClient) CreateBankAccount(ctx context.Context, in *CreateBankAccountRequest, opts ...grpc.CallOption) (*CreateBankAccountResponse, error) {
+func (c *distributorClient) CreateBankAccount(ctx context.Context, in *CreateBankAccountRequest, opts ...grpc.CallOption) (*GetCompanyBankAccountsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateBankAccountResponse)
+	out := new(GetCompanyBankAccountsResponse)
 	err := c.cc.Invoke(ctx, Distributor_CreateBankAccount_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -340,7 +340,7 @@ type DistributorServer interface {
 	GetCompanyBankAccounts(context.Context, *GetCompanyBankAccountsRequest) (*GetBankAccountsResponse, error)
 	/// Создать расчетный счет. Получает CreateBankAccountRequest, возвращает
 	/// CreateBankAccountResponse
-	CreateBankAccount(context.Context, *CreateBankAccountRequest) (*CreateBankAccountResponse, error)
+	CreateBankAccount(context.Context, *CreateBankAccountRequest) (*GetCompanyBankAccountsResponse, error)
 	/// Редактировать расчетный счет. Получает EditBankAccountRequest, возвращает
 	/// EditBankAccountResponse
 	EditBankAccount(context.Context, *EditBankAccountRequest) (*EditBankAccountResponse, error)
@@ -408,7 +408,7 @@ func (UnimplementedDistributorServer) GetBankAccounts(context.Context, *GetBankA
 func (UnimplementedDistributorServer) GetCompanyBankAccounts(context.Context, *GetCompanyBankAccountsRequest) (*GetBankAccountsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCompanyBankAccounts not implemented")
 }
-func (UnimplementedDistributorServer) CreateBankAccount(context.Context, *CreateBankAccountRequest) (*CreateBankAccountResponse, error) {
+func (UnimplementedDistributorServer) CreateBankAccount(context.Context, *CreateBankAccountRequest) (*GetCompanyBankAccountsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBankAccount not implemented")
 }
 func (UnimplementedDistributorServer) EditBankAccount(context.Context, *EditBankAccountRequest) (*EditBankAccountResponse, error) {
