@@ -34,6 +34,7 @@ const (
 	Distributor_GetBalance_FullMethodName               = "/service_distributor.Distributor/GetBalance"
 	Distributor_GetCompanyBalance_FullMethodName        = "/service_distributor.Distributor/GetCompanyBalance"
 	Distributor_GetTransactions_FullMethodName          = "/service_distributor.Distributor/GetTransactions"
+	Distributor_GetCompanyTransactions_FullMethodName   = "/service_distributor.Distributor/GetCompanyTransactions"
 	Distributor_CreateTransaction_FullMethodName        = "/service_distributor.Distributor/CreateTransaction"
 	Distributor_GetBankAccounts_FullMethodName          = "/service_distributor.Distributor/GetBankAccounts"
 	Distributor_GetCompanyBankAccounts_FullMethodName   = "/service_distributor.Distributor/GetCompanyBankAccounts"
@@ -73,6 +74,7 @@ type DistributorClient interface {
 	/// Получить список транзакций дистрибьютора. Получает GetTransactionsRequest, возвращает
 	/// GetTransactionsResponse
 	GetTransactions(ctx context.Context, in *GetTransactionsRequest, opts ...grpc.CallOption) (*GetTransactionsResponse, error)
+	GetCompanyTransactions(ctx context.Context, in *GetCompanyTransactionsRequest, opts ...grpc.CallOption) (*GetTransactionsResponse, error)
 	/// Создать транзакцию на пополнение баланса. Получает CreateTransactionRequest, возвращает
 	/// CreateTransactionResponse
 	CreateTransaction(ctx context.Context, in *CreateTransactionRequest, opts ...grpc.CallOption) (*CreateTransactionResponse, error)
@@ -252,6 +254,16 @@ func (c *distributorClient) GetTransactions(ctx context.Context, in *GetTransact
 	return out, nil
 }
 
+func (c *distributorClient) GetCompanyTransactions(ctx context.Context, in *GetCompanyTransactionsRequest, opts ...grpc.CallOption) (*GetTransactionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTransactionsResponse)
+	err := c.cc.Invoke(ctx, Distributor_GetCompanyTransactions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *distributorClient) CreateTransaction(ctx context.Context, in *CreateTransactionRequest, opts ...grpc.CallOption) (*CreateTransactionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateTransactionResponse)
@@ -343,6 +355,7 @@ type DistributorServer interface {
 	/// Получить список транзакций дистрибьютора. Получает GetTransactionsRequest, возвращает
 	/// GetTransactionsResponse
 	GetTransactions(context.Context, *GetTransactionsRequest) (*GetTransactionsResponse, error)
+	GetCompanyTransactions(context.Context, *GetCompanyTransactionsRequest) (*GetTransactionsResponse, error)
 	/// Создать транзакцию на пополнение баланса. Получает CreateTransactionRequest, возвращает
 	/// CreateTransactionResponse
 	CreateTransaction(context.Context, *CreateTransactionRequest) (*CreateTransactionResponse, error)
@@ -416,6 +429,9 @@ func (UnimplementedDistributorServer) GetCompanyBalance(context.Context, *GetCom
 }
 func (UnimplementedDistributorServer) GetTransactions(context.Context, *GetTransactionsRequest) (*GetTransactionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTransactions not implemented")
+}
+func (UnimplementedDistributorServer) GetCompanyTransactions(context.Context, *GetCompanyTransactionsRequest) (*GetTransactionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCompanyTransactions not implemented")
 }
 func (UnimplementedDistributorServer) CreateTransaction(context.Context, *CreateTransactionRequest) (*CreateTransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTransaction not implemented")
@@ -726,6 +742,24 @@ func _Distributor_GetTransactions_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Distributor_GetCompanyTransactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCompanyTransactionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DistributorServer).GetCompanyTransactions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Distributor_GetCompanyTransactions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DistributorServer).GetCompanyTransactions(ctx, req.(*GetCompanyTransactionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Distributor_CreateTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateTransactionRequest)
 	if err := dec(in); err != nil {
@@ -900,6 +934,10 @@ var Distributor_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTransactions",
 			Handler:    _Distributor_GetTransactions_Handler,
+		},
+		{
+			MethodName: "GetCompanyTransactions",
+			Handler:    _Distributor_GetCompanyTransactions_Handler,
 		},
 		{
 			MethodName: "CreateTransaction",

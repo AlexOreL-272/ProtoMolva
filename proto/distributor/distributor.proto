@@ -115,6 +115,12 @@ service Distributor {
     };
   }
 
+  rpc GetCompanyTransactions(GetCompanyTransactionsRequest) returns (GetTransactionsResponse) {
+    option (google.api.http) = {
+      get : "/v1/distributor/{distributor_id}/company/{company_id}/transactions"
+    };
+  }
+
   /// Создать транзакцию на пополнение баланса. Получает CreateTransactionRequest, возвращает
   /// CreateTransactionResponse
   rpc CreateTransaction(CreateTransactionRequest) returns (CreateTransactionResponse) {
@@ -248,6 +254,11 @@ message GetCompanyBalanceRequest {
 
 message GetTransactionsRequest {
   string distributor_id = 1;
+  TransactionFilters filters = 2;
+}
+
+message GetCompanyTransactionsRequest {
+  string company_id = 1;
   TransactionFilters filters = 2;
 }
 
