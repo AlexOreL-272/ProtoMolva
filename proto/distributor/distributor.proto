@@ -99,6 +99,13 @@ service Distributor {
     };
   }
 
+  /// Получить баланс компании. Получает GetCompanyBalanceRequest, возвращает GetCompanyBalanceResponse
+  rpc GetCompanyBalance(GetCompanyBalanceRequest) returns (GetBalanceResponse) {
+    option (google.api.http) = {
+      get : "/v1/distributor/{distributor_id}/company/{company_id}/balance"
+    };
+  }
+
   // <-------------- TRANSACTIONS -------------->
   /// Получить список транзакций дистрибьютора. Получает GetTransactionsRequest, возвращает
   /// GetTransactionsResponse
@@ -231,6 +238,10 @@ message SetCompanyDataRequest {
 
 message GetBalanceRequest {
   string distributor_id = 1;
+}
+
+message GetCompanyBalanceRequest {
+  string company_id = 1;
 }
 
 // <=============== TRANSACTIONS ===============>
