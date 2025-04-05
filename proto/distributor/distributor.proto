@@ -151,7 +151,7 @@ service Distributor {
   /// CreateBankAccountResponse
   rpc CreateBankAccount(CreateBankAccountRequest) returns (GetCompanyBankAccountsResponse) {
     option (google.api.http) = {
-      post : "/v1/distributor/{distributor_id}/bank_accounts"
+      post : "/v1/distributor/{distributor_id}/company/{company_id}/bank_accounts"
       body : "*"
     };
   }
@@ -282,7 +282,7 @@ message GetCompanyBankAccountsRequest {
 }
 
 message CreateBankAccountRequest {
-  string distributor_id = 1;
+  string company_id = 1;
   BankAccountEditables bank_account = 2;
 }
 
