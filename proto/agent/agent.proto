@@ -427,6 +427,7 @@ message ClientData {
   string phone_number = 5;
   string email = 6;
   optional string resume = 7;
+  google.protobuf.Timestamp birthday = 8;
 }
 
 message CompanyInfo {

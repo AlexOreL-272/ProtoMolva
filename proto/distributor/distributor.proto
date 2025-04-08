@@ -486,7 +486,7 @@ message VacancyInfo {
 message SubmissionFilters {
   optional string vacancy_id = 1;
   optional SubmissionsStatus status = 2;
-    optional int32 amount = 3;
+  optional int32 amount = 3;
   optional int32 offset = 4;
 }
 
@@ -521,6 +521,7 @@ message ClientData {
   string phone_number = 5;
   string email = 6;
   optional string resume = 7;
+  google.protobuf.Timestamp birthday = 8;
 }
 
 // <=============== COMPANY ===============>
