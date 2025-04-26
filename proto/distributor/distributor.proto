@@ -263,7 +263,7 @@ message GetCompanyTransactionsRequest {
 }
 
 message CreateTransactionRequest {
-  string distributor_id = 1;
+  string company_id = 1;
   int64 amount = 2;
   string currency = 3;
   string bank_account_id = 4;
