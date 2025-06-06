@@ -41,55 +41,55 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AgentClient interface {
 	// <-------------- VACANCY -------------->
-	// / Получить список вакансий. Получает GetVacancyListRequest, возвращает
-	// / GetVacancyListResponse
+	/// Получить список вакансий. Получает GetVacancyListRequest, возвращает
+	/// GetVacancyListResponse
 	GetVacancyList(ctx context.Context, in *GetVacancyListRequest, opts ...grpc.CallOption) (*GetVacancyListResponse, error)
 	// <-------------- SUBMISSION -------------->
-	// / Получить список заявок. Получает GetSubmissionListRequest, возвращает
-	// / GetSubmissionListResponse
+	/// Получить список заявок. Получает GetSubmissionListRequest, возвращает
+	/// GetSubmissionListResponse
 	GetSubmissionList(ctx context.Context, in *GetSubmissionListRequest, opts ...grpc.CallOption) (*GetSubmissionListResponse, error)
-	// / Метод для удаления заявки. Получает DeleteSubmissionRequest, возвращает
-	// / DeleteSubmissionResponse
+	/// Метод для удаления заявки. Получает DeleteSubmissionRequest, возвращает
+	/// DeleteSubmissionResponse
 	DeleteSubmission(ctx context.Context, in *DeleteSubmissionRequest, opts ...grpc.CallOption) (*DeleteSubmissionResponse, error)
 	// <-------------- PROFILE -------------->
-	// / Получить данные агента. Получает GetProfileRequest, возвращает
-	// / GetProfileResponse
+	/// Получить данные агента. Получает GetProfileRequest, возвращает
+	/// GetProfileResponse
 	GetProfileData(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
-	// / Метод для изменения данных агента. Получает SetProfileRequest, возвращает
-	// / SetProfileResponse
+	/// Метод для изменения данных агента. Получает SetProfileRequest, возвращает
+	/// SetProfileResponse
 	SetProfileData(ctx context.Context, in *SetProfileRequest, opts ...grpc.CallOption) (*SetProfileResponse, error)
 	// <-------------- COMPANY -------------->
-	// / Получить данные компании. Получает GetCompanyDataRequest, возвращает
-	// / GetCompanyDataResponse
+	/// Получить данные компании. Получает GetCompanyDataRequest, возвращает
+	/// GetCompanyDataResponse
 	GetCompanyData(ctx context.Context, in *GetCompanyDataRequest, opts ...grpc.CallOption) (*GetCompanyDataResponse, error)
 	// Получить список компаний по Uid. Получает GetCompanyDataRequest возвращает
 	// GetCompaniesUidResponse
 	GetCompaniesUid(ctx context.Context, in *GetCompanyDataRequest, opts ...grpc.CallOption) (*GetCompaniesUidResponse, error)
-	// / Метод для изменения данных компании. Получает SetCompanyDataRequest, возвращает
-	// / SetCompanyDataResponse
+	/// Метод для изменения данных компании. Получает SetCompanyDataRequest, возвращает
+	/// SetCompanyDataResponse
 	SetCompanyData(ctx context.Context, in *SetCompanyDataRequest, opts ...grpc.CallOption) (*SetCompanyDataResponse, error)
 	// <-------------- BALANCE -------------->
-	// / Получить баланс агента. Получает GetBalanceRequest, возвращает GetBalanceResponse
+	/// Получить баланс агента. Получает GetBalanceRequest, возвращает GetBalanceResponse
 	GetBalance(ctx context.Context, in *GetBalanceRequest, opts ...grpc.CallOption) (*GetBalanceResponse, error)
 	// <-------------- TRANSACTIONS -------------->
-	// / Получить список транзакций агента. Получает GetTransactionsRequest, возвращает
-	// / GetTransactionsResponse
+	/// Получить список транзакций агента. Получает GetTransactionsRequest, возвращает
+	/// GetTransactionsResponse
 	GetTransactions(ctx context.Context, in *GetTransactionsRequest, opts ...grpc.CallOption) (*GetTransactionsResponse, error)
-	// / Создать транзакцию. Получает CreateTransactionRequest, возвращает
-	// / CreateTransactionResponse
+	/// Создать транзакцию. Получает CreateTransactionRequest, возвращает
+	/// CreateTransactionResponse
 	CreateTransaction(ctx context.Context, in *CreateTransactionRequest, opts ...grpc.CallOption) (*CreateTransactionResponse, error)
 	// <-------------- CURRENCY ACCOUNT -------------->
-	// / Получить список расчетных счетов агента. Получает GetBankAccountsRequest, возвращает
-	// / GetBankAccountsResponse
+	/// Получить список расчетных счетов агента. Получает GetBankAccountsRequest, возвращает
+	/// GetBankAccountsResponse
 	GetBankAccounts(ctx context.Context, in *GetBankAccountsRequest, opts ...grpc.CallOption) (*GetBankAccountsResponse, error)
-	// / Создать расчетный счет. Получает CreateBankAccountRequest, возвращает
-	// / CreateBankAccountResponse
+	/// Создать расчетный счет. Получает CreateBankAccountRequest, возвращает
+	/// CreateBankAccountResponse
 	CreateBankAccount(ctx context.Context, in *CreateBankAccountRequest, opts ...grpc.CallOption) (*CreateBankAccountResponse, error)
-	// / Редактировать расчетный счет. Получает EditBankAccountRequest, возвращает
-	// / EditBankAccountResponse
+	/// Редактировать расчетный счет. Получает EditBankAccountRequest, возвращает
+	/// EditBankAccountResponse
 	EditBankAccount(ctx context.Context, in *EditBankAccountRequest, opts ...grpc.CallOption) (*EditBankAccountResponse, error)
-	// / Удалить расчетный счет. Получает DeleteBankAccountRequest, возвращает
-	// / DeleteBankAccountResponse
+	/// Удалить расчетный счет. Получает DeleteBankAccountRequest, возвращает
+	/// DeleteBankAccountResponse
 	DeleteBankAccount(ctx context.Context, in *DeleteBankAccountRequest, opts ...grpc.CallOption) (*DeleteBankAccountResponse, error)
 }
 
@@ -256,55 +256,55 @@ func (c *agentClient) DeleteBankAccount(ctx context.Context, in *DeleteBankAccou
 // for forward compatibility.
 type AgentServer interface {
 	// <-------------- VACANCY -------------->
-	// / Получить список вакансий. Получает GetVacancyListRequest, возвращает
-	// / GetVacancyListResponse
+	/// Получить список вакансий. Получает GetVacancyListRequest, возвращает
+	/// GetVacancyListResponse
 	GetVacancyList(context.Context, *GetVacancyListRequest) (*GetVacancyListResponse, error)
 	// <-------------- SUBMISSION -------------->
-	// / Получить список заявок. Получает GetSubmissionListRequest, возвращает
-	// / GetSubmissionListResponse
+	/// Получить список заявок. Получает GetSubmissionListRequest, возвращает
+	/// GetSubmissionListResponse
 	GetSubmissionList(context.Context, *GetSubmissionListRequest) (*GetSubmissionListResponse, error)
-	// / Метод для удаления заявки. Получает DeleteSubmissionRequest, возвращает
-	// / DeleteSubmissionResponse
+	/// Метод для удаления заявки. Получает DeleteSubmissionRequest, возвращает
+	/// DeleteSubmissionResponse
 	DeleteSubmission(context.Context, *DeleteSubmissionRequest) (*DeleteSubmissionResponse, error)
 	// <-------------- PROFILE -------------->
-	// / Получить данные агента. Получает GetProfileRequest, возвращает
-	// / GetProfileResponse
+	/// Получить данные агента. Получает GetProfileRequest, возвращает
+	/// GetProfileResponse
 	GetProfileData(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
-	// / Метод для изменения данных агента. Получает SetProfileRequest, возвращает
-	// / SetProfileResponse
+	/// Метод для изменения данных агента. Получает SetProfileRequest, возвращает
+	/// SetProfileResponse
 	SetProfileData(context.Context, *SetProfileRequest) (*SetProfileResponse, error)
 	// <-------------- COMPANY -------------->
-	// / Получить данные компании. Получает GetCompanyDataRequest, возвращает
-	// / GetCompanyDataResponse
+	/// Получить данные компании. Получает GetCompanyDataRequest, возвращает
+	/// GetCompanyDataResponse
 	GetCompanyData(context.Context, *GetCompanyDataRequest) (*GetCompanyDataResponse, error)
 	// Получить список компаний по Uid. Получает GetCompanyDataRequest возвращает
 	// GetCompaniesUidResponse
 	GetCompaniesUid(context.Context, *GetCompanyDataRequest) (*GetCompaniesUidResponse, error)
-	// / Метод для изменения данных компании. Получает SetCompanyDataRequest, возвращает
-	// / SetCompanyDataResponse
+	/// Метод для изменения данных компании. Получает SetCompanyDataRequest, возвращает
+	/// SetCompanyDataResponse
 	SetCompanyData(context.Context, *SetCompanyDataRequest) (*SetCompanyDataResponse, error)
 	// <-------------- BALANCE -------------->
-	// / Получить баланс агента. Получает GetBalanceRequest, возвращает GetBalanceResponse
+	/// Получить баланс агента. Получает GetBalanceRequest, возвращает GetBalanceResponse
 	GetBalance(context.Context, *GetBalanceRequest) (*GetBalanceResponse, error)
 	// <-------------- TRANSACTIONS -------------->
-	// / Получить список транзакций агента. Получает GetTransactionsRequest, возвращает
-	// / GetTransactionsResponse
+	/// Получить список транзакций агента. Получает GetTransactionsRequest, возвращает
+	/// GetTransactionsResponse
 	GetTransactions(context.Context, *GetTransactionsRequest) (*GetTransactionsResponse, error)
-	// / Создать транзакцию. Получает CreateTransactionRequest, возвращает
-	// / CreateTransactionResponse
+	/// Создать транзакцию. Получает CreateTransactionRequest, возвращает
+	/// CreateTransactionResponse
 	CreateTransaction(context.Context, *CreateTransactionRequest) (*CreateTransactionResponse, error)
 	// <-------------- CURRENCY ACCOUNT -------------->
-	// / Получить список расчетных счетов агента. Получает GetBankAccountsRequest, возвращает
-	// / GetBankAccountsResponse
+	/// Получить список расчетных счетов агента. Получает GetBankAccountsRequest, возвращает
+	/// GetBankAccountsResponse
 	GetBankAccounts(context.Context, *GetBankAccountsRequest) (*GetBankAccountsResponse, error)
-	// / Создать расчетный счет. Получает CreateBankAccountRequest, возвращает
-	// / CreateBankAccountResponse
+	/// Создать расчетный счет. Получает CreateBankAccountRequest, возвращает
+	/// CreateBankAccountResponse
 	CreateBankAccount(context.Context, *CreateBankAccountRequest) (*CreateBankAccountResponse, error)
-	// / Редактировать расчетный счет. Получает EditBankAccountRequest, возвращает
-	// / EditBankAccountResponse
+	/// Редактировать расчетный счет. Получает EditBankAccountRequest, возвращает
+	/// EditBankAccountResponse
 	EditBankAccount(context.Context, *EditBankAccountRequest) (*EditBankAccountResponse, error)
-	// / Удалить расчетный счет. Получает DeleteBankAccountRequest, возвращает
-	// / DeleteBankAccountResponse
+	/// Удалить расчетный счет. Получает DeleteBankAccountRequest, возвращает
+	/// DeleteBankAccountResponse
 	DeleteBankAccount(context.Context, *DeleteBankAccountRequest) (*DeleteBankAccountResponse, error)
 	mustEmbedUnimplementedAgentServer()
 }

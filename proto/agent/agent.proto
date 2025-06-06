@@ -384,7 +384,8 @@ message Vacancy {
   VacancyModeration moderation = 15;
   string target_action = 16;
   int32 target_action_duration = 17;
-  google.protobuf.Timestamp create_date = 18;
+  optional string company_logo_link = 18;
+  google.protobuf.Timestamp create_date = 19;
 }
 
 // <=============== SUBMISSION ===============>

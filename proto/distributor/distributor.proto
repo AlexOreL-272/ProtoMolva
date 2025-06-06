@@ -473,7 +473,8 @@ message Vacancy {
   optional VacancyModeration moderation = 15;
   optional string target_action = 16;
   optional int32 target_action_duration = 17;
-  google.protobuf.Timestamp create_date = 18;
+  optional string company_logo_link = 18;
+  google.protobuf.Timestamp create_date = 19;
 }
 
 message VacancyInfo {
