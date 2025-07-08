@@ -474,7 +474,9 @@ message Vacancy {
   optional string target_action = 16;
   optional int32 target_action_duration = 17;
   optional string company_logo_link = 18;
-  google.protobuf.Timestamp create_date = 19;
+  optional int32 required_candidates = 19;
+  optional int32 hired_candidates = 20;
+  google.protobuf.Timestamp create_date = 21;
 }
 
 message VacancyInfo {
