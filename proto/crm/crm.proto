@@ -6,81 +6,79 @@ package handlers.api;
 
 option go_package = "service.crm";
 
-// =========================================
-// Service Definition
-// =========================================
-
 service Crm {
-	rpc SayHello(HelloRequest) returns(HelloResponse) {}
-	rpc Ping(PingRequest) returns(PingResponse) {}
+  rpc SayHello(HelloRequest) returns(HelloResponse) {}
+  rpc Ping(PingRequest) returns(PingResponse) {}
 
-	// регистрация  
-	rpc SaveNewUser(SaveNewUserRequest) returns(SaveNewUserResponse) {}
+  // регистрация
+  rpc SaveNewUser(SaveNewUserRequest) returns(SaveNewUserResponse) {};
 
-	// авторизация
-	rpc CheckUserEmail(CheckUserEmailRequest) returns(CheckUserEmailResponse) {} // check if there is user with such email, and if true return password
+  // авторизация
+  rpc CheckUserEmail(CheckUserEmailRequest) returns(CheckUserEmailResponse) {}; // check if there is user with such email, and if true return password
 
-	// обновить пользовательскую информацию
-	rpc ChangeUserPassword(ChangeUserPasswordRequest) returns(ChangeUserPasswordResponse) {}
-	rpc ChangeUserEmail(ChangeUserEmailRequest) returns(ChangeUserEmailResponse) {}
-	rpc ChangeUserPhone(ChangeUserPhoneRequest) returns(ChangeUserPhoneResponse) {}
-	rpc ChangeUserProfile(ChangeUserProfileRequest) returns(ChangeUserProfileResponse) {}
+  // обновить пользовательскую информацию
+  rpc ChangeUserPassword(ChangeUserPasswordRequest) returns(ChangeUserPasswordResponse) {};
+  rpc ChangeUserEmail(ChangeUserEmailRequest) returns(ChangeUserEmailResponse) {};
+  rpc ChangeUserPhone(ChangeUserPhoneRequest) returns(ChangeUserPhoneResponse) {};
+  rpc ChangeUserProfile(ChangeUserProfileRequest) returns(ChangeUserProfileResponse) {};
 
-	// добавить отзыв
-	rpc AddReview(AddReviewRequest) returns(AddReviewResponse) {}
-	rpc DeleteReview(DeleteReviewRequest) returns(DeleteReviewResponse) {}
+  // добавить отзыв
+  rpc AddReview(AddReviewRequest) returns(AddReviewResponse) {};
+  rpc DeleteReview(DeleteReviewRequest) returns(DeleteReviewResponse) {};
 
-	//получить список отзывов
-	rpc GetReviewList(GetReviewListRequest) returns(GetReviewListResponse) {}
+  //получить список отзывов
+  rpc GetReviewList(GetReviewListRequest) returns(GetReviewListResponse) {};
 
-	// получить информацию о пользователе
-	rpc GetUserInfo(GetUserInfoRequest) returns(GetUserInfoResponse) {} //by UID
 
-	// получить вакансии/приглашения
-	rpc GetVacancyList(GetVacancyListRequest) returns(GetVacancyListResponse) {}
-	rpc GetSubmissionList(GetSubmissionListRequest) returns(GetSubmissionListResponse) {}
+  // получить информацию о пользователе
+  rpc GetUserInfo(GetUserInfoRequest) returns(GetUserInfoResponse) {}; //by UID
 
-	// сохранить приглашение
-	rpc SetSubmission(SetSubmissionRequest) returns(SetSubmissionResponse) {}
+  // получить вакансии/приглашения
+  rpc GetVacancyList(GetVacancyListRequest) returns(GetVacancyListResponse);
+  rpc GetSubmissionList(GetSubmissionListRequest) returns(GetSubmissionListResponse) {};
 
-	//-------------------------------------------//
-	rpc SetVacancy(SetVacancyRequest) returns(SetVacancyResponse) {}
-	rpc DeleteVacancy(DeleteVacancyRequest) returns(DeleteVacancyResponse) {}
+  // сохранить приглашение
+  rpc SetSubmission(SetSubmissionRequest) returns(SetSubmissionResponse) {};
 
-	// создать и редактировать компанию
-	rpc CreateCompanyTicket(CreateCompanyTicketRequest) returns(CreateCompanyTicketResponse) {}
-	rpc GetCompanyList(GetCompanyListRequest) returns(GetCompanyListResponse) {}
-	rpc UpdateCompanyTicketStatus(UpdateCompanyTicketStatusRequest) returns(UpdateCompanyTicketStatusResponse) {}
-	rpc GetCompanyTickets(GetCompanyTicketsRequest) returns(GetCompanyTicketsResponse) {}
+  //-------------------------------------------//
+  rpc SetVacancy(SetVacancyRequest) returns(SetVacancyResponse) {};
+  rpc DeleteVacancy(DeleteVacancyRequest) returns(DeleteVacancyResponse) {};
 
-	rpc SetClientValidation(SetClientValidationRequest) returns(SetClientValidationResponse) {}
-	rpc GetClientValidation(GetClientValidationRequest) returns(GetClientValidationResponse) {}
 
-	// финансы
-	rpc GetBalance(GetBalanceRequest) returns(GetBalanceResponse) {}
-	rpc SaveTransaction(SaveTransactionRequest) returns(SaveTransactionResponse) {}
+  // создать и редактировать компанию
+  rpc CreateCompanyTicket(CreateCompanyTicketRequest) returns(CreateCompanyTicketResponse) {};
+  rpc GetCompanyList(GetCompanyListRequest) returns(GetCompanyListResponse) {};
+  rpc UpdateCompanyTicketStatus(UpdateCompanyTicketStatusRequest) returns (UpdateCompanyTicketStatusResponse) {};
+  rpc GetCompanyTickets(GetCompanyTicketsRequest) returns (GetCompanyTicketsResponse) {};
 
-	rpc GetBankAccounts(GetBankAccountsRequest) returns(GetBankAccountsResponse) {}
-	rpc GetTransactions(GetTransactionsRequest) returns(GetTransactionsResponse) {}
-	rpc UpdateTransactionStatus(UpdateTransactionStatusRequest) returns(UpdateTransactionStatusResponse) {}
+  rpc SetClientValidation(SetClientValidationRequest) returns(SetClientValidationResponse) {};
+  rpc GetClientValidation(GetClientValidationRequest) returns(GetClientValidationResponse) {};
 
-    rpc UpdateBankAccount(UpdateBankAccountRequest) returns (UpdateBankAccountResponse) {};
+  // финансы
+  rpc GetBalance(GetBalanceRequest) returns(GetBalanceResponse) {};
+  rpc SaveTransaction(SaveTransactionRequest) returns(SaveTransactionResponse) {};
 
-    // rpc CreateBankAccountTicket(CreateBankAccountTicketRequest) returns (CreateBankAccountTicketResponse) {};
-    // rpc UpdateBankAccountTicketStatus(UpdateBankAccountTicketStatusRequest) returns (UpdateBankAccountTicketStatusResponse) {};
-    // rpc GetBankAccountTickets(GetBankAccountTicketsRequest) returns (GetBankAccountTicketsResponse) {};
+  rpc GetBankAccounts(GetBankAccountsRequest) returns(GetBankAccountsResponse) {};
+  rpc GetTransactions(GetTransactionsRequest) returns(GetTransactionsResponse) {};
+  rpc UpdateTransactionStatus(UpdateTransactionStatusRequest) returns(UpdateTransactionStatusResponse) {};
 
-	// сброс пароля
-	rpc CreateOneTimePassword(CreateOneTimePasswordRequest) returns(CreateOneTimePasswordResponse) {}
-	rpc CheckOneTimePassword(CheckOneTimePasswordRequest) returns(CheckOneTimePasswordResponse) {}
-	rpc CheckPasswordResetToken(CheckPasswordResetTokenRequest) returns(CheckPasswordResetTokenResponse) {}
+  rpc UpdateBankAccount(UpdateBankAccountRequest) returns (UpdateBankAccountResponse) {};
+
+  // rpc CreateBankAccountTicket(CreateBankAccountTicketRequest) returns (CreateBankAccountTicketResponse) {};
+  // rpc UpdateBankAccountTicketStatus(UpdateBankAccountTicketStatusRequest) returns (UpdateBankAccountTicketStatusResponse) {};
+  // rpc GetBankAccountTickets(GetBankAccountTicketsRequest) returns (GetBankAccountTicketsResponse) {};
+
+  // сброс пароля
+  rpc CreateOneTimePassword(CreateOneTimePasswordRequest) returns(CreateOneTimePasswordResponse) {}
+  rpc CheckOneTimePassword(CheckOneTimePasswordRequest) returns(CheckOneTimePasswordResponse) {}
+  rpc CheckPasswordResetToken(CheckPasswordResetTokenRequest) returns(CheckPasswordResetTokenResponse) {}
 }
 
 message PingRequest {
 }
 
 message PingResponse {
-	string response = 1;
+  string response = 1;
 }
 
 enum UserType {
@@ -273,7 +271,7 @@ message GetVacancyListRequest {
   string region = 4;
   int32 salary_bottom = 5;
   int32 salary_top = 6;
-  bool is_archived = 7;
+  int32 is_archived = 7;  //1=true -1=false 0=no sorting
   VacancyStatus vacancy_moderation_status = 8;
   int32 offset = 9;
   int32 amount = 10;
@@ -318,6 +316,8 @@ message Vacancy {
   Moderation moderated = 15;
   string target_action = 16;
   int32 target_action_amount = 17;
+  int32 current_candidates = 18;
+  int32 required_candidates = 19;
 }
 
 message GetVacancyListResponse {
@@ -380,6 +380,7 @@ message SetSubmissionResponse {
   ResponseStatus status = 1;
   string response = 2; // описание результата
   string id = 3;
+  string vacancy_id = 4;
 }
 
 
@@ -681,7 +682,11 @@ message CheckPasswordResetTokenResponse {
   ResponseStatus status = 1;
   string response = 2;
   bool is_valid = 3;
-}// message CreateBankAccountTicketRequest {
+}
+
+
+
+// message CreateBankAccountTicketRequest {
 //     BankAccountTicket ticket = 1;
 // }
 
@@ -721,4 +726,3 @@ message CheckPasswordResetTokenResponse {
 //     google.protobuf.Timestamp created_at = 5;
 //     google.protobuf.Timestamp updated_at = 6;
 // }
-
